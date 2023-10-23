@@ -1,3 +1,9 @@
+Différentes Tables des BDD
+
+#####################
+### BDD CATALOGUE ###
+#####################
+
 LIEU (id, Nom, Adresse, NbPlace, NbPlaceAssis, NmbPlaceDebout)
 
 SOIREE : (id, Nom, Theme, Date, horaireDebut, tarifNormal, tarifReduit, #idLieu)
@@ -6,7 +12,15 @@ SPECTACLE (id, Titre, Description, style, urlVidéo)
 
 ARTISTE (id, Nom, Prénom, pseudo, #idSpectacle)
 
-UTILISATEUR (email, mdp, nom, prénom, typeUtil )
+CALENDRIER (#idSoiree, #idSpectacle, horaireSpectacle)
+
+IMAGE (image, #idLieu, #idSpectacle)
+
+
+
+####################
+### BDD COMMANDE ###
+####################
 
 PANIER (#mailUser, #IdSoiree, nmbPlace, typeTarif)
 
@@ -14,8 +28,12 @@ COMMANDE (idCommande, idUser, statut, total)
 
 BILLET ( Reference, #idSoirée, #mailUser, date, horaire, catTarif)
 
-IMAGE (image, #idLieu, #idSpectacle)
-
-CALENDRIER (#idSoiree, #idSpectacle, horaireSpectacle)
-
 COMMANDE2SOIREE(#idCommande, #idSoiree, typeTarif, nmbPlace)
+
+
+
+################
+### BDD AUTH ###
+################
+
+UTILISATEUR (email, mdp, nom, prénom, typeUtil )
