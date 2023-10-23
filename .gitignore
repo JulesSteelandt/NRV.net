@@ -1,1 +1,8 @@
 .idea
+
+/api/auth.nrv/vendor/
+/api/catalogue.nrv/vendor/
+/api/commande.nrv/vendor/
+/api/gateway.nrv/vendor/
+
+*.log
