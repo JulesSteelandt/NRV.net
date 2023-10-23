@@ -1,0 +1,21 @@
+LIEU (id, Nom, Adresse, NbPlace, NbPlaceAssis, NmbPlaceDebout)
+
+SOIREE : (id, Nom, Theme, Date, horaireDebut, tarifNormal, tarifReduit, #idLieu)
+
+SPECTACLE (id, Titre, Description, style, urlVidéo)
+
+ARTISTE (id, Nom, Prénom, pseudo, #idSpectacle)
+
+UTILISATEUR (email, mdp, nom, prénom, typeUtil )
+
+PANIER (#mailUser, #IdSoiree, nmbPlace, typeTarif)
+
+COMMANDE (idCommande, idUser, statut, total)
+
+BILLET ( Reference, #idSoirée, #mailUser, date, horaire, catTarif)
+
+IMAGE (image, #idLieu, #idSpectacle)
+
+CALENDRIER (#idSoiree, #idSpectacle, horaireSpectacle)
+
+COMMANDE2SOIREE(#idCommande, #idSoiree, typeTarif, nmbPlace)
