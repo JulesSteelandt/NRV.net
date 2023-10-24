@@ -1,8 +1,6 @@
 <?php
 
-namespace dto;
-
-use dto\DTO;
+namespace nrv\auth\domain\dto;
 
 class CredentialsDTO extends DTO {
 
