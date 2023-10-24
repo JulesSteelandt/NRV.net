@@ -5,5 +5,5 @@ CREATE TABLE UTILISATEUR
     mdp      VARCHAR(255),
     nom      VARCHAR(255),
     prénom   VARCHAR(255),
-    typeUtil VARCHAR(255)
+    typeUtil INT
 );
