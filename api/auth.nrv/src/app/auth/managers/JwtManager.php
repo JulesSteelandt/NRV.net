@@ -1,11 +1,14 @@
 <?php
 
+namespace nrv\auth\app\auth\managers;
+
+
 use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Firebase\JWT\SignatureInvalidException;
-use pizzashop\auth\api\domain\exception\JwtExpiredException;
-use pizzashop\auth\api\domain\exception\JwtInvalidException;
+use nrv\auth\api\domain\exception\JwtExpiredException;
+use nrv\auth\api\domain\exception\JwtInvalidException;
 
 class JwtManager {
 
