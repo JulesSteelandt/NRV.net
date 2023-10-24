@@ -1,0 +1,31 @@
+@startuml
+
+(*) --> "HTML"
+"HTML" --> "HEAD"
+"HTML" --> "BODY"
+
+"BODY" --> "HEADER"
+"BODY" --> "SECTION"
+"BODY" --> "FOOTER"
+
+"HEADER" --> "DIV" as d1
+"HEADER" --> "DIV" as d2
+
+d1 --> "IMG"
+d1 --> "H3" as h31
+
+d2 --> "DIV" as d3
+
+d3 --> "BUTTON" as b1
+d3 --> "IMG" as im1
+
+d2 --> "DIV" as d4
+
+d4 --> "INPUT" as in1
+d4 --> "IMG" as im2
+
+"SECTION" --> "DIV" as d5
+
+
+
+@enduml
