@@ -1,0 +1,17 @@
+Titre : Achat et impression de billets pour une soirée au festival NRV
+
+
+ M.x démarre son ordinateur portable et ouvre son navigateur web.
+Il tape l’adresse web NRV.net dans la barre d’adresse. Il arrive ensuite sur la page d’accueil de NRV.net. Il voit alors les différents spectacles proposés à venir.
+Il voit un spectacle qui l'intéresse. Il clique donc sur ce spectacle et voit les détails, il clique ensuite sur la soirée correspondante. Il peut donc regarder les autres spectacles de la soirée ainsi que les différents artistes, ainsi que le prix de la place.
+Suite à cela, il décide d’ajouter au panier 2 places, une pour lui (tarif normal) et une pour
+son amie (tarif réduit).
+Il est alors renvoyé sur une page de connexion. M.x se connecte à l’aide d’une adresse mail et d’un mot de passe (car il avait déjà un compte).
+Une fois connecté, M.x arrive sur la page de son panier et il vérifie que les deux places choisies ont bien été ajoutées.
+Il constate que tout est en ordre et valide donc son panier.
+Son panier passe sous forme de commande.
+M.x voit le récapitulatif de ce qu’il souhaite commander (prix, billets). Il valide ensuite la commande, il est alors redirigé vers la page de paiement.
+Il entre son numéro de carte bancaire, la date d’expiration et le numéro de sécurité.
+Il appuie sur le bouton payer, le paiement est accepté. Il a alors un lien vers les différents billets qu’il vient d’acheter. Il clique sur ce lien, ce qui l’amène à la page de ses billets.
+Puis il clique sur imprimer.
+Il récupère les billets imprimés.
