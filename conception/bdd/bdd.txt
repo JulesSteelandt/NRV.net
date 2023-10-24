@@ -36,4 +36,4 @@ COMMANDE2SOIREE(#idCommande, #idSoiree, typeTarif, nmbPlace)
 ### BDD AUTH ###
 ################
 
-UTILISATEUR (email, mdp, nom, prénom, typeUtil )
+UTILISATEUR (email, mdp, nom, prénom, typeUtil, refresh_token, refresh_token_expiration_date)

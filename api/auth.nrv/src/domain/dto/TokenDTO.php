@@ -1,8 +1,7 @@
 <?php
 
-namespace dto;
+namespace nrv\auth\domain\dto;
 
-use dto\DTO;
 
 class TokenDTO extends DTO {
     public string $refreshToken;

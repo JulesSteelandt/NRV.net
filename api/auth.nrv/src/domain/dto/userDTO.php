@@ -1,6 +1,6 @@
 <?php
 
-namespace dto;
+namespace nrv\auth\domain\dto;
 
 class userDTO extends DTO {
 

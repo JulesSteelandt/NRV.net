@@ -1,21 +1,21 @@
 -- Table LIEU
 CREATE TABLE LIEU
 (
-    id             INT PRIMARY KEY,
-    Nom            VARCHAR(255),
-    Adresse        VARCHAR(255),
-    NbPlace        INT,
-    NbPlaceAssis   INT,
-    NmbPlaceDebout INT
+    id             INT AUTO_INCREMENT PRIMARY KEY,
+    nom            VARCHAR(255),
+    adresse        VARCHAR(255),
+    nbPlace        INT,
+    nbPlaceAssis   INT,
+    nmbPlaceDebout INT
 );
 
 -- Table SOIREE
 CREATE TABLE SOIREE
 (
-    id           INT PRIMARY KEY,
-    Nom          VARCHAR(255),
-    Theme        VARCHAR(255),
-    Date         DATE,
+    id           INT AUTO_INCREMENT PRIMARY KEY,
+    nom          VARCHAR(255),
+    theme        VARCHAR(255),
+    date         DATE,
     horaireDebut TIME,
     tarifNormal  DECIMAL(10, 2),
     tarifReduit  DECIMAL(10, 2),
@@ -26,19 +26,19 @@ CREATE TABLE SOIREE
 -- Table SPECTACLE
 CREATE TABLE SPECTACLE
 (
-    id          INT PRIMARY KEY,
-    Titre       VARCHAR(255),
-    Description TEXT,
+    id          INT AUTO_INCREMENT PRIMARY KEY,
+    titre       VARCHAR(255),
+    description TEXT,
     style       VARCHAR(255),
-    urlVidéo    VARCHAR(255)
+    urlVideo    VARCHAR(255)
 );
 
 -- Table ARTISTE
 CREATE TABLE ARTISTE
 (
-    id          INT PRIMARY KEY,
-    Nom         VARCHAR(255),
-    Prénom      VARCHAR(255),
+    id          INT AUTO_INCREMENT PRIMARY KEY,
+    nom         VARCHAR(255),
+    prenom      VARCHAR(255),
     pseudo      VARCHAR(255),
     idSpectacle INT,
     FOREIGN KEY (idSpectacle) REFERENCES SPECTACLE (id)
@@ -64,4 +64,5 @@ CREATE TABLE CALENDRIER
     FOREIGN KEY (idSoiree) REFERENCES SOIREE (id),
     FOREIGN KEY (idSpectacle) REFERENCES SPECTACLE (id)
 );
+
 
