@@ -54,9 +54,9 @@ d13 --> "p" as p3
 
 d12 --> "DIV" as d14
 d14 --> "H4" as h41
-d14 -->
+d14 --> "p" as p4
 
-d12 --> "DIV" as d15
+d12 --> "SOURCE"
 
 d10 --> "ARTICLE" as a3
 a3 --> "..." as 2
@@ -64,9 +64,17 @@ a3 --> "..." as 2
 d10 --> "ARTICLE (ou non)" as a4
 a4 --> "..." as 3
 
-
 d9 --> "i" as i2
 
-"SECTION" --> "DIV" as d99
+"SECTION" --> "DIV" as d15
+d15 --> "DIV" as d16
+d16 --> "p" as p5
+d16 --> "p" as p6
+
+d15 --> "DIV" as d17
+d17 --> "p" as p7
+d17 --> "p" as p8
+
+d15 --> "BUTTON" as b2
 
 @enduml

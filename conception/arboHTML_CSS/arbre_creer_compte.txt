@@ -1,0 +1,58 @@
+@startuml
+
+(*) --> "HTML"
+"HTML" --> "HEAD"
+"HTML" --> "BODY"
+
+"BODY" --> "HEADER"
+"BODY" --> "SECTION"
+"BODY" --> "FOOTER"
+
+"HEADER" --> "DIV" as d1
+"HEADER" --> "DIV" as d2
+
+d1 --> "IMG"
+d1 --> "H3" as h31
+
+d2 --> "DIV" as d3
+
+d3 --> "BUTTON" as b1
+d3 --> "IMG" as im1
+
+d2 --> "DIV" as d4
+
+d4 --> "INPUT" as in1
+d4 --> "IMG" as im2
+
+"SECTION" --> "h3" as h32
+
+"SECTION" --> "DIV" as d5
+d5 --> "DIV" as d6
+d6 --> "H4" as h41
+d6 --> "LABEL" as l1
+
+d5 --> "DIV" as d7
+d7 --> "H4" as h42
+d7 --> "LABEL" as l2
+
+d5 --> "DIV" as d8
+d8 --> "H4" as h43
+d8 --> "LABEL" as l3
+
+d5 --> "DIV" as d9
+d9 --> "H4" as h44
+d9 --> "LABEL" as l4
+d9 --> "p" as p1
+
+d5 --> "DIV" as d10
+d10 --> "H4" as h45
+d10 --> "LABEL" as l5
+
+d5 --> "DIV" as d11
+d11 --> "BUTTON" as b2
+
+"SECTION" --> "DIV" as d12
+d12 --> "p" as p2
+d12 --> "BUTTON" as b3
+
+@enduml
