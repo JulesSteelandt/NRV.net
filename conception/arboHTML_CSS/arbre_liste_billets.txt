@@ -24,8 +24,35 @@ d2 --> "DIV" as d4
 d4 --> "INPUT" as in1
 d4 --> "IMG" as im2
 
-"SECTION" --> "h3" as h32
-
+"SECTION" --> "H3" as h32
 "SECTION" --> "DIV" as d5
+
+d5 --> "DIV" as d6
+d6 --> "H4" as h41
+d6 --> "H4" as h42
+
+d5 --> "H4" as h43
+
+d5 --> "DIV" as d7
+d7 --> "ARTICLE" as a1
+a1 --> "..." as 1
+
+d7 --> "ARTICLE" as a2
+a2 --> "DIV" as d9
+d9 --> "DIV" as d10
+d10 --> "H4" as h44
+d10 --> "p" as p1
+d10 --> "p" as p2
+d10 --> "p" as p3
+
+d9 --> "DIV" as d11
+d11 --> "H4" as h45
+d11 --> "H4" as h46
+
+a2 --> "DIV" as d12
+d12 --> "p" as p4
+d12 --> "LABEL" as l1
+
+d7 --> "..." as a3
 
 @enduml
