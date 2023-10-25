@@ -12,7 +12,6 @@ use nrv\auth\domain\entities\Utilisateur;
 use nrv\auth\domain\exception\CredentialsException;
 use nrv\auth\domain\exception\RefreshTokenInvalideException;
 use nrv\auth\domain\exception\RefreshUtilisateurException;
-use nrv\auth\domain\exception\RegisterException;
 use nrv\auth\domain\exception\RegisterExistException;
 use nrv\auth\domain\exception\RegisterValueException;
 use nrv\auth\domain\exception\SignInException;
