@@ -3,11 +3,9 @@
 use DI\ContainerBuilder;
 use Illuminate\Database\Capsule\Manager as DB;
 use Slim\Factory\AppFactory;
-use middlewares\Cors;
 
 session_start();
 // crée l'app et le moteur de templates
-
 
 $builder = new ContainerBuilder();
 
