@@ -18,6 +18,11 @@ class Spectacle extends Model
         return $this->hasMany(Artiste::class, "idSpectacle", "id");
     }
 
+    public function style()
+    {
+        return $this->belongsTo(Style::class, "idStyle", "id");
+    }
+
     public function soirees()
     {
         return $this->belongsToMany(Soiree::class, "CALENDRIER", "idSpectacle", "idSoiree")->withPivot("horaireSpectacle");
