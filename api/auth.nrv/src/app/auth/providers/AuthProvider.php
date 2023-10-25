@@ -5,7 +5,9 @@ namespace nrv\auth\app\auth\providers;
 use DateTime;
 use DateTimeZone;
 use Exception;
+use nrv\auth\app\auth\managers\JwtManager;
 use nrv\auth\domain\dto\CredentialsDTO;
+use nrv\auth\domain\dto\TokenDTO;
 use nrv\auth\domain\entities\Utilisateur;
 use nrv\auth\domain\exception\CredentialsException;
 use nrv\auth\domain\exception\RefreshTokenInvalideException;
@@ -59,7 +61,7 @@ class AuthProvider {
         }
     }
 
-    public function genToken(Users $user, JwtManager $jwtManager): TokenDTO
+    public function genToken(Utilisateur $user, JwtManager $jwtManager): TokenDTO
     {
         $newRefreshToken = bin2hex(random_bytes(32));
         $now = new DateTime('now', new DateTimeZone('Europe/Paris'));
