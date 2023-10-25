@@ -114,13 +114,13 @@ services:
     ports:
       - '32107:80'
     volumes:
-      - ../api/gateway.nrv/public:/var/www/html
-      - ../api/gateway.nrv:/var/www
+      - ../api/client.nrv/public:/var/www/html
+      - ../api/client.nrv:/var/www
     working_dir: /var/www
     networks:
       nrv.net:
         aliases:
-          - gateway.nrv.local
+          - client.nrv.local
     depends_on:
       - api.nrv.auth
       - api.nrv.catalogue
