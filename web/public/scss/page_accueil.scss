@@ -1,0 +1,100 @@
+@import "_reset";
+@import "_variables";
+@import "_header";
+
+body {
+
+  section {
+    display: flex;
+    flex-direction: row;
+
+    #accueil_filtres {
+      width: 10%;
+      padding: 20px;
+      background-color: $color-theme-gray;
+
+      h3 {
+        margin-bottom: 50px;
+      }
+
+      &>div {
+        h4 {
+
+        }
+
+        &>div {
+          @for $i from 1 through 4 {
+            div:nth-child(#{$i}) {
+              display: flex;
+              flex-direction: row;
+              input {
+
+              }
+              p {
+
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #accueil_liste_spectacles {
+      padding: 20px;
+      width: 90%;
+
+      h3 {
+        margin-bottom: 50px;
+      }
+      &>div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 3%;
+        button:nth-child(1) {
+          width: 40px;
+          height: 64px;
+          background-color: $color-theme-orange;
+
+          clip-path: polygon(100% 100%, 100% 0, 0 50%);
+        }
+        button:nth-child(3) {
+          width: 40px;
+          height: 64px;
+          background-color: $color-theme-orange;
+          clip-path: polygon(0 0, 0 100%, 100% 50%);
+        }
+
+        #grille_articles {
+          width: 90%;
+          display: grid;
+          grid-template-columns: repeat(3, $largeur_article);
+          grid-gap: $largeur_goutieres;
+          box-sizing: border-box;
+
+          @for $i from 1 through 6 {
+            article:nth-child(#{$i}) {
+              border: solid black 2px;
+              img {
+                padding: 20px;
+                width: 50px;
+              }
+              &>div {
+                padding: 20px;
+                background-color: $color-theme-gray;
+                @for $j from 1 through 4 {
+                  p:nth-child(#{$j}) {
+
+                  }
+                }
+                button {
+
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
