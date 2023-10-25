@@ -13,6 +13,7 @@ use nrv\catalogue\domain\service\ServiceCatalogue;
 use nrv\catalogue\domain\service\ServiceSoiree;
 use nrv\catalogue\domain\service\ServiceSpectacle;
 use nrv\catalogue\domain\service\ServiceStyle;
+use nrv\catalogue\domain\service\ServiceLieu;
 
 class Provider
 {
@@ -22,19 +23,26 @@ class Provider
     private ServiceSoiree $serviceSoiree;
     private ServiceArtiste $serviceArtiste;
     private ServiceStyle $serviceStyle;
+    private ServiceLieu $serviceLieu;
+
     /**
      * @param ServiceCatalogue $serviceCatalogue
      * @param ServiceSpectacle $serviceSpectacle
      * @param ServiceSoiree $serviceSoiree
+     * @param ServiceArtiste $serviceArtiste
+     * @param ServiceStyle $serviceStyle
+     * @param ServiceLieu $serviceLieu
      */
-    public function __construct(ServiceCatalogue $serviceCatalogue, ServiceSpectacle $serviceSpectacle, ServiceSoiree $serviceSoiree, ServiceArtiste $serviceArtiste, ServiceStyle $serviceStyle)
+    public function __construct(ServiceCatalogue $serviceCatalogue, ServiceSpectacle $serviceSpectacle, ServiceSoiree $serviceSoiree, ServiceArtiste $serviceArtiste, ServiceStyle $serviceStyle, ServiceLieu $serviceLieu)
     {
         $this->serviceCatalogue = $serviceCatalogue;
         $this->serviceSpectacle = $serviceSpectacle;
         $this->serviceSoiree = $serviceSoiree;
         $this->serviceArtiste = $serviceArtiste;
         $this->serviceStyle = $serviceStyle;
+        $this->serviceLieu = $serviceLieu;
     }
+
 
     /**
      * @throws SpectacleIdException
@@ -80,7 +88,8 @@ class Provider
     public function getSoireeById(int $id) : array{
         $soiree = $this->serviceSoiree->getSoireesById($id);
         $spec = $this->serviceSoiree->getSpectacleBySoiree($id);
-        return ['soiree'=>$soiree,'spectacles'=>$spec];
+        $lieu = $this->serviceLieu->getLieuById($soiree->idLieu);
+        return ['soiree'=>$soiree,'spectacles'=>$spec,'lieu'=>$lieu];
     }
 
     public function getStyle():array{

@@ -7,6 +7,7 @@ use nrv\catalogue\domain\service\ServiceSpectacle;
 use Psr\Container\ContainerInterface;
 use nrv\catalogue\domain\service\ServiceArtiste;
 use nrv\catalogue\domain\service\ServiceStyle;
+use nrv\catalogue\domain\service\ServiceLieu;
 
 return[
 
@@ -30,8 +31,19 @@ return[
         return new ServiceStyle();
     },
 
+    'lieu.service' => function (ContainerInterface $c) {
+        return new ServiceLieu();
+    },
+
     'catalogue.provider' => function (ContainerInterface $c) {
-        return new Provider($c->get('catalogue.service'),$c->get('spectacle.service'),$c->get('soiree.service'),$c->get('artiste.service'),$c->get('style.service'));
+        return new Provider(
+            $c->get('catalogue.service'),
+            $c->get('spectacle.service'),
+            $c->get('soiree.service'),
+            $c->get('artiste.service'),
+            $c->get('style.service'),
+            $c->get('lieu.service')
+        );
     },
 
 ];
