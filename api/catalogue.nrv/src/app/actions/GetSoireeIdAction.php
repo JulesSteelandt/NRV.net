@@ -52,7 +52,6 @@ class GetSoireeIdAction extends AbstractAction
         $data['data']['spectacle']['count'] = count($soiree['spectacles']);
 
 foreach ($soiree['spectacles'] as $spectacle){
-    var_dump($spectacle);
     $data['data']['spectacle'][] = [
                 'id'=>$spectacle['spectacle']->id,
                 'style'=>$spectacle['style'],
@@ -63,10 +62,8 @@ foreach ($soiree['spectacles'] as $spectacle){
                         'count' => count($spectacle['artistes']),
                         'list' => $spectacle['artistes'],
                 ],
-    ];
-}
-
-
+            ];
+        }
 
         $response->getBody()->write(json_encode($data));
         return
