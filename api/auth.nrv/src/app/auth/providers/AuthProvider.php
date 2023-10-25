@@ -73,7 +73,7 @@ class AuthProvider {
         $user->refresh_token_expiration_date = $refreshTokenExpDate->format('Y-m-d H:i:s');
         $user->save();
 
-        $token = $jwtManager->create(['username' => $user->username, 'email' => $user->email]);
+        $token = $jwtManager->create(['email' => $user->email, 'nom' => $user->nom, 'prenom' => $user->prenom, 'typeUtil' => $user->typeUtil ]);
         return new TokenDTO($newRefreshToken, $token);
     }
 
@@ -95,20 +95,25 @@ class AuthProvider {
 
     }
 
-    public function register(CredentialsDTO $user): void
+    public function register(string $email, string $password, string $nom, string $prenom): void
     {
-        if(Utilisateur::where('email', $user->email)->exists()) {
+        if(Utilisateur::where('email', $email)->exists()) {
             throw new RegisterExistException();
         }
-        if($user->email == '' || $user->password == '' || $user->nom == '' || $user->prenom == ''){
+        if($email == '' || $password == '' || $nom == '' || $prenom == ''){
             throw new RegisterValueException();}
         else {
+            $now = new DateTime('now', new DateTimeZone('Europe/Paris'));
+            $refreshTokenExpDate = $now->modify('+1 hour');
+
             $utilisateur = new Utilisateur();
-            $utilisateur->email = $user->email;
-            $utilisateur->password = password_hash($user->password, PASSWORD_BCRYPT);
-            $utilisateur->nom = $user->nom;
-            $utilisateur->prenom = $user->prenom;
+            $utilisateur->email = $email;
+            $utilisateur->password = password_hash($password, PASSWORD_BCRYPT);
+            $utilisateur->nom = $nom;
+            $utilisateur->prenom = $prenom;
             $utilisateur->typeUtil = 1;
+            $utilisateur->refresh_token = bin2hex(random_bytes(32));
+            $utilisateur->refresh_token_expiration_date = $refreshTokenExpDate->format('Y-m-d H:i:s');
             $utilisateur->save();
         }
     }
