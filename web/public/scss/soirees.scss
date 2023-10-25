@@ -65,6 +65,13 @@ section {
     width: 40%;
   }
 
+  .spectacleSoiree{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-gap: 1%;
+    width: 100%;
+  }
+
   nav div {
     border: solid 1px ghostwhite;
     margin: 2em;
