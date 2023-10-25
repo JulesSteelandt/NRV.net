@@ -1,3 +1,30 @@
-@import "reset", "header";
+@import "reset", "header", "footer", "bouton";
 
+
+section{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+
+  #entete{
+    display: flex;
+    flex-direction: row;
+    flex-flow: wrap;
+    justify-content: space-between;
+    min-width: 60%;
+  }
+}
+
+#imageSoiree{
+  width: 60%;
+}
+
+
+nav{
+margin: 2em;
+  max-width: 40%;
+  background-color: $color_theme-gray;
+}
 

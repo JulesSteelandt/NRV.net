@@ -5,9 +5,8 @@ footer{
   box-sizing: border-box;
   width: 100%;
   background-color: $color-theme-orange;
-  display: flex;
-  justify-content: space-between;
+  text-align: center;
   color: black;
   font-weight: bold;
-  max-width: 3em;
+  max-width: 100%;
 }
