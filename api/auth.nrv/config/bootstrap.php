@@ -15,6 +15,7 @@ $dotenv->load();
 $builder = new ContainerBuilder();
 
 $builder->addDefinitions(
+    include('dependencies/settings.php'),
     include('dependencies/services_dependencies.php'),
     include('dependencies/action_dependencies.php')
 );
