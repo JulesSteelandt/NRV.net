@@ -12,11 +12,21 @@ use nrv\auth\api\domain\exception\JwtInvalidException;
 
 class JwtManager {
 
+    public function create(array $user): string {
+        $payload = [
+            'iss' => "nrv.auth.db",
+            'iat' => time(),
+            'exp' => time() + $_ENV['JWT_EXPIRATION'],
+            'upr' => [
+                'email' => $user['email'],
+                'nom' => $user['nom'],
+                'prenom' => $user['prenom'],
+                'typeUtil' => $user['typeUtil'],
+            ],
+        ];
 
-
-
-
-
+        return JWT::encode($payload, $_ENV['JWT_SECRET'], 'HS512');
+    }
 
 
     public function validate(string $token): stdClass {
