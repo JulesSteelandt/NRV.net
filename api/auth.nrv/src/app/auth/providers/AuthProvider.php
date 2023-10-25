@@ -6,7 +6,6 @@ use DateTime;
 use DateTimeZone;
 use Exception;
 use nrv\auth\app\auth\managers\JwtManager;
-use nrv\auth\domain\dto\CredentialsDTO;
 use nrv\auth\domain\dto\TokenDTO;
 use nrv\auth\domain\entities\Utilisateur;
 use nrv\auth\domain\exception\CredentialsException;

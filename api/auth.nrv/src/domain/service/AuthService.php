@@ -7,7 +7,6 @@ use nrv\auth\app\auth\providers\AuthProvider;
 use nrv\auth\domain\dto\CredentialsDTO;
 use nrv\auth\domain\dto\TokenDTO;
 use nrv\auth\domain\dto\userDTO;
-use nrv\auth\domain\service\AuthServiceInterface;
 
 class AuthService implements AuthServiceInterface {
     private JwtManager $jwtManager;
