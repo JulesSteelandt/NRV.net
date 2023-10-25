@@ -31,7 +31,7 @@ class UserRefreshAction extends AbstractAction {
 
             $response->getBody()->write(json_encode($responseMessage));
             return $response->withStatus(200)->withHeader('Content-Type', 'application/json');
-        } catch (RefreshUtilisateurException | RefreshTokenInvalideException $e) {
+        } catch (RefreshUtilisateurException|RefreshTokenInvalideException $e) {
             $responseMessage = array(
                 "message" => "401 Refresh token error",
                 "exception" => array(

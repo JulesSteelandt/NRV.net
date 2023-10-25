@@ -36,9 +36,7 @@ class AuthService implements AuthServiceInterface {
     }
 
     public function refresh(TokenDTO $tokenDTO): TokenDTO {
-
-        $payload = $this->jwtManager->validate($tokenDTO->jwt);
-        $this->authProvider->checkToken($payload->upr->refresh_token);
-        return $this->authProvider->genToken($this->authProvider->getUser($payload->upr->email, $payload->upr->refresh_token), $this->jwtManager);
+        $this->authProvider->checkToken($tokenDTO->refreshToken);
+        return $this->authProvider->genToken($this->authProvider->getUser('',$tokenDTO->refreshToken), $this->jwtManager);
     }
 }
