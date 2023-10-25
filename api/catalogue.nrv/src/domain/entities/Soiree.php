@@ -3,6 +3,7 @@
 namespace nrv\catalogue\domain\entities;
 
 use nrv\catalogue\domain\dto\SoireeDTO;
+use DateTime;
 
 class Soiree extends \Illuminate\Database\Eloquent\Model
 {
@@ -28,8 +29,8 @@ class Soiree extends \Illuminate\Database\Eloquent\Model
             $this->theme,
             $this->tarifNormal,
             $this->tarifReduit,
-            $this->date->format('Y-m-d'),
-            $this->horaireDebut->format('H:i:s')
+            DateTime::createFromFormat('Y-m-d', $this->date),
+            DateTime::createFromFormat('H:i:s', $this->horaireDebut),
         );
     }
 

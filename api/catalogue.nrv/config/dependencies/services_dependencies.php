@@ -6,6 +6,7 @@ use Psr\Container\ContainerInterface;
 use nrv\catalogue\domain\service\ServiceSoiree;
 use nrv\catalogue\domain\service\ServiceSpectacle;
 use nrv\catalogue\domain\service\ServiceCatalogue;
+use nrv\catalogue\app\provider\Provider;
 
 return[
 
@@ -25,6 +26,10 @@ return[
 
     'catalogue.service' => function (ContainerInterface $c) {
         return new ServiceCatalogue($c->get('logger'));
+    },
+
+    'catalogue.provider' => function (ContainerInterface $c) {
+        return new Provider($c->get('catalogue.service'),$c->get('spectacle.service'),$c->get('soiree.service'));
     },
 
 ];

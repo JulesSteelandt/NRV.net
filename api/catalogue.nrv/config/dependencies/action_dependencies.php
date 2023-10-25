@@ -1,12 +1,12 @@
 <?php
 
 use Psr\Container\ContainerInterface;
-use nrv\catalogue\app\actions\GetCatalogueAction;
+use nrv\catalogue\app\actions\GetProgrammeAction;
 
 return[
 
-    GetCatalogueAction::class => function (ContainerInterface $c){
-        return new GetCatalogueAction($c->get('catalogue.service'));
+    GetProgrammeAction::class => function (ContainerInterface $c){
+        return new GetProgrammeAction($c->get('catalogue.provider'));
     },
 
 ];
