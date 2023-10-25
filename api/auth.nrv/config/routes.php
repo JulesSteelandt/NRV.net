@@ -1,6 +1,11 @@
 <?php
 declare(strict_types=1);
 
-return function( \Slim\App $app):void {
+use nrv\auth\app\actions\SignInAction;
+
+return function(\Slim\App $app):void {
+
+    $app->post("/signin",SignInAction::class)->setName("signIn");
+
 
 };

@@ -19,11 +19,11 @@ return [
     },
 
     'authenticate.provider' => function (ContainerInterface $c) {
-        return new AuthProvider();
+        return new AuthProvider($c->get('logger'));
     },
 
     'authenticate.service' => function (ContainerInterface $c) {
-        return new AuthService($c->get('logger'), $c->get('jwt.manager'), $c->get('authenticate.provider'));
+        return new AuthService($c->get('jwt.manager'), $c->get('authenticate.provider'));
     },
 
 

@@ -5,7 +5,7 @@ namespace nrv\auth\domain\dto;
 class CredentialsDTO extends DTO {
 
     public string $email;
-    public string $password;
+    public string $mdp;
     public string $nom;
     public string $prenom;
 
@@ -17,7 +17,7 @@ class CredentialsDTO extends DTO {
      */
     public function __construct(string $email = '', string $password = '', string $nom = '', string $prenom = '') {
         $this->email = $email;
-        $this->password = $password;
+        $this->mdp = $password;
         $this->nom = $nom;
         $this->prenom = $prenom;
     }

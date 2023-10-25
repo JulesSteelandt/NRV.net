@@ -14,21 +14,32 @@ use nrv\auth\domain\exception\RefreshUtilisateurException;
 use nrv\auth\domain\exception\RegisterExistException;
 use nrv\auth\domain\exception\RegisterValueException;
 use nrv\auth\domain\exception\SignInException;
+use Psr\Log\LoggerInterface;
 
 class AuthProvider {
 
+    private LoggerInterface $logger;
 
     protected Utilisateur $currentAuthenticatedUser;
+
+    /**
+     * @param LoggerInterface $logger
+     */
+    public function __construct(LoggerInterface $logger) {
+        $this->logger = $logger;
+    }
+
 
     public function checkCredentials(string $email, string $pass): void
     {
         try {
             $user = Utilisateur::where('email', $email)->firstOrFail();
-
-            if (!password_verify($pass, $user->password)) {
+            if (!password_verify($pass, $user->mdp)) {
+                $this->logger->error('Error : Le mot de passe n\'a pas passe la verification');
                 throw new CredentialsException();
             }
         } catch (Exception $e) {
+            $this->logger->error('Error : L\'email n\'a pas de compte associe');
             throw new CredentialsException();
         }
     }
@@ -97,9 +108,11 @@ class AuthProvider {
     public function register(string $email, string $password, string $nom, string $prenom): void
     {
         if(Utilisateur::where('email', $email)->exists()) {
+            $this->logger->error('Erreur : impossible de creer le compte, l\'email est deja utilisée');
             throw new RegisterExistException();
         }
         if($email == '' || $password == '' || $nom == '' || $prenom == ''){
+            $this->logger->error('Erreur : impossible de creer le compte, des informations sont manquantes');
             throw new RegisterValueException();}
         else {
             $now = new DateTime('now', new DateTimeZone('Europe/Paris'));
@@ -114,6 +127,7 @@ class AuthProvider {
             $utilisateur->refresh_token = bin2hex(random_bytes(32));
             $utilisateur->refresh_token_expiration_date = $refreshTokenExpDate->format('Y-m-d H:i:s');
             $utilisateur->save();
+            $this->logger->info('Utilisateur :Nouvel utilisateur creer');
         }
     }
 
