@@ -1,32 +1,17 @@
 <?php
 
-use nrv\catalogue\app\provider\Provider;
-use nrv\catalogue\domain\service\ServiceCatalogue;
-use nrv\catalogue\domain\service\ServiceSoiree;
-use nrv\catalogue\domain\service\ServiceSpectacle;
+use nrv\gateway\client\CatalogueClient;
+use nrv\gateway\provider\Provider;
 use Psr\Container\ContainerInterface;
-use nrv\catalogue\domain\service\ServiceArtiste;
 
 return[
 
-    'soiree.service' => function (ContainerInterface $c) {
-        return new ServiceSoiree();
+    'catalogue.client' => function (ContainerInterface $c) {
+        return new CatalogueClient(['base_uri' => 'http://docketu.iutnc.univ-lorraine.fr:32104']);
     },
 
-    'spectacle.service' => function (ContainerInterface $c) {
-        return new ServiceSpectacle();
-    },
-
-    'catalogue.service' => function (ContainerInterface $c) {
-        return new ServiceCatalogue();
-    },
-
-    'artiste.service' => function (ContainerInterface $c) {
-        return new ServiceArtiste();
-    },
-
-    'catalogue.provider' => function (ContainerInterface $c) {
-        return new Provider($c->get('catalogue.service'),$c->get('spectacle.service'),$c->get('soiree.service'),$c->get('artiste.service'));
+    'provider.client' => function (ContainerInterface $c) {
+        return new Provider($c->get('catalogue.client'));
     },
 
 ];
