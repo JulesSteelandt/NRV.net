@@ -5,6 +5,7 @@ namespace nrv\catalogue\app\actions;
 use nrv\catalogue\app\provider\Provider;
 use nrv\catalogue\domain\exception\SoireeIdException;
 use nrv\catalogue\domain\exception\SpectacleIdException;
+use nrv\catalogue\domain\exception\StyleIdException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -24,7 +25,7 @@ class GetSpectacleAction extends AbstractAction
 
         try {
             $spectacle = $this->provider->getSpectacleById($args['id']);
-        } catch (SpectacleIdException $e) {
+        } catch (SpectacleIdException|StyleIdException $e) {
             $responseMessage = array(
                 "message" => "404 Not Found",
                 "exception" => array(
@@ -44,7 +45,7 @@ class GetSpectacleAction extends AbstractAction
             'style'=>$spectacle['style'],
             'titre'=>$spectacle['spectacle']->titre,
             'description'=>$spectacle['spectacle']->description,
-            'urlvideo'=>$spectacle['spectacle']->urlvideo,
+            'urlvideo'=>$spectacle['spectacle']->urlVideo,
             'artistes'=> [
                 'count' => count($spectacle['artistes']),
                 'list'=>$spectacle['artistes'],
