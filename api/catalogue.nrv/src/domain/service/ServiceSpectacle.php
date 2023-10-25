@@ -9,13 +9,28 @@ use nrv\catalogue\domain\entities\Spectacle;
 class ServiceSpectacle
 {
 
+    private ServiceSoiree $serviceSoiree;
+
+    /**
+     * @param ServiceSoiree $serviceSoiree
+     */
+    public function __construct(ServiceSoiree $serviceSoiree)
+    {
+        $this->serviceSoiree = $serviceSoiree;
+    }
+
+
     public function getSpectacles():array{
-        return Spectacle::all();
+        $specs = Spectacle::all();
+        $list = [];
+        foreach ($specs as $spec){
+            $list = $spec->toDTO();
+        }
+        return $list;
     }
 
     public function getSpectacleById(int $id):SpectacleDTO{
-        $spec = Spectacle::find($id);
-        return new SpectacleDTO($spec->id,$spec->titre,$spec->description,$spec->style,$spec->urlVideo);
+        return Spectacle::find($id)->toDTO();
     }
 
     public function getSpectaclesCatalogue():array{
@@ -23,8 +38,11 @@ class ServiceSpectacle
         $list = [];
         foreach ($specs as $spec){
             $catalogue = $spec->soirees;
-            $list = new SpectacleDTO($catalogue->id,$catalogue->titre,$catalogue->description,$catalogue->style,$catalogue->urlVideo,$catalogue->horaire);
+            $spec = $spec->toDTO;
+            $spec->horaire = $catalogue->horaireSpectacle;
+            $list = $spec;
         }
+        return $list;
     }
 
 

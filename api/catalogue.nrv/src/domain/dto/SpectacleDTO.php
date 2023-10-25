@@ -8,10 +8,10 @@ use DateTime;
 class SpectacleDTO extends DTO
 {
 
-    private int $id;
-    private string $titre, $description, $style;
-    private ?string $urlVideo;
-    private ?DateTime $date, $horaire;
+    public int $id;
+    public string $titre, $description, $style;
+    public ?string $urlVideo;
+    public ?DateTime $date, $horaire;
 
     /**
      * @param int $id
