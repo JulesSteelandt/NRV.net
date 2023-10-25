@@ -37,6 +37,7 @@ section {
     font-size: x-large;
     font-weight: bold;
     padding: 0.4em;
+    font-family: $fontChange;
   }
 
   .left {
@@ -75,20 +76,20 @@ section {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      min-width: 10em;
     }
 
     div p{
-      font-size: x-large;
-      padding: 1em;
-      min-width: 20em;
+      font-size: large;
+      padding: 0.4em;
     }
     p~p{
       font-weight: bold;
     }
 
     .button{
-      margin-left: 45%;
-      margin-right: 5%;
+      align-self: flex-end;
+      margin: auto 5% 10px 45%;
     }
   }
 }
