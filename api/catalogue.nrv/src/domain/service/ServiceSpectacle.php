@@ -5,6 +5,7 @@ namespace nrv\catalogue\domain\service;
 
 use nrv\catalogue\domain\dto\SpectacleDTO;
 use nrv\catalogue\domain\entities\Spectacle;
+use nrv\catalogue\domain\exception\SpectacleIdException;
 
 class ServiceSpectacle
 {
@@ -30,7 +31,11 @@ class ServiceSpectacle
     }
 
     public function getSpectacleById(int $id):SpectacleDTO{
-        return Spectacle::find($id)->toDTO();
+        $spec = Spectacle::find($id);
+        if ($spec==null){
+            throw new SpectacleIdException($id);
+        }
+        return $spec->toDTO();
     }
 
     public function getSpectaclesCatalogue():array{
