@@ -6,7 +6,9 @@ namespace nrv\catalogue\domain\service;
 use nrv\catalogue\domain\dto\SpectacleDTO;
 use nrv\catalogue\domain\entities\Spectacle;
 use nrv\catalogue\domain\exception\SpectacleIdException;
+use nrv\catalogue\domain\exception\SpectacleStyleException;
 use Psr\Log\LoggerInterface;
+use function PHPUnit\Framework\isEmpty;
 
 class ServiceSpectacle
 {
@@ -56,6 +58,20 @@ class ServiceSpectacle
             $list = $spec;
         }
         $this->logger->info("requête: get de l'Ensemble du catalogue");
+        return $list;
+    }
+
+    public function getSpectacleByStyle(string $style){
+        $specs = Spectacle::where('style',$style)->get();
+        if ($specs-isEmpty()){
+            $this->logger->error("requête: aucun Spectacle de $style n'existe");
+            throw new SpectacleStyleException($style);
+        }
+        $list = [];
+        foreach ($specs as $spec){
+            $list = $spec->toDTO();
+        }
+        $this->logger->info("requête: get des spectacles de $style");
         return $list;
     }
 

@@ -6,7 +6,7 @@ class SoireeIdException extends \Exception
 {
 
 
-    public function __construct(string $id)
+    public function __construct(int $id)
     {
         parent::__construct("La soiree $id n'existe pas");
     }
