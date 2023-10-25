@@ -3,6 +3,7 @@
 namespace nrv\auth\domain\entities;
 
 use Illuminate\Database\Eloquent\Model;
+use nrv\auth\domain\dto\userDTO;
 
 class Utilisateur extends Model {
 

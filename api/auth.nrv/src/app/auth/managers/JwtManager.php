@@ -7,8 +7,10 @@ use Firebase\JWT\ExpiredException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use Firebase\JWT\SignatureInvalidException;
-use nrv\auth\api\domain\exception\JwtExpiredException;
-use nrv\auth\api\domain\exception\JwtInvalidException;
+use nrv\auth\domain\exception\JwtExpiredException;
+use nrv\auth\domain\exception\JwtInvalidException;
+use UnexpectedValueException;
+use stdClass;
 
 class JwtManager {
 
