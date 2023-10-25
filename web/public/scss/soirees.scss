@@ -1,30 +1,94 @@
 @import "reset", "header", "footer", "bouton";
 
-
-section{
+section {
   display: flex;
   flex-direction: row;
-  position: relative;
   width: 100%;
   height: 100vh;
 
-  #entete{
+  .corpsSoiree{
+    width: 80%;
+    min-width: 50em;
+  }
+
+  #entete {
     display: flex;
     flex-direction: row;
-    flex-flow: wrap;
+    width: 100%;
+  }
+
+  #imageSoiree{
+    width:70%;
+  }
+
+  .row, .rowTitle {
+    display: flex;
     justify-content: space-between;
-    min-width: 60%;
+  }
+
+  .row{
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+
+  .rowTitle{
+    border-bottom: solid 1px ghostwhite;
+    box-sizing: content-box;
+    font-size: x-large;
+    font-weight: bold;
+    padding: 0.4em;
+  }
+
+  .left {
+    flex: 1;
+  }
+
+  .right {
+    flex: 2;
+    text-align: right;
+  }
+
+ .image{
+   height:100%;
+   width:100%;
+    //object-fit: fill;
+  }
+
+  .descripSoiree{
+    background-color: $color_theme-gray;
+    width: 40%;
+  }
+
+  nav div{
+    border: solid 1px ghostwhite;
+    margin: 2em;
+  }
+
+  nav {
+    margin: 1em;
+    width: 20%;
+    background-color: $color_theme-gray;
+    display: flex;
+    flex-direction: column;
+
+    div{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    div p{
+      font-size: x-large;
+      padding: 1em;
+      min-width: 20em;
+    }
+    p~p{
+      font-weight: bold;
+    }
+
+    .button{
+      margin-left: 45%;
+      margin-right: 5%;
+    }
   }
 }
-
-#imageSoiree{
-  width: 60%;
-}
-
-
-nav{
-margin: 2em;
-  max-width: 40%;
-  background-color: $color_theme-gray;
-}
-
