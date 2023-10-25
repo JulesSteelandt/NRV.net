@@ -39,7 +39,17 @@ class GetSoireeIdAction extends AbstractAction
         }
 
         $data['type'] = 'resource';
-        $data['data']['soiree'] = $soiree['soiree'];
+        $data['data']['soiree'] = [
+            'id'=>$soiree['soiree']->id,
+            'nom'=>$soiree['soiree']->nom,
+            'theme'=>$soiree['soiree']->theme,
+            'date'=>$soiree['soiree']->date->format('Y-m-d'),
+            'horaireDebut'=>$soiree['soiree']->horaire->format('H:i:s'),
+            'tarifNormal'=>$soiree['soiree']->tarifNormal,
+            'tarifReduit'=>$soiree['soiree']->tarifReduit,
+            'idLieu'=>$soiree['soiree']->idLieu,
+        ];
+
         $data['data']['links']['spectacles'] = ['count' => count($soiree['spectacles'])];
         foreach ($soiree['spectacles'] as $spectacle){
             $data['data']['links']['spectacles'][] = ['/spectale/'.$spectacle];
