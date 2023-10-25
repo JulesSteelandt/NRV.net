@@ -30,7 +30,7 @@ class ServiceSpectacle
         $specs = Spectacle::all();
         $list = [];
         foreach ($specs as $spec){
-            $list = $spec->toDTO();
+            $list[] = $spec->toDTO();
         }
         $this->logger->info("requête: get de l'Ensemble de la table Spectacle");
         return $list;
@@ -55,7 +55,7 @@ class ServiceSpectacle
             $spec = $spec->toDTO;
             $spec->horaire = $catalogue->horaireSpectacle;
             $spec->date = $soiree->date;
-            $list = $spec;
+            $list[] = $spec;
         }
         $this->logger->info("requête: get de l'Ensemble du catalogue");
         return $list;

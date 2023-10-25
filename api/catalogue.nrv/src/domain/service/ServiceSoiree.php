@@ -23,7 +23,7 @@ class ServiceSoiree
         $soirees = Soiree::all();
         $list = [];
         foreach ($soirees as $soiree){
-            $list = $soiree->toDTO();
+            $list[] = $soiree->toDTO();
         }
         $this->logger->info("requête: get de l'Ensemble de la table Soiree");
         return $list;
