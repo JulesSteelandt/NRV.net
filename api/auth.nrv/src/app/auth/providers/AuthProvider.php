@@ -12,6 +12,9 @@ use nrv\auth\domain\entities\Utilisateur;
 use nrv\auth\domain\exception\CredentialsException;
 use nrv\auth\domain\exception\RefreshTokenInvalideException;
 use nrv\auth\domain\exception\RefreshUtilisateurException;
+use nrv\auth\domain\exception\RegisterException;
+use nrv\auth\domain\exception\RegisterExistException;
+use nrv\auth\domain\exception\RegisterValueException;
 use nrv\auth\domain\exception\SignInException;
 
 class AuthProvider {
@@ -91,6 +94,24 @@ class AuthProvider {
             }
         }
 
+    }
+
+    public function register(CredentialsDTO $user): void
+    {
+        if(Utilisateur::where('email', $user->email)->exists()) {
+            throw new RegisterExistException();
+        }
+        if($user->email == '' || $user->password == '' || $user->nom == '' || $user->prenom == ''){
+            throw new RegisterValueException();}
+        else {
+            $utilisateur = new Utilisateur();
+            $utilisateur->email = $user->email;
+            $utilisateur->password = password_hash($user->password, PASSWORD_BCRYPT);
+            $utilisateur->nom = $user->nom;
+            $utilisateur->prenom = $user->prenom;
+            $utilisateur->typeUtil = 1;
+            $utilisateur->save();
+        }
     }
 
 
