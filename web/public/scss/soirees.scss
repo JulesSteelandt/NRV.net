@@ -6,7 +6,7 @@ section {
   width: 100%;
   height: 100vh;
 
-  .corpsSoiree{
+  .corpsSoiree {
     width: 80%;
     min-width: 50em;
   }
@@ -17,8 +17,12 @@ section {
     width: 100%;
   }
 
-  #imageSoiree{
-    width:70%;
+  #imageSoiree {
+    width: 70%;
+  }
+
+ .descripSoiree>div:nth-child(2){
+    margin-top: 2.5em;
   }
 
   .row, .rowTitle {
@@ -26,12 +30,12 @@ section {
     justify-content: space-between;
   }
 
-  .row{
+  .row {
     padding-left: 2em;
     padding-right: 2em;
   }
 
-  .rowTitle{
+  .rowTitle {
     border-bottom: solid 1px ghostwhite;
     box-sizing: content-box;
     font-size: x-large;
@@ -47,20 +51,21 @@ section {
   .right {
     flex: 2;
     text-align: right;
+    font-weight: normal;
   }
 
- .image{
-   height:100%;
-   width:100%;
+  .image {
+    height: 100%;
+    width: 100%;
     //object-fit: fill;
   }
 
-  .descripSoiree{
+  .descripSoiree {
     background-color: $color_theme-gray;
     width: 40%;
   }
 
-  nav div{
+  nav div {
     border: solid 1px ghostwhite;
     margin: 2em;
   }
@@ -72,24 +77,35 @@ section {
     display: flex;
     flex-direction: column;
 
-    div{
+    div {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
       min-width: 10em;
     }
 
-    div p{
+    div p {
       font-size: large;
       padding: 0.4em;
-    }
-    p~p{
-      font-weight: bold;
+      margin-left: 0.2em;
     }
 
-    .button{
+    p ~ p {
+      font-weight: bold;
+      margin-left: 4em;
+    }
+
+    .button {
       align-self: flex-end;
-      margin: auto 5% 10px 45%;
+      margin: auto 5% 20px 45%;
+    }
+
+    label {
+      display: inline-block;
+
+      input[type="checkbox"] {
+        margin-left: 2.5em;
+        margin-top: 2em;
+      }
     }
   }
 }
