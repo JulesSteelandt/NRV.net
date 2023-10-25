@@ -1,0 +1,52 @@
+@import "_reset";
+@import "_variables";
+@import "_header";
+@import "button";
+
+body {
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h3 {
+
+    }
+
+    #creation_compte {
+      background-color: $color-theme-gray;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      border: 1px solid black;
+      box-sizing: border-box;
+      padding: 10px;
+      margin-bottom: 10px;
+
+      @for $i from 1 through 6 {
+        div:nth-child(#{$i}) {
+          h4 {
+            margin-bottom: 0;
+          }
+          input {
+
+          }
+        }
+      }
+      button {
+        align-items: end;
+      }
+    }
+
+    #identification_compte {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
+
+      button {
+        height: 26px;
+      }
+    }
+  }
+}

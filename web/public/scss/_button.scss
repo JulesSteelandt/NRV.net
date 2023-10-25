@@ -1,0 +1,11 @@
+@import "variables";
+
+.button{
+  border: none;
+  min-width: 10em;
+  min-height : 2em;
+  color: $color-theme-orange;
+  font-weight: bold;
+  background-color: black;
+  border-radius: 10px;
+}
