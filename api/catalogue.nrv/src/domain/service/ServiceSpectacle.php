@@ -38,8 +38,10 @@ class ServiceSpectacle
         $list = [];
         foreach ($specs as $spec){
             $catalogue = $spec->soirees;
+            $soiree = $this->serviceSoiree->getSoireesById($catalogue->idSoiree);
             $spec = $spec->toDTO;
             $spec->horaire = $catalogue->horaireSpectacle;
+            $spec->date = $soiree->date;
             $list = $spec;
         }
         return $list;
