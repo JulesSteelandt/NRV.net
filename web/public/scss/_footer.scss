@@ -1,0 +1,13 @@
+@import "variables";
+
+footer{
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: $color-theme-orange;
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  font-weight: bold;
+  max-width: 3em;
+}
