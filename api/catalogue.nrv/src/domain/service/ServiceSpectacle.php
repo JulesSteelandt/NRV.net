@@ -6,18 +6,21 @@ namespace nrv\catalogue\domain\service;
 use nrv\catalogue\domain\dto\SpectacleDTO;
 use nrv\catalogue\domain\entities\Spectacle;
 use nrv\catalogue\domain\exception\SpectacleIdException;
+use Psr\Log\LoggerInterface;
 
 class ServiceSpectacle
 {
 
     private ServiceSoiree $serviceSoiree;
+    private LoggerInterface $logger;
 
     /**
      * @param ServiceSoiree $serviceSoiree
      */
-    public function __construct(ServiceSoiree $serviceSoiree)
+    public function __construct(ServiceSoiree $serviceSoiree, LoggerInterface $log)
     {
         $this->serviceSoiree = $serviceSoiree;
+        $this->logger = $log;
     }
 
 
@@ -27,14 +30,17 @@ class ServiceSpectacle
         foreach ($specs as $spec){
             $list = $spec->toDTO();
         }
+        $this->logger->info("requête: get de l'Ensemble de la table Spectacle");
         return $list;
     }
 
     public function getSpectacleById(int $id):SpectacleDTO{
         $spec = Spectacle::find($id);
         if ($spec==null){
+            $this->logger->error("requête: Spectacle $id n'existe pas");
             throw new SpectacleIdException($id);
         }
+        $this->logger->info("requête: get Spectacle $id");
         return $spec->toDTO();
     }
 
@@ -49,6 +55,7 @@ class ServiceSpectacle
             $spec->date = $soiree->date;
             $list = $spec;
         }
+        $this->logger->info("requête: get de l'Ensemble du catalogue");
         return $list;
     }
 
