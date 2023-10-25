@@ -22,10 +22,22 @@ class ServiceSoiree
 
     public function getSoireesById(int $id): SoireeDTO
     {
-        $spec = Soiree::find($id);
-        if ($spec == null) {
+        $soiree = Soiree::find($id);
+        if ($soiree == null) {
             throw new SoireeIdException($id);
         }
-        return $spec->toDTO();
+        return $soiree->toDTO();
+    }
+
+    public function getSpectacleBySoiree(int $id): array{
+        $soiree = Soiree::find($id);
+        if ($soiree == null) {
+            throw new SoireeIdException($id);
+        }
+        $list = [];
+        foreach ($soiree->spectacles as $soiree){
+            $list[] = $soiree->id;
+        }
+        return $list;
     }
 }

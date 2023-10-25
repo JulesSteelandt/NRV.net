@@ -3,6 +3,7 @@
 use DI\ContainerBuilder;
 use Illuminate\Database\Capsule\Manager as DB;
 use Slim\Factory\AppFactory;
+use middlewares\Cors;
 
 session_start();
 // crée l'app et le moteur de templates
@@ -26,6 +27,7 @@ $app->addBodyParsingMiddleware();
 $app->addRoutingMiddleware();
 $app->addErrorMiddleware(true, false, false);
 $app->setBasePath('');
+
 
 // initialise Eloquent avec les fichiers de config
 $db = new DB();

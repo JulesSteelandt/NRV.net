@@ -71,5 +71,14 @@ class Provider
         return $this->serviceArtiste->getArtisteById($id);
     }
 
+    /**
+     * @throws SoireeIdException
+     */
+    public function getSoireeById(int $id) : array{
+        $soiree = $this->serviceSoiree->getSoireesById($id);
+        $spec = $this->serviceSoiree->getSpectacleBySoiree($id);
+        return ['soiree'=>$soiree,'spectacles'=>$spec];
+    }
+
 
 }

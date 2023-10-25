@@ -3,11 +3,11 @@
 namespace nrv\catalogue\app\actions;
 
 use nrv\catalogue\app\provider\Provider;
-use nrv\catalogue\domain\exception\ArtisteIdException;
+use nrv\catalogue\domain\exception\SoireeIdException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class GetArtisteAction extends AbstractAction
+class GetSoireeIdAction extends AbstractAction
 {
 
     private Provider $provider;
@@ -22,8 +22,8 @@ class GetArtisteAction extends AbstractAction
     {
 
         try {
-            $artiste = $this->provider->getArtisteById($args['id']);
-        } catch (ArtisteIdException $e) {
+            $soiree = $this->provider->getSoireeById($args['id']);
+        } catch (SoireeIdException $e) {
             $responseMessage = array(
                 "message" => "404 Not Found",
                 "exception" => array(
@@ -39,8 +39,12 @@ class GetArtisteAction extends AbstractAction
         }
 
         $data['type'] = 'resource';
-        $data['artiste']['data'] = $artiste;
-        $data['artiste']['links'] = '/spectacle/'.$artiste->idSpectacle;
+        $data['soiree']['data'] = $soiree['soiree'];
+        $data['soiree']['links']['spectacles'] = ['count' => count($soiree['spectacles'])];
+        foreach ($soiree['spectacles'] as $spectacle){
+            $data['soiree']['links']['spectacles'][] = ['/spectale/'.$spectacle];
+        }
+
 
         $response->getBody()->write(json_encode($data));
         return
