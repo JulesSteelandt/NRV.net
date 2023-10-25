@@ -3,14 +3,16 @@
 namespace nrv\catalogue\app\provider;
 
 use nrv\catalogue\domain\dto\ArtisteDTO;
+use nrv\catalogue\domain\dto\StyleDTO;
 use nrv\catalogue\domain\exception\ArtisteIdException;
 use nrv\catalogue\domain\exception\SoireeIdException;
 use nrv\catalogue\domain\exception\SpectacleIdException;
+use nrv\catalogue\domain\exception\StyleIdException;
 use nrv\catalogue\domain\service\ServiceArtiste;
 use nrv\catalogue\domain\service\ServiceCatalogue;
 use nrv\catalogue\domain\service\ServiceSoiree;
 use nrv\catalogue\domain\service\ServiceSpectacle;
-use nrv\catalogue\domain\dto\SpectacleDTO;
+use nrv\catalogue\domain\service\ServiceStyle;
 
 class Provider
 {
@@ -18,19 +20,20 @@ class Provider
     private ServiceCatalogue $serviceCatalogue;
     private ServiceSpectacle $serviceSpectacle;
     private ServiceSoiree $serviceSoiree;
-
     private ServiceArtiste $serviceArtiste;
+    private ServiceStyle $serviceStyle;
     /**
      * @param ServiceCatalogue $serviceCatalogue
      * @param ServiceSpectacle $serviceSpectacle
      * @param ServiceSoiree $serviceSoiree
      */
-    public function __construct(ServiceCatalogue $serviceCatalogue, ServiceSpectacle $serviceSpectacle, ServiceSoiree $serviceSoiree, ServiceArtiste $serviceArtiste)
+    public function __construct(ServiceCatalogue $serviceCatalogue, ServiceSpectacle $serviceSpectacle, ServiceSoiree $serviceSoiree, ServiceArtiste $serviceArtiste, ServiceStyle $serviceStyle)
     {
         $this->serviceCatalogue = $serviceCatalogue;
         $this->serviceSpectacle = $serviceSpectacle;
         $this->serviceSoiree = $serviceSoiree;
         $this->serviceArtiste = $serviceArtiste;
+        $this->serviceStyle = $serviceStyle;
     }
 
     /**
@@ -78,6 +81,17 @@ class Provider
         $soiree = $this->serviceSoiree->getSoireesById($id);
         $spec = $this->serviceSoiree->getSpectacleBySoiree($id);
         return ['soiree'=>$soiree,'spectacles'=>$spec];
+    }
+
+    public function getStyle():array{
+        return $this->serviceStyle->getStyle();
+    }
+
+    /**
+     * @throws StyleIdException
+     */
+    public function getStyleById(int $id):StyleDTO{
+        return $this->serviceStyle->getStyleById($id);
     }
 
 

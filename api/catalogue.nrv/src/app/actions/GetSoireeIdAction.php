@@ -39,10 +39,10 @@ class GetSoireeIdAction extends AbstractAction
         }
 
         $data['type'] = 'resource';
-        $data['soiree']['data'] = $soiree['soiree'];
-        $data['soiree']['links']['spectacles'] = ['count' => count($soiree['spectacles'])];
+        $data['data']['soiree'] = $soiree['soiree'];
+        $data['data']['links']['spectacles'] = ['count' => count($soiree['spectacles'])];
         foreach ($soiree['spectacles'] as $spectacle){
-            $data['soiree']['links']['spectacles'][] = ['/spectale/'.$spectacle];
+            $data['data']['links']['spectacles'][] = ['/spectale/'.$spectacle];
         }
 
 

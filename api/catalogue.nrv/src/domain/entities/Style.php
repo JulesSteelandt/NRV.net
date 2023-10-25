@@ -3,7 +3,7 @@
 namespace nrv\catalogue\domain\entities;
 
 use Illuminate\Database\Eloquent\Model;
-use nrv\catalogue\domain\dto\SoireeDTO;
+use nrv\catalogue\domain\dto\StyleDTO;
 
 class Style extends Model
 {
@@ -16,5 +16,12 @@ class Style extends Model
     public function spectacle()
     {
         return $this->hasMany(Style::class, "idStyle", "id");
+    }
+
+    public function toDTO():StyleDTO{
+        return new StyleDTO(
+            $this->id,
+            $this->nom
+        );
     }
 }

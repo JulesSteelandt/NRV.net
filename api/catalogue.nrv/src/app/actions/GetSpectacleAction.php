@@ -40,13 +40,13 @@ class GetSpectacleAction extends AbstractAction
         }
 
         $data['type'] = 'resource';
-        $data['spectacle']['data'] = $spectacle['spectacle'];
-        $data['spectacle']['links']['style'] = [
+        $data['data']['spectacle'] = $spectacle['spectacle'];
+        $data['data']['links']['style'] = [
             '/style/'.$spectacle['spectacle']->style
         ];
-        $data['spectacle']['links']['artistes'] = ['count' => count($spectacle['artistes'])];
+        $data['data']['links']['artistes'] = ['count' => count($spectacle['artistes'])];
         foreach ($spectacle['artistes'] as $artiste){
-            $data['spectacle']['links']['artistes'][] = ['/artiste/'.$artiste->id];
+            $data['data']['links']['artistes'][] = ['/artiste/'.$artiste->id];
         }
 
 
