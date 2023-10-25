@@ -21,5 +21,24 @@ class Provider
         return $this->catalogueClient->get("/programme");
     }
 
+    public function spectacle($id){
+        return $this->catalogueClient->get("/programme");
+    }
+
+    public function soiree(){
+        return $this->catalogueClient->get("/programme");
+    }
+
+    public function style(){
+        return $this->catalogueClient->get("/programme");
+    }
+
+    public function styleId(){
+        return $this->catalogueClient->get("/programme");
+    }
+
+
+
+
 
 }
