@@ -19,18 +19,14 @@ class SpectacleDTO extends DTO
      * @param string $description
      * @param int $style
      * @param string|null $urlVideo
-     * @param DateTime|null $date
-     * @param DateTime|null $horaire
      */
-    public function __construct(int $id, string $titre, string $description, int $style, ?string $urlVideo = null, ?DateTime $date = null, ?DateTime $horaire = null)
+    public function __construct(int $id, string $titre, string $description, int $style, ?string $urlVideo = null)
     {
         $this->id = $id;
         $this->titre = $titre;
         $this->description = $description;
         $this->style = $style;
         $this->urlVideo = $urlVideo;
-        $this->date = $date;
-        $this->horaire = $horaire;
     }
 
 }

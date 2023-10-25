@@ -3,12 +3,13 @@
 namespace nrv\catalogue\app\actions;
 
 use nrv\catalogue\app\provider\Provider;
+use nrv\catalogue\domain\exception\ArtisteIdException;
 use nrv\catalogue\domain\exception\SoireeIdException;
 use nrv\catalogue\domain\exception\SpectacleIdException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class GetProgrammeAction extends AbstractAction
+class GetArtisteAction extends AbstractAction
 {
 
     private Provider $provider;
@@ -23,8 +24,8 @@ class GetProgrammeAction extends AbstractAction
     {
 
         try {
-            $catalogue = $this->provider->getProgramme();
-        } catch (SpectacleIdException|SoireeIdException $e) {
+            $artiste = $this->provider->getArtisteById($args['id']);
+        } catch (ArtisteIdException $e) {
             $responseMessage = array(
                 "message" => "404 Not Found",
                 "exception" => array(
@@ -40,26 +41,8 @@ class GetProgrammeAction extends AbstractAction
         }
 
         $data['type'] = 'resource';
-        $data['count'] = count($catalogue);
-
-        foreach ($catalogue as $programme){
-            $data['data'][] = [
-                'spectacle'=>[
-                    'id'=>$programme['spectacle']->id,
-                    'titre'=>$programme['spectacle']->titre,
-                    'date'=>$programme['soiree']->date->format('Y-m-d'),
-                    'horaire'=>$programme['horaire']->format('H:i:s'),
-                    'links' => [
-                        'self' => [
-                            'href' => '/spectacle/' . $programme['spectacle']->id,
-                        ],
-                        'soiree' => [
-                            'href' => '/soiree/' . $programme['soiree']->id,
-                        ],
-                    ],
-                ],
-            ];
-        }
+        $data['artiste']['data'] = $artiste;
+        $data['artiste']['links'] = '/spectacle/'.$artiste->idSpectacle;
 
         $response->getBody()->write(json_encode($data));
         return

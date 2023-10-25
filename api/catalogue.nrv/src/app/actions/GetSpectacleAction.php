@@ -8,7 +8,7 @@ use nrv\catalogue\domain\exception\SpectacleIdException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class GetProgrammeAction extends AbstractAction
+class GetSpectacleAction extends AbstractAction
 {
 
     private Provider $provider;
@@ -23,8 +23,8 @@ class GetProgrammeAction extends AbstractAction
     {
 
         try {
-            $catalogue = $this->provider->getProgramme();
-        } catch (SpectacleIdException|SoireeIdException $e) {
+            $spectacle = $this->provider->getSpectacleById($args['id']);
+        } catch (SpectacleIdException $e) {
             $responseMessage = array(
                 "message" => "404 Not Found",
                 "exception" => array(
@@ -40,26 +40,15 @@ class GetProgrammeAction extends AbstractAction
         }
 
         $data['type'] = 'resource';
-        $data['count'] = count($catalogue);
-
-        foreach ($catalogue as $programme){
-            $data['data'][] = [
-                'spectacle'=>[
-                    'id'=>$programme['spectacle']->id,
-                    'titre'=>$programme['spectacle']->titre,
-                    'date'=>$programme['soiree']->date->format('Y-m-d'),
-                    'horaire'=>$programme['horaire']->format('H:i:s'),
-                    'links' => [
-                        'self' => [
-                            'href' => '/spectacle/' . $programme['spectacle']->id,
-                        ],
-                        'soiree' => [
-                            'href' => '/soiree/' . $programme['soiree']->id,
-                        ],
-                    ],
-                ],
-            ];
+        $data['spectacle']['data'] = $spectacle['spectacle'];
+        $data['spectacle']['links']['style'] = [
+            '/style/'.$spectacle['spectacle']->style
+        ];
+        $data['spectacle']['links']['artistes'] = ['count' => count($spectacle['artistes'])];
+        foreach ($spectacle['artistes'] as $artiste){
+            $data['spectacle']['links']['artistes'][] = ['/artiste/'.$artiste->id];
         }
+
 
         $response->getBody()->write(json_encode($data));
         return
