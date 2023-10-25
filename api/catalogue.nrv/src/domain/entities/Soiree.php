@@ -29,7 +29,7 @@ class Soiree extends \Illuminate\Database\Eloquent\Model
             $this->tarifNormal,
             $this->tarifReduit,
             $this->date->format('Y-m-d'),
-            $this->horaireDebut->format('H-i-s')
+            $this->horaireDebut->format('H:i:s')
         );
     }
 

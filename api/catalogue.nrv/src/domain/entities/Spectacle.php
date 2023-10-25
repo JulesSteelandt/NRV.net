@@ -30,7 +30,7 @@ class Spectacle extends Model
             $this->titre,
             $this->description,
             $this->style,
-            $this->urlVideo
+            $this->urlVideo,
         );
     }
 }

@@ -5,6 +5,7 @@ use Monolog\Logger;
 use Psr\Container\ContainerInterface;
 use nrv\catalogue\domain\service\ServiceSoiree;
 use nrv\catalogue\domain\service\ServiceSpectacle;
+use nrv\catalogue\domain\service\ServiceCatalogue;
 
 return[
 
@@ -19,7 +20,11 @@ return[
     },
 
     'spectacle.service' => function (ContainerInterface $c) {
-        return new ServiceSpectacle($c->get('soiree.service'),$c->get('logger'));
+        return new ServiceSpectacle($c->get('logger'));
+    },
+
+    'catalogue.service' => function (ContainerInterface $c) {
+        return new ServiceCatalogue($c->get('logger'));
     },
 
 ];
