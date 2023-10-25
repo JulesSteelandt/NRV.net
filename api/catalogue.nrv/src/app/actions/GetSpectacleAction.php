@@ -38,16 +38,18 @@ class GetSpectacleAction extends AbstractAction
             $response->getBody()->write(json_encode($responseMessage));
             return $response->withStatus(404)->withHeader('Content-Type', 'application/json');
         }
-
         $data['type'] = 'resource';
-        $data['data']['spectacle'] = $spectacle['spectacle'];
-        $data['data']['links']['style'] = [
-            '/style/'.$spectacle['spectacle']->style
-        ];
-        $data['data']['links']['artistes'] = ['count' => count($spectacle['artistes'])];
-        foreach ($spectacle['artistes'] as $artiste){
-            $data['data']['links']['artistes'][] = ['/artiste/'.$artiste->id];
-        }
+        $data['data'] = ['spectacles' => [
+            'id'=>$spectacle['spectacle']->id,
+            'style'=>$spectacle['style'],
+            'titre'=>$spectacle['spectacle']->titre,
+            'description'=>$spectacle['spectacle']->description,
+            'urlvideo'=>$spectacle['spectacle']->urlvideo,
+            'artistes'=> [
+                'count' => count($spectacle['artistes']),
+                'list'=>$spectacle['artistes'],
+            ],
+    ]];
 
 
         $response->getBody()->write(json_encode($data));

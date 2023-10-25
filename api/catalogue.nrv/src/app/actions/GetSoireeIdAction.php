@@ -40,20 +40,32 @@ class GetSoireeIdAction extends AbstractAction
 
         $data['type'] = 'resource';
         $data['data']['soiree'] = [
-            'id'=>$soiree['soiree']->id,
-            'nom'=>$soiree['soiree']->nom,
-            'theme'=>$soiree['soiree']->theme,
-            'date'=>$soiree['soiree']->date->format('Y-m-d'),
-            'horaireDebut'=>$soiree['soiree']->horaire->format('H:i:s'),
-            'tarifNormal'=>$soiree['soiree']->tarifNormal,
-            'tarifReduit'=>$soiree['soiree']->tarifReduit,
-            'Lieu'=>$soiree['lieu'],
+            'id' => $soiree['soiree']->id,
+            'nom' => $soiree['soiree']->nom,
+            'theme' => $soiree['soiree']->theme,
+            'date' => $soiree['soiree']->date->format('Y-m-d'),
+            'horaireDebut' => $soiree['soiree']->horaire->format('H:i:s'),
+            'tarifNormal' => $soiree['soiree']->tarifNormal,
+            'tarifReduit' => $soiree['soiree']->tarifReduit,
+            'Lieu' => $soiree['lieu'],
         ];
+        $data['data']['spectacle']['count'] = count($soiree['spectacles']);
 
-        $data['data']['links']['spectacles'] = ['count' => count($soiree['spectacles'])];
-        foreach ($soiree['spectacles'] as $spectacle){
-            $data['data']['links']['spectacles'][] = ['/spectale/'.$spectacle];
-        }
+foreach ($soiree['spectacles'] as $spectacle){
+    var_dump($spectacle);
+    $data['data']['spectacle'][] = [
+                'id'=>$spectacle['spectacle']->id,
+                'style'=>$spectacle['style'],
+                'titre'=>$spectacle['spectacle']->titre,
+                'description'=>$spectacle['spectacle']->description,
+                'urlvideo'=>$spectacle['spectacle']->urlVideo,
+                'artistes'=> [
+                        'count' => count($spectacle['artistes']),
+                        'list' => $spectacle['artistes'],
+                ],
+    ];
+}
+
 
 
         $response->getBody()->write(json_encode($data));
