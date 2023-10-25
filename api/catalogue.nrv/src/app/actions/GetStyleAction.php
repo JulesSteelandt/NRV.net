@@ -7,7 +7,7 @@ use nrv\catalogue\domain\exception\ArtisteIdException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class GetArtisteAction extends AbstractAction
+class GetStyleAction extends AbstractAction
 {
 
     private Provider $provider;
@@ -22,7 +22,7 @@ class GetArtisteAction extends AbstractAction
     {
 
         try {
-            $artiste = $this->provider->getArtisteById($args['id']);
+            $style = $this->provider->getStyle();
         } catch (ArtisteIdException $e) {
             $responseMessage = array(
                 "message" => "404 Not Found",
@@ -39,8 +39,7 @@ class GetArtisteAction extends AbstractAction
         }
 
         $data['type'] = 'resource';
-        $data['data']['artiste'] = $artiste;
-        $data['data']['links'] = ['spectacle'=>'/spectacle/'.$artiste->idSpectacle];
+        $data['data']['styles'] = $style;
 
         $response->getBody()->write(json_encode($data));
         return

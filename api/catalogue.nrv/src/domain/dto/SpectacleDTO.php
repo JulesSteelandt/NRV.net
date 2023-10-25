@@ -11,7 +11,6 @@ class SpectacleDTO extends DTO
     public int $id, $style;
     public string $titre, $description;
     public ?string $urlVideo;
-    public ?DateTime $date, $horaire;
 
     /**
      * @param int $id
