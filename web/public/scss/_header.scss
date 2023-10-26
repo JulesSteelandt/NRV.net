@@ -32,7 +32,7 @@ header {
       justify-content: end;
       img {
         margin-left: 10px;
-        width: 50px;
+        width: 40px;
       }
       button {
         height: 20px;
@@ -44,10 +44,15 @@ header {
       display: flex;
       justify-content: center;
       img {
-        width: 50px;
+        width: 40px;
+      }
+      #imgSearch{
+        width: 30px;
       }
       input {
         height: 20px;
+        margin-right: 68px;
+        margin-left: 5px;
       }
     }
   }
