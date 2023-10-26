@@ -17,10 +17,14 @@ class ClientApi
         $this->client = new Client($config);
     }
 
-    public function get($url)
+    public function get($url,$data = [],$headers = [])
     {
         try {
-            $response = $this->client->get($url);
+            $options = [
+                'json' => $data,
+                'headers' => $headers, // Ajoutez les en-têtes reçus de l'API 1
+            ];
+            $response = $this->client->get($url,$options);
             $jsonContents = $response->getBody()->getContents();
 
             $responseData = json_decode($jsonContents, true);
@@ -37,6 +41,30 @@ class ClientApi
 
                 return json_encode($response, JSON_PRETTY_PRINT);
 
+            } else {
+                echo "Erreur de communication : " . $e->getMessage();
+            }
+        }
+    }
+
+    public function post($url, $data, $headers = [])
+    {
+        try {
+            // Créez un tableau d'options pour la requête POST
+            $options = [
+                'json' => $data,
+                'headers' => $headers, // Ajoutez les en-têtes reçus de l'API 1
+            ];
+
+            $response = $this->client->post($url, $options);
+
+            return $response->getBody()->getContents();
+
+        } catch (GuzzleException|RequestException $e) {
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                $statusCode = $response->getStatusCode();
+                return $response->getBody()->getContents();
             } else {
                 echo "Erreur de communication : " . $e->getMessage();
             }

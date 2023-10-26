@@ -54,11 +54,10 @@ body {
       flex: 1;
     }
 
-    .right {
-      flex: 2;
-      text-align: right;
-      font-weight: normal;
-    }
+  .spectacleSoiree{
+    display: flex;
+    flex-direction: row;
+  }
 
     .image {
       height: 100%;
@@ -183,7 +182,7 @@ body {
       margin-left: 4em;
     }
 
-    .button {
+    .button_validation {
       margin: 10% 5% 25% 50%;
     }
 
