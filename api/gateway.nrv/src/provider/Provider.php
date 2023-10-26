@@ -2,39 +2,42 @@
 
 namespace nrv\gateway\provider;
 
-use nrv\gateway\client\CatalogueClient;
+use nrv\gateway\client\ClientApi;
 
 class Provider
 {
 
-    private CatalogueClient $catalogueClient;
+    private ClientApi $clientApi;
 
-    /**
-     * @param CatalogueClient $catalogueClient
-     */
-    public function __construct(CatalogueClient $catalogueClient)
+
+    public function __construct(ClientApi $clientApi)
     {
-        $this->catalogueClient = $catalogueClient;
+        $this->clientApi = $clientApi;
     }
 
     public function catalogue(){
-        return $this->catalogueClient->get("/programme");
+        return $this->clientApi->get("/programme");
     }
 
     public function spectacle($id){
-        return $this->catalogueClient->get("/programme");
+        return $this->clientApi->get("/spectacle/$id");
     }
 
-    public function soiree(){
-        return $this->catalogueClient->get("/programme");
+    public function soiree($id){
+        return $this->clientApi->get("/soiree/$id");
     }
+
+    public function artiste($id){
+        return $this->clientApi->get("/artiste/$id");
+    }
+
 
     public function style(){
-        return $this->catalogueClient->get("/programme");
+        return $this->clientApi->get("/style");
     }
 
-    public function styleId(){
-        return $this->catalogueClient->get("/programme");
+    public function styleId($id){
+        return $this->clientApi->get("/style/$id");
     }
 
 

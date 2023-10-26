@@ -5,8 +5,9 @@ namespace nrv\gateway\client;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
 
-class CatalogueClient
+class ClientApi
 {
 
     protected Client $client;
@@ -22,15 +23,23 @@ class CatalogueClient
             $response = $this->client->get($url);
             $jsonContents = $response->getBody()->getContents();
 
-            // Décodez le JSON en un tableau associatif pour le reformater
             $responseData = json_decode($jsonContents, true);
 
-            // Reformatte le tableau associatif en JSON lisible
             return json_encode($responseData, JSON_PRETTY_PRINT);
 
-        } catch (GuzzleException $e) {
-            // Gérer les erreurs de requête ici
-            return null;
+        } catch (GuzzleException|RequestException $e) {
+            if ($e->hasResponse()) {
+                $response = $e->getResponse();
+                $statusCode = $response->getStatusCode();
+
+                $body = $response->getBody()->getContents();
+                $response = json_decode($body, JSON_PRETTY_PRINT);
+
+                return json_encode($response, JSON_PRETTY_PRINT);
+
+            } else {
+                echo "Erreur de communication : " . $e->getMessage();
+            }
         }
     }
 

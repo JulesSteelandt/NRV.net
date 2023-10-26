@@ -1,13 +1,13 @@
 <?php
 
-namespace nrv\gateway\actions;
+namespace nrv\gateway\actions\catalogue;
 
-use nrv\gateway\client\CatalogueClient;
+use nrv\gateway\actions\AbstractAction;
 use nrv\gateway\provider\provider;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class ProgrammeAction extends AbstractAction
+class StyleListAction extends AbstractAction
 {
     private Provider $provider;
 
@@ -19,7 +19,7 @@ class ProgrammeAction extends AbstractAction
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $catalogueData = $this->provider->catalogue();
+        $catalogueData = $this->provider->style();
 
         if ($catalogueData !== null) {
             $response->getBody()->write($catalogueData);
