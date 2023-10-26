@@ -1,0 +1,199 @@
+@import "reset", "header", "footer", "bouton";
+
+body{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+
+  .corpsSoiree {
+    width: 80%;
+    min-width: 50em;
+  }
+
+  #entete {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  #imageSoiree {
+    width: 70%;
+  }
+
+ .descripSoiree>div:nth-child(2){
+    margin-top: 2.5em;
+  }
+
+  .row, .rowTitle {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .row {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+
+  .rowTitle {
+    border-bottom: solid 1px ghostwhite;
+    box-sizing: content-box;
+    font-size: x-large;
+    font-weight: bold;
+    padding: 0.4em;
+    font-family: $fontChange;
+  }
+
+  .left {
+    flex: 1;
+  }
+
+  .right {
+    flex: 2;
+    text-align: right;
+    font-weight: normal;
+  }
+
+  .image {
+    height: 100%;
+    width: 100%;
+    //object-fit: fill;
+  }
+
+  .descripSoiree {
+    background-color: $color_theme-gray;
+    width: 40%;
+  }
+
+  .spectacleSoiree{
+    display: flex;
+    flex-direction: row;
+    & * {
+      border: solid 1px green;
+    }
+  }
+
+  .articleSpectacle{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(14, $largeurSpect);
+    grid-gap: $largeur_goutieres;
+    box-sizing: border-box;
+    height: 65%;
+
+
+    .spectacle{
+      grid-column: 3/7;
+      grid-row: 1;
+      margin-top: 10px;
+      height: 40vh;
+      background-color: $color-theme-gray;
+      min-width: 100%;
+      padding: 2px;
+
+      img{
+        width: 100%;
+      }
+
+      #infoSpectacle, #description{
+        grid-column: 3/7;
+        grid-row: 2;
+        background-color: #F8882D;
+        display: flex;
+        justify-content: space-between;
+        padding: 1em;
+      }
+
+      #infoSpectacle{
+        margin-bottom: 5px;
+      }
+      #description {
+        flex-direction: column;
+        margin-bottom: 10px;
+      }
+
+
+
+      video{
+        grid-column: 3/7;
+        grid-row: 3;
+        background-color: ghostwhite;
+        text-align: center;
+        height: 100%;
+        width: 100%;
+      }
+
+      }
+
+  }
+  }
+#buttonPrev {
+  align-items: center;
+  width: 40px;
+  height: 64px;
+  background-color: $color-theme-orange;
+  clip-path: polygon(100% 100%, 100% 0, 0 50%);
+  margin-top: 13em;
+  margin-left: 1em;
+}
+#buttonSuiv {
+  align-items: baseline;
+  width: 40px;
+  height: 64px;
+  background-color: $color-theme-orange;
+  clip-path: polygon(0 0, 0 100%, 100% 50%);
+  margin-top: 15em;
+  margin-right: 1em;
+}
+
+
+  nav div {
+    border: solid 1px ghostwhite;
+    margin: 2em;
+    min-width: 15em;
+  }
+
+  nav {
+    margin: 0.4em;
+    width: 20%;
+    background-color: $color_theme-gray;
+    display: flex;
+    flex-direction: column;
+    height: 158vh;
+
+    div {
+      display: flex;
+      flex-direction: row;
+
+    }
+
+    div p {
+      font-size: large;
+      padding: 0.4em;
+      margin-left: 0.2em;
+    }
+
+    p ~ p {
+      font-weight: bold;
+      margin-left: 4em;
+    }
+
+    .button {
+      margin: 10% 5% 25% 50%;
+    }
+
+    label {
+      display: inline-block;
+
+      input[type="checkbox"] {
+        margin-left: 2.5em;
+        margin-top: 2em;
+      }
+    }
+  }
