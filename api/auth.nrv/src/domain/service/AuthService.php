@@ -2,13 +2,11 @@
 
 namespace nrv\auth\domain\service;
 
-use Monolog\Logger;
 use nrv\auth\app\auth\managers\JwtManager;
 use nrv\auth\app\auth\providers\AuthProvider;
 use nrv\auth\domain\dto\CredentialsDTO;
 use nrv\auth\domain\dto\TokenDTO;
 use nrv\auth\domain\dto\userDTO;
-use Psr\Log\LoggerInterface;
 
 class AuthService implements AuthServiceInterface {
     private JwtManager $jwtManager;
@@ -21,7 +19,7 @@ class AuthService implements AuthServiceInterface {
 
     public function signup(CredentialsDTO $credentialsDTO): UserDTO {
         $this->authProvider->register($credentialsDTO->email, $credentialsDTO->mdp, $credentialsDTO->nom, $credentialsDTO->prenom);
-        $us = $this->authProvider->getAuthenticatedUser();
+        $us = $this->authProvider->getAuthenticatedUser($credentialsDTO->email);
         return new UserDTO($us['email'], $us['nom'], $us['prenom'], $us['typeUtil']);
     }
 

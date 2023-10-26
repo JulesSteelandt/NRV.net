@@ -20,8 +20,6 @@ class AuthProvider {
 
     private LoggerInterface $logger;
 
-    protected Utilisateur $currentAuthenticatedUser;
-
     /**
      * @param LoggerInterface $logger
      */
@@ -30,8 +28,7 @@ class AuthProvider {
     }
 
 
-    public function checkCredentials(string $email, string $pass): void
-    {
+    public function checkCredentials(string $email, string $pass): void {
         try {
             $user = Utilisateur::where('email', $email)->firstOrFail();
             if (!password_verify($pass, $user->mdp)) {
@@ -45,21 +42,23 @@ class AuthProvider {
     }
 
 
-
-    public function getAuthenticatedUser(): array
-    {
-        return [
-            'typeUtiltypeUtil' => $this->currentAuthenticatedUser->typeUtil,
-            'email' => $this->currentAuthenticatedUser->email,
-            'nom' => $this->currentAuthenticatedUser->nom,
-            'prenom' => $this->currentAuthenticatedUser->prenom,
-            'refresh_token' => $this->currentAuthenticatedUser->refresh_token,
+    public function getAuthenticatedUser(string $email): array {
+        $user = Utilisateur::where('email', $email)->firstOrFail();
+        $info = [
+            'typeUtil' => $user->typeUtil,
+            'email' => $user->email,
+            'nom' => $user->nom,
+            'prenom' => $user->prenom,
+            'refresh_token' => '',
         ];
+        if (isset($user->refresh_token)) {
+            $info['refresh_token'] = $user->refresh_token;
+        }
+        return $info;
     }
 
 
-    public function checkToken(string $token)
-    {
+    public function checkToken(string $token) {
         try {
             $user = Utilisateur::where('refresh_token', $token)->firstOrFail();
             $tokenExpDate = new DateTime($user->refresh_token_expiration_date);
@@ -73,8 +72,7 @@ class AuthProvider {
         }
     }
 
-    public function genToken(Utilisateur $user, JwtManager $jwtManager): TokenDTO
-    {
+    public function genToken(Utilisateur $user, JwtManager $jwtManager): TokenDTO {
         $newRefreshToken = bin2hex(random_bytes(32));
         $now = new DateTime('now', new DateTimeZone('Europe/Paris'));
         $refreshTokenExpDate = $now->modify('+1 hour');
@@ -83,12 +81,11 @@ class AuthProvider {
         $user->refresh_token_expiration_date = $refreshTokenExpDate->format('Y-m-d H:i:s');
         $user->save();
 
-        $token = $jwtManager->create(['email' => $user->email, 'nom' => $user->nom, 'prenom' => $user->prenom, 'typeUtil' => $user->typeUtil ]);
+        $token = $jwtManager->create(['email' => $user->email, 'nom' => $user->nom, 'prenom' => $user->prenom, 'typeUtil' => $user->typeUtil]);
         return new TokenDTO($newRefreshToken, $token);
     }
 
-    public function getUser(string $email, string $token): Utilisateur
-    {
+    public function getUser(string $email, string $token): Utilisateur {
         if ($email == '') {
             try {
                 return Utilisateur::where('refresh_token', $token)->firstOrFail();
@@ -105,22 +102,21 @@ class AuthProvider {
 
     }
 
-    public function register(string $email, string $password, string $nom, string $prenom): void
-    {
-        if(Utilisateur::where('email', $email)->exists()) {
+    public function register(string $email, string $mdp, string $nom, string $prenom): void {
+        if (Utilisateur::where('email', $email)->exists()) {
             $this->logger->error('Erreur : impossible de creer le compte, l\'email est deja utilisée');
             throw new RegisterExistException();
         }
-        if($email == '' || $password == '' || $nom == '' || $prenom == ''){
+        if ($email == '' || $mdp == '' || $nom == '' || $prenom == '') {
             $this->logger->error('Erreur : impossible de creer le compte, des informations sont manquantes');
-            throw new RegisterValueException();}
-        else {
+            throw new RegisterValueException();
+        } else {
             $now = new DateTime('now', new DateTimeZone('Europe/Paris'));
             $refreshTokenExpDate = $now->modify('+1 hour');
 
             $utilisateur = new Utilisateur();
             $utilisateur->email = $email;
-            $utilisateur->password = password_hash($password, PASSWORD_BCRYPT);
+            $utilisateur->mdp = password_hash($mdp, PASSWORD_BCRYPT);
             $utilisateur->nom = $nom;
             $utilisateur->prenom = $prenom;
             $utilisateur->typeUtil = 1;
@@ -130,8 +126,6 @@ class AuthProvider {
             $this->logger->info('Utilisateur :Nouvel utilisateur creer');
         }
     }
-
-
 
 
 }
