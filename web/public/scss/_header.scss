@@ -2,7 +2,7 @@
 
 header {
   // position: fixed;
-  padding: 20px;
+  padding: 10px;
   box-sizing: border-box;
   width: 100%;
   background-color: $color-theme-orange;
@@ -13,7 +13,7 @@ header {
     display: flex;
     flex-direction: row;
     img {
-      width: 100px;
+      width: 10em;
     }
 
     h3 {
