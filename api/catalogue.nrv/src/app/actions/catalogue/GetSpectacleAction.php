@@ -46,6 +46,7 @@ class GetSpectacleAction extends AbstractAction
             'titre'=>$spectacle['spectacle']->titre,
             'description'=>$spectacle['spectacle']->description,
             'urlvideo'=>$spectacle['spectacle']->urlVideo,
+            'image'=>$spectacle['spectacle']->image,
             'artistes'=> [
                 'count' => count($spectacle['artistes']),
                 'list'=>$spectacle['artistes'],

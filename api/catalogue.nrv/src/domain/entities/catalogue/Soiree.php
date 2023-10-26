@@ -2,7 +2,7 @@
 
 namespace nrv\catalogue\domain\entities\catalogue;
 
-use nrv\catalogue\domain\dto\SoireeDTO;
+use nrv\catalogue\domain\dto\catalogue\SoireeDTO;
 use DateTime;
 
 class Soiree extends \Illuminate\Database\Eloquent\Model

@@ -3,8 +3,8 @@
 namespace nrv\catalogue\domain\service\catalogue;
 
 
-use nrv\catalogue\domain\dto\StyleDTO;
-use nrv\catalogue\domain\entities\Style;
+use nrv\catalogue\domain\dto\catalogue\StyleDTO;
+use nrv\catalogue\domain\entities\catalogue\Style;
 use nrv\catalogue\domain\exception\StyleIdException;
 
 class ServiceStyle

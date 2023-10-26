@@ -3,7 +3,7 @@
 namespace nrv\catalogue\domain\entities\catalogue;
 
 use Illuminate\Database\Eloquent\Model;
-use nrv\catalogue\domain\dto\StyleDTO;
+use nrv\catalogue\domain\dto\catalogue\StyleDTO;
 
 class Style extends Model
 {

@@ -3,7 +3,7 @@
 namespace nrv\catalogue\domain\entities\catalogue;
 
 use Illuminate\Database\Eloquent\Model;
-use nrv\catalogue\domain\dto\SpectacleDTO;
+use nrv\catalogue\domain\dto\catalogue\SpectacleDTO;
 
 class Spectacle extends Model
 {
@@ -36,6 +36,7 @@ class Spectacle extends Model
             $this->description,
             $this->idStyle,
             $this->urlVideo,
+            $this->image,
         );
     }
 }

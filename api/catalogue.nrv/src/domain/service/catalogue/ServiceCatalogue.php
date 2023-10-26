@@ -4,8 +4,8 @@ namespace nrv\catalogue\domain\service\catalogue;
 
 
 use DateTime;
-use nrv\catalogue\domain\dto\CatalogueDTO;
-use nrv\catalogue\domain\entities\Spectacle;
+use nrv\catalogue\domain\dto\catalogue\CatalogueDTO;
+use nrv\catalogue\domain\entities\catalogue\Spectacle;
 
 class ServiceCatalogue
 {

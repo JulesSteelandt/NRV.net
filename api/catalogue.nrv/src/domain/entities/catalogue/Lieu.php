@@ -2,7 +2,7 @@
 
 namespace nrv\catalogue\domain\entities\catalogue;
 
-use nrv\catalogue\domain\dto\LieuDTO;
+use nrv\catalogue\domain\dto\catalogue\LieuDTO;
 
 class Lieu extends \Illuminate\Database\Eloquent\Model
 {
@@ -24,7 +24,8 @@ class Lieu extends \Illuminate\Database\Eloquent\Model
             $this->nbPlaceAssis,
             $this->nmbPlaceDebout,
             $this->nom,
-            $this->adresse
+            $this->adresse,
+            $this->image
         );
     }
 
