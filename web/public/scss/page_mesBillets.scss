@@ -1,0 +1,70 @@
+@import "reset", "header", "footer", "button";
+
+section{
+  display: flex;
+  flex-direction: row;
+
+  .corpsBillet{
+    margin: 3% auto;
+    background-color: $color-theme-gray;
+    width: 80%;
+
+    &>h3{
+      background-color: black;
+      font-size: xx-large;
+      color: $color-theme-orange;
+      padding: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .infoClient{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0.4% 1.5%;
+
+      &>div>h4:first-of-type{
+        font-size: x-large;
+        font-weight: bold;
+      }
+    }
+    .billet{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      width: 30%;
+      height: 20%;
+      background-color: $color-theme-orange;
+      margin: 25px 25px 25px 25px;
+      padding: 1.5em;
+
+      &>div h4{
+        font-size: x-large;
+        margin-bottom: 2em;
+      }
+
+      .qtBillet{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+
+      }
+
+      .left{
+        flex: 1;
+      }
+      .right {
+        flex: 2;
+      }
+
+      #imgPrint {
+          background-color: $color-theme-orange;
+          max-width: 30px;
+          max-height: 30px;
+          margin: 4px;
+        }
+      }
+    }
+  }
