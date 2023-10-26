@@ -26,11 +26,35 @@ class ValiderTokenJWTAction extends AbstractAction {
             $pUser = $this->authService->validate(new TokenDTO('', $token));
             $response->getBody()->write(json_encode($pUser));
         } catch (JwtExpiredException $e) {
-            $response->getBody()->write(json_encode(['error' => 'Token expiré']));
-            return $response->withStatus(401)->withHeader('Content-Type','application/json');
+            $responseMessage = array(
+                "message" => "401 token expiré",
+                "exception" => array(
+                    "type" => $e::class,
+                    "code" => $e->getCode(),
+                    "message" => $e->getMessage(),
+                    "file" => $e->getFile(),
+                    "line" => $e->getLine()
+                )
+            );
+
+            $response->getBody()->write(json_encode($responseMessage));
+            return $response->withStatus(401)->withHeader('Content-Type', 'application/json');
+
         } catch (JwtInvalidException $e) {
-            $response->getBody()->write(json_encode(['error' => 'Token invalide']));
-            return $response->withStatus(401)->withHeader('Content-Type','application/json');
+            $responseMessage = array(
+                "message" => "401 token invalide",
+                "exception" => array(
+                    "type" => $e::class,
+                    "code" => $e->getCode(),
+                    "message" => $e->getMessage(),
+                    "file" => $e->getFile(),
+                    "line" => $e->getLine()
+                )
+            );
+
+            $response->getBody()->write(json_encode($responseMessage));
+            return $response->withStatus(401)->withHeader('Content-Type', 'application/json');
+
         }
 
         return $response->withStatus(200)->withHeader('Content-Type','application/json');
