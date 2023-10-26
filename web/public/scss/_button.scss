@@ -1,6 +1,6 @@
 @import "variables";
 
-.button{
+.button_validation {
   border: none;
   min-width: 10em;
   min-height : 2em;
@@ -8,4 +8,24 @@
   font-weight: bold;
   background-color: black;
   border-radius: 10px;
+
+  &:hover {
+    color: white;
+    background-color: $color-theme-orange;
+  }
+}
+
+.button_redirection {
+  border: none;
+  min-width: 10em;
+  min-height : 2em;
+  color: $color-theme-gray;
+  font-weight: bold;
+  background-color: $color_redirection_button;
+  border-radius: 10px;
+
+  &:hover {
+    color: $color_redirection_button;
+    background-color: $color-theme-gray;
+  }
 }
