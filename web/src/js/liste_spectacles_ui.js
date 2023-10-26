@@ -5,8 +5,17 @@ export function display_spectacles(spectacles) {
     spectacles.then(data => {
         data.forEach(element => {
             grille_spectacles.innerHTML += `
-                <p>test</p>
+                <article>
+                    <img src="">
+                    <div>
+                        <p>${element.spectacle.titre}</p>
+                        <p>${element.spectacle.date}</p>
+                        <p>${element.spectacle.horaire}</p>
+                        <button>Choisir</button>
+                    </div>
+                </article>
             `
+
         })
     });
 }

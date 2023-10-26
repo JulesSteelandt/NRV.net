@@ -1,7 +1,5 @@
 export function loadRessource(uri) {
-    return fetch(uri, {
-        credentials: "include"
-    })
+    return fetch(uri)
         .then(response => {
             if (response.ok) {
                 return response.json();
