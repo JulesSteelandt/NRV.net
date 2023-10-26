@@ -1,7 +1,7 @@
 <?php
 
+use nrv\catalogue\app\actions\catalogue\GetProgrammeAction;
 use Psr\Container\ContainerInterface;
-use nrv\catalogue\app\actions\GetProgrammeAction;
 
 return[
 

@@ -31,6 +31,10 @@ class JwtManager {
     }
 
 
+    /**
+     * @throws JwtInvalidException
+     * @throws JwtExpiredException
+     */
     public function validate(string $token): stdClass {
         try {
             return JWT::decode($token, new Key($_ENV['JWT_SECRET'], 'HS512'));

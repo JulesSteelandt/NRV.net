@@ -1,14 +1,15 @@
 <?php
 
-namespace nrv\catalogue\app\actions;
+namespace nrv\catalogue\app\actions\catalogue;
 
+use nrv\catalogue\app\actions\AbstractAction;
 use nrv\catalogue\app\provider\Provider;
-use nrv\catalogue\domain\exception\SoireeIdException;
 use nrv\catalogue\domain\exception\SpectacleIdException;
+use nrv\catalogue\domain\exception\StyleIdException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class GetProgrammeAction extends AbstractAction
+class GetSpectacleAction extends AbstractAction
 {
 
     private Provider $provider;
@@ -23,8 +24,8 @@ class GetProgrammeAction extends AbstractAction
     {
 
         try {
-            $catalogue = $this->provider->getProgramme();
-        } catch (SpectacleIdException|SoireeIdException $e) {
+            $spectacle = $this->provider->getSpectacleById($args['id']);
+        } catch (SpectacleIdException|StyleIdException $e) {
             $responseMessage = array(
                 "message" => "404 Not Found",
                 "exception" => array(
@@ -38,28 +39,19 @@ class GetProgrammeAction extends AbstractAction
             $response->getBody()->write(json_encode($responseMessage));
             return $response->withStatus(404)->withHeader('Content-Type', 'application/json');
         }
-
         $data['type'] = 'resource';
-        $data['count'] = count($catalogue);
+        $data['data'] = ['spectacles' => [
+            'id'=>$spectacle['spectacle']->id,
+            'style'=>$spectacle['style'],
+            'titre'=>$spectacle['spectacle']->titre,
+            'description'=>$spectacle['spectacle']->description,
+            'urlvideo'=>$spectacle['spectacle']->urlVideo,
+            'artistes'=> [
+                'count' => count($spectacle['artistes']),
+                'list'=>$spectacle['artistes'],
+            ],
+    ]];
 
-        foreach ($catalogue as $programme){
-            $data['data'][] = [
-                'spectacle'=>[
-                    'id'=>$programme['spectacle']->id,
-                    'titre'=>$programme['spectacle']->titre,
-                    'date'=>$programme['soiree']->date->format('Y-m-d'),
-                    'horaire'=>$programme['horaire']->format('H:i:s'),
-                    'links' => [
-                        'self' => [
-                            'href' => '/spectacle/' . $programme['spectacle']->id,
-                        ],
-                        'soiree' => [
-                            'href' => '/soiree/' . $programme['soiree']->id,
-                        ],
-                    ],
-                ],
-            ];
-        }
 
         $response->getBody()->write(json_encode($data));
         return

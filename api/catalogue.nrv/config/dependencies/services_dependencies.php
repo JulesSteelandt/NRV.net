@@ -1,13 +1,13 @@
 <?php
 
 use nrv\catalogue\app\provider\Provider;
-use nrv\catalogue\domain\service\ServiceCatalogue;
-use nrv\catalogue\domain\service\ServiceSoiree;
-use nrv\catalogue\domain\service\ServiceSpectacle;
+use nrv\catalogue\domain\service\catalogue\ServiceArtiste;
+use nrv\catalogue\domain\service\catalogue\ServiceCatalogue;
+use nrv\catalogue\domain\service\catalogue\ServiceLieu;
+use nrv\catalogue\domain\service\catalogue\ServiceSoiree;
+use nrv\catalogue\domain\service\catalogue\ServiceSpectacle;
+use nrv\catalogue\domain\service\catalogue\ServiceStyle;
 use Psr\Container\ContainerInterface;
-use nrv\catalogue\domain\service\ServiceArtiste;
-use nrv\catalogue\domain\service\ServiceStyle;
-use nrv\catalogue\domain\service\ServiceLieu;
 
 return[
 

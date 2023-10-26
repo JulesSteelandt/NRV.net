@@ -5,22 +5,8 @@
         <link type="text/css" rel="stylesheet" href="../css/page_identification.css">
     </head>
     <body>
-        <header>
-            <div>
-                <img src="../images/logo.png">
-                <h2>Nancy Rock Vibration</h2>
-            </div>
-            <div>
-                <div>
-                    <button>Connexion</button>
-                    <img src="../images/user.png">
-                </div>
-                <div>
-                    <input type="text">
-                    <img src="../images/shop.png">
-                </div>
-            </div>
-        </header>
+    <header id="header-container">
+    </header>
     <section>
         <h3>S'identifier</h3>
         <div id="identification_compte">
@@ -41,5 +27,13 @@
 
     </section>
     <footer></footer>
+
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+    </script>
     </body>
 </html>

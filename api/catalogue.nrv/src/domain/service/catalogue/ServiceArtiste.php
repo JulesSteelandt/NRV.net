@@ -1,9 +1,8 @@
 <?php
 
-namespace nrv\catalogue\domain\service;
+namespace nrv\catalogue\domain\service\catalogue;
 
 
-use DateTime;
 use nrv\catalogue\domain\dto\ArtisteDTO;
 use nrv\catalogue\domain\dto\CatalogueDTO;
 use nrv\catalogue\domain\entities\Artiste;

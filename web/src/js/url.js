@@ -1,0 +1,1 @@
+export let url = 'http://docketu.iutnc.univ-lorraine.fr:32107';

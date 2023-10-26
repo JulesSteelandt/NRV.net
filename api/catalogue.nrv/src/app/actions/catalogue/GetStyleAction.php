@@ -1,7 +1,8 @@
 <?php
 
-namespace nrv\catalogue\app\actions;
+namespace nrv\catalogue\app\actions\catalogue;
 
+use nrv\catalogue\app\actions\AbstractAction;
 use nrv\catalogue\app\provider\Provider;
 use nrv\catalogue\domain\exception\ArtisteIdException;
 use Psr\Http\Message\ResponseInterface;

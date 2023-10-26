@@ -5,31 +5,14 @@
     <title>Nancy Rock Vibration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" rel="stylesheet" href="../css/page_soirees.css">
+    <script
+            src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous">
+    </script>
 </head>
 <body>
-<header>
-    <div>
-        <img src="../images/logo.png" alt="logo">
-        <h3>Nancy Rock Vibration</h3>
-    </div>
-    <div>
-        <div>
-            <button class="button">
-                Pro
-            </button>
-            <button class="button">
-                connexion
-            </button>
-            <img alt="user" src="../images/user.png">
-        </div>
-        <div>
-            <img alt="search" src="../images/search.png">
-            <label>
-                <input>
-            </label>
-            <img alt="panier" src="../images/shop.png">
-        </div>
-    </div>
+<header id="header-container">
 </header>
 
 <section>
@@ -55,34 +38,35 @@
         </div>
         <div class="spectacleSoiree">
             <div id="buttonPrev">
-                <button >
+                <button>
                 </button>
             </div>
             <div class="articleSpectacle">
 
-            <!-- nombre dépend du nombre de spectacle dans la soirée -->
-            <article class="spectacle">
-                <!-- picture plus tard -->
-                <img src="../images/imgSpectacle.png" alt="imgSpec">
-                <div id="infoSpectacle">
-                    <h3>Titre</h3>
-                    <h3>Artiste</h3>
-                    <h3>Style</h3>
-                </div>
-                <div id="description">
-                    <h4>Description</h4>
-                    <p>ed vehicula cursus fermentum. Nullam quis aliquet nisl.
-                        Nam tortor neque, facilisis id lorem ac, malesuada lacinia
-                        urna. Morbi interdum auctor sapien vel malesuada.
-                        Nunc elementum lacinia facilisis. Phasellus sit amet risus quis massa lobortis
-                        molestie vel vel nibh. Proin ac diam sed lectus blandit imperdiet.
-                        Nunc imperdiet condimentum accumsan. Nunc sagittis imperdiet eros in convallis.
-                        Praesent auctor eros in pellentesque maximus. Integer et porta neque, sed cursus mauris. </p>
-                </div>
-                <video></video>
+                <!-- nombre dépend du nombre de spectacle dans la soirée -->
+                <article class="spectacle">
+                    <!-- picture plus tard -->
+                    <img src="../images/imgSpectacle.png" alt="imgSpec">
+                    <div id="infoSpectacle">
+                        <h3>Titre</h3>
+                        <h3>Artiste</h3>
+                        <h3>Style</h3>
+                    </div>
+                    <div id="description">
+                        <h4>Description</h4>
+                        <p>ed vehicula cursus fermentum. Nullam quis aliquet nisl.
+                            Nam tortor neque, facilisis id lorem ac, malesuada lacinia
+                            urna. Morbi interdum auctor sapien vel malesuada.
+                            Nunc elementum lacinia facilisis. Phasellus sit amet risus quis massa lobortis
+                            molestie vel vel nibh. Proin ac diam sed lectus blandit imperdiet.
+                            Nunc imperdiet condimentum accumsan. Nunc sagittis imperdiet eros in convallis.
+                            Praesent auctor eros in pellentesque maximus. Integer et porta neque, sed cursus
+                            mauris. </p>
+                    </div>
+                    <video></video>
 
-            </article>
-        </div>
+                </article>
+            </div>
             <div>
                 <button id="buttonSuiv">
                 </button>
@@ -104,13 +88,15 @@
             <p>Tarif réduit :</p>
             <p>56$</p>
         </div>
-        <button class="button">
+        <button class="button_validation">
             Ajouter au panier
         </button>
     </nav>
 </section>
 <footer>
-    <p>&copy; 2023 NRV festival. Tous droits réservés.</p>
+    <!-- <p>&copy; 2023 NRV festival. Tous droits réservés.</p> -->
 </footer>
+
+
 
 </body>

@@ -1,15 +1,14 @@
 <?php
 
-namespace nrv\catalogue\app\actions;
+namespace nrv\catalogue\app\actions\catalogue;
 
+use nrv\catalogue\app\actions\AbstractAction;
 use nrv\catalogue\app\provider\Provider;
-use nrv\catalogue\domain\exception\SoireeIdException;
-use nrv\catalogue\domain\exception\SpectacleIdException;
-use nrv\catalogue\domain\exception\StyleIdException;
+use nrv\catalogue\domain\exception\ArtisteIdException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class GetSpectacleAction extends AbstractAction
+class GetArtisteAction extends AbstractAction
 {
 
     private Provider $provider;
@@ -24,8 +23,8 @@ class GetSpectacleAction extends AbstractAction
     {
 
         try {
-            $spectacle = $this->provider->getSpectacleById($args['id']);
-        } catch (SpectacleIdException|StyleIdException $e) {
+            $artiste = $this->provider->getArtisteById($args['id']);
+        } catch (ArtisteIdException $e) {
             $responseMessage = array(
                 "message" => "404 Not Found",
                 "exception" => array(
@@ -39,19 +38,10 @@ class GetSpectacleAction extends AbstractAction
             $response->getBody()->write(json_encode($responseMessage));
             return $response->withStatus(404)->withHeader('Content-Type', 'application/json');
         }
-        $data['type'] = 'resource';
-        $data['data'] = ['spectacles' => [
-            'id'=>$spectacle['spectacle']->id,
-            'style'=>$spectacle['style'],
-            'titre'=>$spectacle['spectacle']->titre,
-            'description'=>$spectacle['spectacle']->description,
-            'urlvideo'=>$spectacle['spectacle']->urlVideo,
-            'artistes'=> [
-                'count' => count($spectacle['artistes']),
-                'list'=>$spectacle['artistes'],
-            ],
-    ]];
 
+        $data['type'] = 'resource';
+        $data['data']['artiste'] = $artiste;
+        $data['data']['links'] = ['spectacle'=>'/spectacle/'.$artiste->idSpectacle];
 
         $response->getBody()->write(json_encode($data));
         return

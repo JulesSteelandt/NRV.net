@@ -9,12 +9,12 @@ use nrv\catalogue\domain\exception\LieuIdException;
 use nrv\catalogue\domain\exception\SoireeIdException;
 use nrv\catalogue\domain\exception\SpectacleIdException;
 use nrv\catalogue\domain\exception\StyleIdException;
-use nrv\catalogue\domain\service\ServiceArtiste;
-use nrv\catalogue\domain\service\ServiceCatalogue;
-use nrv\catalogue\domain\service\ServiceSoiree;
-use nrv\catalogue\domain\service\ServiceSpectacle;
-use nrv\catalogue\domain\service\ServiceStyle;
-use nrv\catalogue\domain\service\ServiceLieu;
+use nrv\catalogue\domain\service\catalogue\ServiceArtiste;
+use nrv\catalogue\domain\service\catalogue\ServiceCatalogue;
+use nrv\catalogue\domain\service\catalogue\ServiceLieu;
+use nrv\catalogue\domain\service\catalogue\ServiceSoiree;
+use nrv\catalogue\domain\service\catalogue\ServiceSpectacle;
+use nrv\catalogue\domain\service\catalogue\ServiceStyle;
 
 class Provider
 {

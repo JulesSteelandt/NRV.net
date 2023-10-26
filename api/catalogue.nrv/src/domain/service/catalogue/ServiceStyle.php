@@ -1,6 +1,6 @@
 <?php
 
-namespace nrv\catalogue\domain\service;
+namespace nrv\catalogue\domain\service\catalogue;
 
 
 use nrv\catalogue\domain\dto\StyleDTO;

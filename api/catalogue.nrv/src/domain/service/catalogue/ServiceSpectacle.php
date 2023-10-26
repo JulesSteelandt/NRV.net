@@ -1,13 +1,11 @@
 <?php
 
-namespace nrv\catalogue\domain\service;
+namespace nrv\catalogue\domain\service\catalogue;
 
 
 use nrv\catalogue\domain\dto\SpectacleDTO;
 use nrv\catalogue\domain\entities\Spectacle;
 use nrv\catalogue\domain\exception\SpectacleIdException;
-use nrv\catalogue\domain\exception\SpectacleStyleException;
-use function PHPUnit\Framework\isEmpty;
 
 class ServiceSpectacle
 {
