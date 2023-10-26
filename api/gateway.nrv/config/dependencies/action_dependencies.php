@@ -7,6 +7,10 @@ use nrv\gateway\actions\catalogue\SpectacleAction;
 use nrv\gateway\actions\catalogue\StyleAction;
 use nrv\gateway\actions\catalogue\StyleListAction;
 use Psr\Container\ContainerInterface;
+use nrv\gateway\actions\auth\RefreshAction;
+use nrv\gateway\actions\auth\SignInAction;
+use nrv\gateway\actions\auth\SignUpAction;
+use nrv\gateway\actions\auth\ValidateAction;
 
 return[
 
@@ -32,6 +36,22 @@ return[
 
     StyleAction::class => function (ContainerInterface $c){
         return new StyleAction($c->get('provider.client.catalogue'));
+    },
+
+    RefreshAction::class => function (ContainerInterface $c){
+        return new RefreshAction($c->get('provider.client.auth'));
+    },
+
+    SignInAction::class => function (ContainerInterface $c){
+        return new SignInAction($c->get('provider.client.auth'));
+    },
+
+    ValidateAction::class => function (ContainerInterface $c){
+        return new ValidateAction($c->get('provider.client.auth'));
+    },
+
+    SignUpAction::class => function (ContainerInterface $c){
+        return new SignUpAction($c->get('provider.client.auth'));
     },
 
 

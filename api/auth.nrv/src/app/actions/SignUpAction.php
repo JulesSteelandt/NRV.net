@@ -3,6 +3,8 @@
 namespace nrv\auth\app\actions;
 
 use nrv\auth\domain\dto\CredentialsDTO;
+use nrv\auth\domain\exception\RegisterExistException;
+use nrv\auth\domain\exception\RegisterValueException;
 use nrv\auth\domain\service\AuthServiceInterface;
 use PHPUnit\Util\Exception;
 use Psr\Http\Message\ResponseInterface;
@@ -33,9 +35,9 @@ class SignUpAction extends AbstractAction {
                     'prenom' => $userDTO->prenom,
                     'typeUtil' => $userDTO->typeUtil,
                 ];
-                $response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
                 $response->getBody()->write(json_encode($data));
-            } catch (Exception $e) {
+                $response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
+            } catch (RegisterValueException | RegisterExistException $e) {
                 $responseMessage = array(
                     "message" => "401 Inscription failed",
                     "exception" => array(
@@ -46,13 +48,13 @@ class SignUpAction extends AbstractAction {
                         "line" => $e->getLine()
                     )
                 );
-                $response = $response->withStatus(401)->withHeader('Content-Type', 'application/json');
                 $response->getBody()->write(json_encode($responseMessage));
+                $response = $response->withStatus(401)->withHeader('Content-Type', 'application/json');
             }
 
         } else {
-            $response = $response->withStatus(400)->withHeader('Content-Type', 'application/json');
             $response->getBody()->write(json_encode(array("message" => "Données d'inscription incomplètes")));
+            $response = $response->withStatus(400)->withHeader('Content-Type', 'application/json');
         }
         return $response;
     }
