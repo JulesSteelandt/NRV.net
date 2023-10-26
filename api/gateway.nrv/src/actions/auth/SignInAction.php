@@ -1,13 +1,13 @@
 <?php
 
-namespace nrv\gateway\actions\catalogue;
+namespace nrv\gateway\actions\auth;
 
 use nrv\gateway\actions\AbstractAction;
-use nrv\gateway\provider\provider;
+use nrv\gateway\provider\Provider;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class ArtisteAction extends AbstractAction
+class SignInAction extends AbstractAction
 {
     private Provider $provider;
 
@@ -16,14 +16,16 @@ class ArtisteAction extends AbstractAction
         $this->provider = $provider;
     }
 
-
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
+        // Récupérez les en-têtes de la requête entrante
+        $headers = $request->getHeaders();
 
-        $catalogueData = $this->provider->artiste($args['id']);
+        // Appelez la méthode de la classe Provider pour envoyer les en-têtes à l'API 2
+        $responseData = $this->provider->signin($headers);
 
-        if ($catalogueData !== null) {
-            $response->getBody()->write($catalogueData);
+        if ($responseData !== null) {
+            $response->getBody()->write($responseData);
             return $response
                 ->withHeader('Content-Type', 'application/json')
                 ->withStatus(200);

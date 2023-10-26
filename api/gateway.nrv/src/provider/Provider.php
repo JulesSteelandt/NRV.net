@@ -31,13 +31,29 @@ class Provider
         return $this->clientApi->get("/artiste/$id");
     }
 
-
     public function style(){
         return $this->clientApi->get("/style");
     }
 
     public function styleId($id){
         return $this->clientApi->get("/style/$id");
+    }
+
+    public function validate($headers){
+        return $this->clientApi->get("/validate",null,$headers);
+    }
+
+    public function signin($headers)
+    {
+        return $this->clientApi->post("/signin", null,$headers);
+    }
+
+    public function signup($data){
+        return $this->clientApi->post("/signup",$data);
+    }
+
+    public function refresh($data){
+        return $this->clientApi->post("/refresh",null,$data);
     }
 
 

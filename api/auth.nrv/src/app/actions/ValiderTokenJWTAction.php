@@ -21,10 +21,14 @@ class ValiderTokenJWTAction extends AbstractAction {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
 
         try {
+            if (!isset($request->getHeader('Authorization')[0])){
+                throw new JwtInvalidException();
+            }
             $header = $request->getHeader('Authorization')[0];
             $token = str_replace('Bearer ', '', $header);
             $pUser = $this->authService->validate(new TokenDTO('', $token));
             $response->getBody()->write(json_encode($pUser));
+            return $response->withStatus(200)->withHeader('Content-Type','application/json');
         } catch (JwtExpiredException $e) {
             $responseMessage = array(
                 "message" => "401 token expiré",
@@ -56,8 +60,6 @@ class ValiderTokenJWTAction extends AbstractAction {
             return $response->withStatus(401)->withHeader('Content-Type', 'application/json');
 
         }
-
-        return $response->withStatus(200)->withHeader('Content-Type','application/json');
     }
 
 

@@ -1,4 +1,4 @@
-@import "reset", "header", "footer", "button";
+@import "reset", "header", "button";
 
 body{
   display: flex;
@@ -74,9 +74,6 @@ section {
   .spectacleSoiree{
     display: flex;
     flex-direction: row;
-    & * {
-      border: solid 1px green;
-    }
   }
 
   .articleSpectacle{
@@ -184,7 +181,7 @@ section {
       margin-left: 4em;
     }
 
-    .button {
+    .button_validation {
       margin: 10% 5% 25% 50%;
     }
 

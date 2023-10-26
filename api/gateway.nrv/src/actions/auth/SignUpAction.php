@@ -1,13 +1,13 @@
 <?php
 
-namespace nrv\gateway\actions\catalogue;
+namespace nrv\gateway\actions\auth;
 
 use nrv\gateway\actions\AbstractAction;
 use nrv\gateway\provider\provider;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class ArtisteAction extends AbstractAction
+class SignUpAction extends AbstractAction
 {
     private Provider $provider;
 
@@ -20,7 +20,7 @@ class ArtisteAction extends AbstractAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
 
-        $catalogueData = $this->provider->artiste($args['id']);
+        $catalogueData = $this->provider->signup($request->getParsedBody());
 
         if ($catalogueData !== null) {
             $response->getBody()->write($catalogueData);
