@@ -1,14 +1,16 @@
 @import "variables";
 
 footer{
-  padding: 20px;
+  padding: 10px;
   box-sizing: border-box;
-  width: 100%;
   background-color: $color-theme-orange;
   text-align: center;
   color: black;
   font-family: $fontChange;
   font-weight: bold;
   font-size: x-large;
-  max-width: 100%;
+  width: 100%;
+  height: 8vh;
+  position: fixed;
+  bottom: 0;
 }
