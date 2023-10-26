@@ -37,6 +37,7 @@ services:
   ############################################
   adminer:
     image: adminer
+    command: php -S 0.0.0.0:8080 -t /var/www/html
     ports:
       - '32103:8080'
     networks:
@@ -97,7 +98,6 @@ services:
     depends_on:
       - api.nrv.auth
       - api.nrv.catalogue
-      - api.nrv.commande
 
 
   ##########################################

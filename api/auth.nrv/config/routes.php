@@ -16,7 +16,7 @@ return function(\Slim\App $app):void {
     $app->add(function ($request, $handler) {
         $response = $handler->handle($request);
         return $response
-            ->withHeader('Access-Control-Allow-Origin', ['http://localhost:32107','http://docketu.iutnc.univ-lorraine.fr:32104'])
+            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:32107')
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
             ->withHeader('Access-Control-Allow-Credentials','true');
