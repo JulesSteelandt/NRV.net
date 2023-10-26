@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mes Billets - NRV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="../css/page_mesBillets.css">
+</head>
+<header id="header-container">
+</header>
+
+
+<body>
+<section>
+    <div class="corpsBillet">
+    <h3>
+        Mes billets
+    </h3>
+    <div class="infoClient">
+        <div>
+            <h4>
+                Nom prénom
+            </h4>
+            <h4>
+                Email
+            </h4>
+        </div>
+        <h4>
+           nombre de billet
+        </h4>
+    </div>
+    <div class="resumeBillet">
+        <!-- nombre dépend du nombres de commndes -->
+        <article class="billet">
+                <div class="titreBillet">
+                    <h4>
+                        Soirée
+                    </h4>
+                    <p>
+                        Artiste 1
+                    </p>
+                    <p>
+                        Artiste 2
+                    </p>
+                    <p>
+                        Artiste 2
+                    </p>
+                        <img src="../images/print.png" alt="print" id="imgPrint">
+                </div>
+                <div>
+                    <h4 class="lieuBillet">
+                        Lieux :
+                    </h4>
+                    <h4 class="datet">
+                        Date et horaire
+                    </h4>
+                </div>
+            <div>
+                <p >
+                    Quantité :
+                </p>
+                <label class="qtBillet">
+                    nombres billets
+                </label>
+            </div>
+        </article>
+    </div>
+    </div>
+</section>
+
+</body>
+<script>
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        });
+</script>
+
+<body>
+
+
+
+</body>
+</html>

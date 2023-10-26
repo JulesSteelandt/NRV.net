@@ -7,29 +7,7 @@
     <link type="text/css" rel="stylesheet" href="../css/page_soirees.css">
 </head>
 <body>
-<header>
-    <div>
-        <img src="../images/logo.png" alt="logo">
-        <h3>Nancy Rock Vibration</h3>
-    </div>
-    <div>
-        <div>
-            <button class="button">
-                Pro
-            </button>
-            <button class="button">
-                connexion
-            </button>
-            <img alt="user" src="../images/user.png">
-        </div>
-        <div>
-            <img alt="search" src="../images/search.png">
-            <label>
-                <input>
-            </label>
-            <img alt="panier" src="../images/shop.png">
-        </div>
-    </div>
+<header id="header-container">
 </header>
 
 <section>
@@ -104,13 +82,19 @@
             <p>Tarif réduit :</p>
             <p>56$</p>
         </div>
-        <button class="button">
+        <button class="button_validation">
             Ajouter au panier
         </button>
     </nav>
 </section>
-<footer>
-    <p>&copy; 2023 NRV festival. Tous droits réservés.</p>
-</footer>
+<footer></footer>
+
+<script>
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        });
+</script>
 
 </body>
