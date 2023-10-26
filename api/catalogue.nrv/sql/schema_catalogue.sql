@@ -23,15 +23,25 @@ CREATE TABLE SOIREE
     FOREIGN KEY (idLieu) REFERENCES LIEU (id)
 );
 
+-- Table STYLE
+CREATE TABLE STYLE
+(
+    id           INT AUTO_INCREMENT PRIMARY KEY,
+    nom          VARCHAR(255)
+);
+
 -- Table SPECTACLE
 CREATE TABLE SPECTACLE
 (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     titre       VARCHAR(255),
     description TEXT,
-    style       VARCHAR(255),
-    urlVideo    VARCHAR(255)
+    idStyle     INT,
+    urlVideo    VARCHAR(255),
+    FOREIGN KEY (idStyle) REFERENCES STYLE (id)
 );
+
+
 
 -- Table ARTISTE
 CREATE TABLE ARTISTE
