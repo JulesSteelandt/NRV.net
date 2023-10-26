@@ -20,23 +20,7 @@ class ArtisteAction extends AbstractAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
 
-        try {
-            $catalogueData = $this->provider->artiste($args['id']);
-        } catch (ArtisteIdException $e) {
-            $responseMessage = array(
-                "message" => "404 Not Found",
-                "exception" => array(
-                    "type" => $e::class,
-                    "code" => $e->getCode(),
-                    "message" => $e->getMessage(),
-                    "file" => $e->getFile(),
-                    "line" => $e->getLine()
-                ));
-
-            $response->getBody()->write(json_encode($responseMessage));
-            return $response->withStatus(404)->withHeader('Content-Type', 'application/json');
-        }
-
+        $catalogueData = $this->provider->artiste($args['id']);
 
         if ($catalogueData !== null) {
             $response->getBody()->write($catalogueData);
