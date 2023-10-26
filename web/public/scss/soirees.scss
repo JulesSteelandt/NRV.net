@@ -72,7 +72,7 @@ section {
   }
 
   .spectacleSoiree{
-    width: 100%;
+    width: 80%;
     display: grid;
     grid-template-columns: repeat(14, $largeurSpect);
     grid-gap: $largeur_goutieres;
@@ -104,13 +104,23 @@ section {
       }
       #description {
         flex-direction: column;
+        margin-bottom: 10px;
+      }
+      #buttonPrev{
+        background-color: #F8882D;
+        grid-column: 2;
       }
 
       video{
         grid-column: 3/7;
         grid-row: 3;
         background-color: ghostwhite;
-       text-align: center;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
       }
 
       }
@@ -121,7 +131,7 @@ section {
   nav div {
     border: solid 1px ghostwhite;
     margin: 2em;
-    min-width: 25em;
+    min-width: 15em;
   }
 
   nav {
@@ -130,14 +140,12 @@ section {
     background-color: $color_theme-gray;
     display: flex;
     flex-direction: column;
-    height: 128vh;
-
-    overflow: auto;
+    height: 158vh;
 
     div {
       display: flex;
       flex-direction: row;
-      min-width: 10em;
+
     }
 
     div p {
@@ -152,8 +160,7 @@ section {
     }
 
     .button {
-      align-self: flex-end;
-      margin: auto 5% 20px 45%;
+      margin: 10% 5% 25% 50%;
     }
 
     label {
