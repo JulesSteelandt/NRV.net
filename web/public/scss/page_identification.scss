@@ -1,0 +1,23 @@
+@import "_reset";
+@import "_variables";
+@import "_header";
+@import "button";
+
+body {
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    #identification_compte {
+      background-color: $color-theme-gray;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      border: 1px solid black;
+      box-sizing: border-box;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
