@@ -1,7 +1,8 @@
 <?php
 
-namespace nrv\catalogue\domain\dto;
+namespace nrv\catalogue\domain\dto\catalogue;
 
+use nrv\catalogue\domain\dto\DTO;
 
 use DateTime;
 

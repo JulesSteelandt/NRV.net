@@ -1,6 +1,6 @@
 <?php
 
-namespace nrv\catalogue\domain\entities;
+namespace nrv\catalogue\domain\entities\catalogue;
 
 use nrv\catalogue\domain\dto\ArtisteDTO;
 

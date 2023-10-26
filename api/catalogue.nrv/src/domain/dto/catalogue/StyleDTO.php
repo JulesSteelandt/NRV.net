@@ -1,9 +1,10 @@
 <?php
 
-namespace nrv\catalogue\domain\dto;
+namespace nrv\catalogue\domain\dto\catalogue;
 
 
 use DateTime;
+use nrv\catalogue\domain\dto\DTO;
 
 class StyleDTO extends DTO
 {
