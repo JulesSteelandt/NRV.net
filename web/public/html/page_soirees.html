@@ -5,6 +5,11 @@
     <title>Nancy Rock Vibration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" rel="stylesheet" href="../css/page_soirees.css">
+    <script
+            src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous">
+    </script>
 </head>
 <body>
 <header id="header-container">
@@ -33,34 +38,35 @@
         </div>
         <div class="spectacleSoiree">
             <div id="buttonPrev">
-                <button >
+                <button>
                 </button>
             </div>
             <div class="articleSpectacle">
 
-            <!-- nombre dépend du nombre de spectacle dans la soirée -->
-            <article class="spectacle">
-                <!-- picture plus tard -->
-                <img src="../images/imgSpectacle.png" alt="imgSpec">
-                <div id="infoSpectacle">
-                    <h3>Titre</h3>
-                    <h3>Artiste</h3>
-                    <h3>Style</h3>
-                </div>
-                <div id="description">
-                    <h4>Description</h4>
-                    <p>ed vehicula cursus fermentum. Nullam quis aliquet nisl.
-                        Nam tortor neque, facilisis id lorem ac, malesuada lacinia
-                        urna. Morbi interdum auctor sapien vel malesuada.
-                        Nunc elementum lacinia facilisis. Phasellus sit amet risus quis massa lobortis
-                        molestie vel vel nibh. Proin ac diam sed lectus blandit imperdiet.
-                        Nunc imperdiet condimentum accumsan. Nunc sagittis imperdiet eros in convallis.
-                        Praesent auctor eros in pellentesque maximus. Integer et porta neque, sed cursus mauris. </p>
-                </div>
-                <video></video>
+                <!-- nombre dépend du nombre de spectacle dans la soirée -->
+                <article class="spectacle">
+                    <!-- picture plus tard -->
+                    <img src="../images/imgSpectacle.png" alt="imgSpec">
+                    <div id="infoSpectacle">
+                        <h3>Titre</h3>
+                        <h3>Artiste</h3>
+                        <h3>Style</h3>
+                    </div>
+                    <div id="description">
+                        <h4>Description</h4>
+                        <p>ed vehicula cursus fermentum. Nullam quis aliquet nisl.
+                            Nam tortor neque, facilisis id lorem ac, malesuada lacinia
+                            urna. Morbi interdum auctor sapien vel malesuada.
+                            Nunc elementum lacinia facilisis. Phasellus sit amet risus quis massa lobortis
+                            molestie vel vel nibh. Proin ac diam sed lectus blandit imperdiet.
+                            Nunc imperdiet condimentum accumsan. Nunc sagittis imperdiet eros in convallis.
+                            Praesent auctor eros in pellentesque maximus. Integer et porta neque, sed cursus
+                            mauris. </p>
+                    </div>
+                    <video></video>
 
-            </article>
-        </div>
+                </article>
+            </div>
             <div>
                 <button id="buttonSuiv">
                 </button>
@@ -87,14 +93,10 @@
         </button>
     </nav>
 </section>
-<footer></footer>
+<footer>
+    <!-- <p>&copy; 2023 NRV festival. Tous droits réservés.</p> -->
+</footer>
 
-<script>
-    fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-container').innerHTML = data;
-        });
-</script>
+
 
 </body>
