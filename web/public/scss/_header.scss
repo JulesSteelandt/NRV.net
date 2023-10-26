@@ -18,8 +18,11 @@ header {
     h3 {
       margin-left: 30px;
       font-family: $fontChange, sans-serif;
-      font-size: 2em;
+      font-size: 3em;
       font-weight: bolder;
+      margin-top: 0;
+      margin-bottom: 0;
+
     }
   }
   div:nth-child(2) {
