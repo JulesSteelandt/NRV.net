@@ -1,13 +1,15 @@
 <?php
 
-namespace nrv\catalogue\app\actions;
+namespace nrv\catalogue\app\actions\catalogue;
 
+use nrv\catalogue\app\actions\AbstractAction;
 use nrv\catalogue\app\provider\Provider;
-use nrv\catalogue\domain\exception\ArtisteIdException;
+use nrv\catalogue\domain\exception\SoireeIdException;
+use nrv\catalogue\domain\exception\SpectacleIdException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class GetStyleByIdAction extends AbstractAction
+class GetProgrammeAction extends AbstractAction
 {
 
     private Provider $provider;
@@ -22,8 +24,8 @@ class GetStyleByIdAction extends AbstractAction
     {
 
         try {
-            $style = $this->provider->getStyleById($args['id']);
-        } catch (ArtisteIdException $e) {
+            $catalogue = $this->provider->getProgramme();
+        } catch (SpectacleIdException|SoireeIdException $e) {
             $responseMessage = array(
                 "message" => "404 Not Found",
                 "exception" => array(
@@ -39,7 +41,26 @@ class GetStyleByIdAction extends AbstractAction
         }
 
         $data['type'] = 'resource';
-        $data['data']= $style;
+        $data['count'] = count($catalogue);
+
+        foreach ($catalogue as $programme){
+            $data['data'][] = [
+                'spectacle'=>[
+                    'id'=>$programme['spectacle']->id,
+                    'titre'=>$programme['spectacle']->titre,
+                    'date'=>$programme['soiree']->date->format('Y-m-d'),
+                    'horaire'=>$programme['horaire']->format('H:i:s'),
+                    'links' => [
+                        'self' => [
+                            'href' => '/spectacle/' . $programme['spectacle']->id,
+                        ],
+                        'soiree' => [
+                            'href' => '/soiree/' . $programme['soiree']->id,
+                        ],
+                    ],
+                ],
+            ];
+        }
 
         $response->getBody()->write(json_encode($data));
         return

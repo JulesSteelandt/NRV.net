@@ -1,13 +1,14 @@
 <?php
 
-namespace nrv\catalogue\app\actions;
+namespace nrv\catalogue\app\actions\catalogue;
 
+use nrv\catalogue\app\actions\AbstractAction;
 use nrv\catalogue\app\provider\Provider;
 use nrv\catalogue\domain\exception\ArtisteIdException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class GetArtisteAction extends AbstractAction
+class GetStyleByIdAction extends AbstractAction
 {
 
     private Provider $provider;
@@ -22,7 +23,7 @@ class GetArtisteAction extends AbstractAction
     {
 
         try {
-            $artiste = $this->provider->getArtisteById($args['id']);
+            $style = $this->provider->getStyleById($args['id']);
         } catch (ArtisteIdException $e) {
             $responseMessage = array(
                 "message" => "404 Not Found",
@@ -39,8 +40,7 @@ class GetArtisteAction extends AbstractAction
         }
 
         $data['type'] = 'resource';
-        $data['data']['artiste'] = $artiste;
-        $data['data']['links'] = ['spectacle'=>'/spectacle/'.$artiste->idSpectacle];
+        $data['data']= $style;
 
         $response->getBody()->write(json_encode($data));
         return
