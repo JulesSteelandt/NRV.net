@@ -31,7 +31,6 @@ class Provider
         return $this->clientApi->get("/artiste/$id");
     }
 
-
     public function style(){
         return $this->clientApi->get("/style");
     }
