@@ -1,7 +1,7 @@
-INSERT INTO COMMANDE values ('user1@gmail.com',1,78.07);
-INSERT INTO COMMANDE values ('user2@gmail.com',2,39.94);
-INSERT INTO COMMANDE values ('user2@gmail.com',3,52.06);
-INSERT INTO COMMANDE values ('user2@gmail.com',3,22.68);
+INSERT INTO COMMANDE values (1,'user1@gmail.com',1,78.07);
+INSERT INTO COMMANDE values (2,'user2@gmail.com',2,39.94);
+INSERT INTO COMMANDE values (3,'user2@gmail.com',3,52.06);
+INSERT INTO COMMANDE values (4,'user2@gmail.com',3,22.68);
 
 INSERT INTO COMMANDE2SOIREE values (1,1,1,1);
 INSERT INTO COMMANDE2SOIREE values (1,2,1,1);
