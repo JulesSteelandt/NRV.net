@@ -9,6 +9,7 @@ use nrv\catalogue\domain\service\catalogue\ServiceSoiree;
 use nrv\catalogue\domain\service\catalogue\ServiceSpectacle;
 use nrv\catalogue\domain\service\catalogue\ServiceStyle;
 use nrv\catalogue\domain\service\commande\ServiceBillet;
+use nrv\catalogue\domain\service\commande\ServicePanier;
 use Psr\Container\ContainerInterface;
 
 return[
@@ -41,6 +42,10 @@ return[
         return new ServiceBillet();
     },
 
+    'panier.service' => function (ContainerInterface $c) {
+        return new ServicePanier();
+    },
+
     'catalogue.provider' => function (ContainerInterface $c) {
         return new ProviderCatalogue(
             $c->get('catalogue.service'),
@@ -54,7 +59,8 @@ return[
 
     'commande.provider' => function (ContainerInterface $c) {
         return new ProviderCommande(
-            $c->get('billet.service')
+            $c->get('billet.service'),
+            $c->get('panier.service')
         );
     },
 

@@ -7,6 +7,7 @@ use nrv\catalogue\app\actions\catalogue\GetSpectacleAction;
 use nrv\catalogue\app\actions\catalogue\GetStyleAction;
 use nrv\catalogue\app\actions\catalogue\GetStyleByIdAction;
 use nrv\catalogue\app\actions\commande\GetBilletByUserAction;
+use nrv\catalogue\app\actions\commande\GetPanierByUserAction;
 use Slim\App;
 
 return function (App $app): void {
@@ -24,6 +25,8 @@ return function (App $app): void {
     $app->get('/style/{id}[/]', GetStyleByIdAction::class)->setName('styleId');
 
     $app->get('/billet/{mail}[/]', GetBilletByUserAction::class)->setName('billetMail');
+
+    $app->get('/panier/{mail}[/]', GetPanierByUserAction::class)->setName('panierMail');
 
     $app->add(function ($request, $handler) {
         $response = $handler->handle($request);
