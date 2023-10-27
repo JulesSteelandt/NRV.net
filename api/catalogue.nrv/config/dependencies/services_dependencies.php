@@ -1,6 +1,7 @@
 <?php
 
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use nrv\catalogue\app\provider\ProviderCatalogue;
 use nrv\catalogue\app\provider\ProviderCommande;
 use nrv\catalogue\domain\service\catalogue\ServiceArtiste;
