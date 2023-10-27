@@ -1,5 +1,6 @@
 <?php
 
+use Monolog\Handler\StreamHandler;
 use nrv\catalogue\app\provider\ProviderCatalogue;
 use nrv\catalogue\app\provider\ProviderCommande;
 use nrv\catalogue\domain\service\catalogue\ServiceArtiste;
@@ -12,6 +13,11 @@ use nrv\catalogue\domain\service\commande\ServiceBillet;
 use Psr\Container\ContainerInterface;
 
 return[
+    'logger' => function (ContainerInterface $c) {
+        $log = new Logger($c->get('log.name'));
+        $log->pushHandler(new StreamHandler($c->get('log.file')));
+        return $log;
+    },
 
     'soiree.service' => function (ContainerInterface $c) {
         return new ServiceSoiree();
