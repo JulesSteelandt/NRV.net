@@ -67,7 +67,8 @@ return[
     'commande.provider' => function (ContainerInterface $c) {
         return new ProviderCommande(
             $c->get('billet.service'),
-            $c->get('panier.service')
+            $c->get('panier.service'),
+            $c->get('commande.service')
         );
     },
 

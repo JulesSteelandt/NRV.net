@@ -8,6 +8,7 @@ use nrv\catalogue\app\actions\catalogue\GetStyleAction;
 use nrv\catalogue\app\actions\catalogue\GetStyleByIdAction;
 use nrv\catalogue\app\actions\commande\GetBilletByUserAction;
 use nrv\catalogue\app\actions\commande\GetPanierByUserAction;
+use nrv\catalogue\app\actions\commande\PayerCommandeAction;
 use Psr\Container\ContainerInterface;
 
 return[
@@ -42,6 +43,9 @@ return[
 
     GetPanierByUserAction::class => function (ContainerInterface $c){
         return new GetPanierByUserAction($c->get('commande.provider'));
+    },
+    PayerCommandeAction::class => function (ContainerInterface $c){
+        return new PayerCommandeAction($c->get('commande.provider'));
     },
 
 ];
