@@ -2,6 +2,7 @@
 
 namespace nrv\catalogue\domain\service\commande;
 
+use nrv\catalogue\domain\dto\commande\CommandeDTO;
 use nrv\catalogue\domain\entities\catalogue\Lieu;
 use nrv\catalogue\domain\entities\commande\Commande;
 use nrv\catalogue\domain\exception\CommandeNombrePlaceException;
@@ -10,6 +11,11 @@ class ServiceCommande {
 
     public function getCommandeByUser(string $email): array {
         return Commande::where('mailUser', $email)->get()->toArray();
+    }
+
+    public function getCommandeById(string $id) : CommandeDTO {
+        $commande = Commande::where('idCommande', $id)->firstOrFail();
+        return $commande->toDTO();
     }
 
     public function validerCommande(string $email) {

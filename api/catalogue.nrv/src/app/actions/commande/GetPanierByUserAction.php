@@ -3,9 +3,7 @@
 namespace nrv\catalogue\app\actions\commande;
 
 use nrv\catalogue\app\actions\AbstractAction;
-use nrv\catalogue\app\provider\ProviderCatalogue;
 use nrv\catalogue\app\provider\ProviderCommande;
-use nrv\catalogue\domain\exception\ArtisteIdException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
