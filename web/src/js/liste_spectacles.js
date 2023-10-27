@@ -6,3 +6,9 @@ export function load() {
         return data.data;
     });
 }
+
+export function loadSoiree(id) {
+    return loadRessource(url + id).then(data => {
+        return data.data;
+    })
+}
