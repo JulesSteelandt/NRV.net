@@ -23,8 +23,22 @@ class GetProgrammeAction extends AbstractAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
 
+        $params = $request->getQueryParams();
+
+
+
         try {
             $catalogue = $this->provider->getProgramme();
+            if (isset($params['style'])){
+                $catalogue = $this->provider->getProgramme('style',$params['style']);
+            }
+            if (isset($params['date'])){
+                $catalogue = $this->provider->getProgramme('date',$params['date']);
+            }
+            if (isset($params['lieu'])){
+                $catalogue = $this->provider->getProgramme('lieu',$params['lieu']);
+            }
+
         } catch (SpectacleIdException|SoireeIdException $e) {
             $responseMessage = array(
                 "message" => "404 Not Found",
