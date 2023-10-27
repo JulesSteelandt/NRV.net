@@ -56,6 +56,10 @@ class Provider
         return $this->clientApi->post("/refresh",null,$data);
     }
 
+    public function billet($data){
+        return $this->clientApi->get("/billet/$data");
+    }
+
 
 
 

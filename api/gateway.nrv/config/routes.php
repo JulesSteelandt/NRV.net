@@ -6,6 +6,7 @@ use nrv\gateway\actions\catalogue\SoireeAction;
 use nrv\gateway\actions\catalogue\SpectacleAction;
 use nrv\gateway\actions\catalogue\StyleAction;
 use nrv\gateway\actions\catalogue\StyleListAction;
+use nrv\gateway\actions\commande\BilletUserAction;
 use Slim\App;
 use nrv\gateway\actions\auth\RefreshAction;
 use nrv\gateway\actions\auth\SignUpAction;
@@ -33,6 +34,8 @@ return function (App $app): void {
     $app->post('/signup[/]', SignUpAction::class)->setName('signup');
 
     $app->get('/validate[/]', ValidateAction::class)->setName('validate');
+
+    $app->get('/billet/{mail}[/]', BilletUserAction::class)->setName('billetUser');
 
 
     $app->add(function ($request, $handler) {
