@@ -2,7 +2,6 @@
 
 namespace nrv\catalogue\app\provider;
 
-
 use nrv\catalogue\domain\service\commande\ServiceBillet;
 use nrv\catalogue\domain\service\commande\ServiceCommande;
 use nrv\catalogue\domain\service\commande\ServicePanier;
