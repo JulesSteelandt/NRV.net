@@ -18,4 +18,8 @@ class ServiceBillet
         return Billet::where('mailUser', $email)->get()->toArray();
     }
 
+    public function getBilletByCommande(int $idCommande) {
+        return Billet::where('idCommande', $idCommande)->get()->toArray();
+    }
+
 }

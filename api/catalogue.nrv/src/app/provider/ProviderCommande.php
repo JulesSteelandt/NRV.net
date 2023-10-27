@@ -2,35 +2,26 @@
 
 namespace nrv\catalogue\app\provider;
 
-use nrv\catalogue\domain\dto\ArtisteDTO;
-use nrv\catalogue\domain\dto\StyleDTO;
-use nrv\catalogue\domain\exception\ArtisteIdException;
-use nrv\catalogue\domain\exception\LieuIdException;
-use nrv\catalogue\domain\exception\SoireeIdException;
-use nrv\catalogue\domain\exception\SpectacleIdException;
-use nrv\catalogue\domain\exception\StyleIdException;
-use nrv\catalogue\domain\service\catalogue\ServiceArtiste;
-use nrv\catalogue\domain\service\catalogue\ServiceCatalogue;
-use nrv\catalogue\domain\service\catalogue\ServiceLieu;
-use nrv\catalogue\domain\service\catalogue\ServiceSoiree;
-use nrv\catalogue\domain\service\catalogue\ServiceSpectacle;
-use nrv\catalogue\domain\service\catalogue\ServiceStyle;
+
 use nrv\catalogue\domain\service\commande\ServiceBillet;
+use nrv\catalogue\domain\service\commande\ServiceCommande;
 use nrv\catalogue\domain\service\commande\ServicePanier;
 
 class ProviderCommande
 {
 
    public ServiceBillet $serviceBillet;
+   public ServiceCommande $serviceCommande;
    public ServicePanier $servicePanier;
 
     /**
      * @param ServiceBillet $serviceBillet
      */
-    public function __construct(ServiceBillet $serviceBillet, ServicePanier $servicePanier)
+    public function __construct(ServiceBillet $serviceBillet, ServicePanier $servicePanier, ServiceCommande $serviceCommande )
     {
         $this->serviceBillet = $serviceBillet;
         $this->servicePanier = $servicePanier;
+        $this->serviceCommande = $serviceCommande;
     }
 
     public function getBilletUser(string $email):array{
@@ -52,5 +43,12 @@ class ProviderCommande
         }
     }
 
+
+    public function payerCommandeUser(int $idCommande):array {
+       $commandedto =  $this->serviceCommande->getCommandeById($idCommande);
+        $this->serviceCommande->payerCommande($commandedto->mailUser);
+        //return les billets de la commande
+        return $this->serviceBillet->getBilletByCommande($idCommande);
+    }
 
 }
