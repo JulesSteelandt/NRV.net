@@ -3,7 +3,7 @@
 namespace nrv\catalogue\app\actions\catalogue;
 
 use nrv\catalogue\app\actions\AbstractAction;
-use nrv\catalogue\app\provider\Provider;
+use nrv\catalogue\app\provider\ProviderCatalogue;
 use nrv\catalogue\domain\exception\SoireeIdException;
 use nrv\catalogue\domain\exception\SpectacleIdException;
 use Psr\Http\Message\ResponseInterface;
@@ -12,10 +12,10 @@ use Psr\Http\Message\ServerRequestInterface;
 class GetProgrammeAction extends AbstractAction
 {
 
-    private Provider $provider;
+    private ProviderCatalogue $provider;
 
 
-    public function __construct(Provider $provider)
+    public function __construct(ProviderCatalogue $provider)
     {
         $this->provider = $provider;
     }

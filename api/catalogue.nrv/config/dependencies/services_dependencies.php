@@ -1,6 +1,6 @@
 <?php
 
-use nrv\catalogue\app\provider\Provider;
+use nrv\catalogue\app\provider\ProviderCatalogue;
 use nrv\catalogue\domain\service\catalogue\ServiceArtiste;
 use nrv\catalogue\domain\service\catalogue\ServiceCatalogue;
 use nrv\catalogue\domain\service\catalogue\ServiceLieu;
@@ -36,7 +36,7 @@ return[
     },
 
     'catalogue.provider' => function (ContainerInterface $c) {
-        return new Provider(
+        return new ProviderCatalogue(
             $c->get('catalogue.service'),
             $c->get('spectacle.service'),
             $c->get('soiree.service'),

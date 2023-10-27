@@ -17,4 +17,6 @@ class CommandeDTO extends DTO {
         $this->total = $total;
     }
 
+
+
 }

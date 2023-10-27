@@ -16,7 +16,7 @@ use nrv\catalogue\domain\service\catalogue\ServiceSoiree;
 use nrv\catalogue\domain\service\catalogue\ServiceSpectacle;
 use nrv\catalogue\domain\service\catalogue\ServiceStyle;
 
-class Provider
+class ProviderCatalogue
 {
 
     private ServiceCatalogue $serviceCatalogue;
