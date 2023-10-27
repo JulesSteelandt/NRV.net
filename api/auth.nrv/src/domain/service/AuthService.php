@@ -8,6 +8,7 @@ use nrv\auth\domain\dto\CredentialsDTO;
 use nrv\auth\domain\dto\TokenDTO;
 use nrv\auth\domain\dto\userDTO;
 use nrv\auth\domain\exception\CredentialsException;
+use nrv\auth\domain\exception\EmailFormatException;
 use nrv\auth\domain\exception\JwtExpiredException;
 use nrv\auth\domain\exception\JwtInvalidException;
 use nrv\auth\domain\exception\RefreshTokenInvalideException;
@@ -30,7 +31,18 @@ class AuthService implements AuthServiceInterface {
      * @throws RegisterExistException
      */
     public function signup(CredentialsDTO $credentialsDTO): UserDTO {
-        $this->authProvider->register($credentialsDTO->email, $credentialsDTO->mdp, $credentialsDTO->nom, $credentialsDTO->prenom);
+        //sanitize
+        $email = filter_var($credentialsDTO->email, FILTER_SANITIZE_EMAIL);
+        //validate
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            throw new EmailFormatException();
+        }
+
+        $nom = filter_var($credentialsDTO->nom, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z]+$/")));
+        $prenom = filter_var($credentialsDTO->prenom, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^[a-zA-Z]+$/")));
+
+
+        $this->authProvider->register($email, $credentialsDTO->mdp, $nom, $prenom);
         $us = $this->authProvider->getAuthenticatedUser($credentialsDTO->email);
         return new UserDTO($us['email'], $us['nom'], $us['prenom'], $us['typeUtil']);
     }
@@ -41,7 +53,13 @@ class AuthService implements AuthServiceInterface {
      * @throws RefreshUtilisateurException
      */
     public function signin(CredentialsDTO $credentialsDTO): TokenDTO {
-        $this->authProvider->checkCredentials($credentialsDTO->email,$credentialsDTO->mdp);
+        $email = filter_var($credentialsDTO->email, FILTER_SANITIZE_EMAIL);
+        //validate
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            throw new EmailFormatException();
+        }
+
+        $this->authProvider->checkCredentials($email,$credentialsDTO->mdp);
         return $this->authProvider->genToken($this->authProvider->getUser($credentialsDTO->email,''), $this->jwtManager);    }
 
     /**
