@@ -1,7 +1,6 @@
 @import "_reset";
 @import "_variables";
 @import "_header";
-@import "_footer";
 
 body {
 
@@ -10,7 +9,7 @@ body {
     flex-direction: row;
 
     #accueil_filtres {
-      width: 10%;
+      min-width: 20%;
       padding: 20px;
       background-color: $color-theme-gray;
 
@@ -89,6 +88,21 @@ body {
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+/*pour les petits écrans*/
+@media screen and (max-width: 576px){
+  section {
+    flex-direction: column;
+    background-color: #45818E;
+
+    & > div {
+      @for $i from 1 through 4 {
+        div:nth-child(#{$i}) {
+          flex-direction: column;
         }
       }
     }
