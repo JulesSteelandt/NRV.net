@@ -9,6 +9,7 @@ use nrv\catalogue\app\actions\catalogue\GetStyleByIdAction;
 use nrv\catalogue\app\actions\commande\GetBilletByUserAction;
 use nrv\catalogue\app\actions\commande\GetPanierByUserAction;
 use Slim\App;
+use Slim\Exception\HttpUnauthorizedException;
 
 return function (App $app): void {
 
@@ -26,14 +27,22 @@ return function (App $app): void {
 
     $app->get('/billet/{mail}[/]', GetBilletByUserAction::class)->setName('billetMail');
 
-    $app->get('/panier/{mail}[/]', GetPanierByUserAction::class)->setName('panierMail');
+
+    $app->options('/{routes:.+}', function ($request, $response, $args) {
+        return $response; // Renvoie une réponse HTTP vide
+    });
 
     $app->add(function ($request, $handler) {
         $response = $handler->handle($request);
+        if (!$request->hasHeader('Origin')) {
+            $origin = '*';
+        } else {
+            $origin = $request->getHeader('Origin');
+        }
         return $response
-            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:32107')
+            ->withHeader('Access-Control-Allow-Origin', $origin)
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
-            ->withHeader('Access-Control-Allow-Credentials','true');
+            ->withHeader('Access-Control-Allow-Credentials', 'true');
     });
 };

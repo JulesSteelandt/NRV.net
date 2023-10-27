@@ -7,6 +7,7 @@ use DateTime;
 use nrv\catalogue\domain\dto\catalogue\CatalogueDTO;
 use nrv\catalogue\domain\entities\catalogue\Spectacle;
 use nrv\catalogue\domain\entities\catalogue\Style;
+use nrv\catalogue\domain\exception\StyleIdException;
 
 class ServiceCatalogue
 {
@@ -28,7 +29,11 @@ class ServiceCatalogue
     public function getCatalogueSortByStyle(string $style): array
     {
         $styleId = Style::select('id')->where('nom',$style)->first();
-        $specs = Spectacle::where('idStyle',$styleId->id)->get();
+        if ($styleId != null) {
+            $specs = Spectacle::where('idStyle', $styleId->id)->get();
+        }else{
+            throw new StyleIdException($style);
+        }
         $list = [];
         foreach ($specs as $spec) {
             foreach ($spec->soirees as $heure) {

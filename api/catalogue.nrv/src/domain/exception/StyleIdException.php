@@ -8,6 +8,6 @@ class StyleIdException extends \Exception
 
     public function __construct(int $id)
     {
-        parent::__construct("Le style $id n'existe pas");
+        parent::__construct("Le style $id n'existe pas",404);
     }
 }

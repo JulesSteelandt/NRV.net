@@ -15,8 +15,8 @@ class Provider
         $this->clientApi = $clientApi;
     }
 
-    public function catalogue(){
-        return $this->clientApi->get("/programme");
+    public function catalogue(string $params = ""){
+        return $this->clientApi->get("/programme".$params);
     }
 
     public function spectacle($id){

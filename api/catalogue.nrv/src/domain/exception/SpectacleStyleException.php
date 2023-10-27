@@ -8,6 +8,6 @@ class SpectacleStyleException extends \Exception
 
     public function __construct(string $style)
     {
-        parent::__construct("Le style $style n'existe pas");
+        parent::__construct("Le style $style n'existe pas",404);
     }
 }
