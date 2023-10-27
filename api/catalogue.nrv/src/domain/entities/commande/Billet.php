@@ -10,7 +10,7 @@ use nrv\catalogue\domain\entities\catalogue\Soiree;
 class Billet extends Model {
 
 
-    protected $connection = 'commande';
+    protected $connection = 'catalogue';
 
     protected $table = 'BILLET';
 

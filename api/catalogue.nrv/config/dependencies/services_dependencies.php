@@ -1,12 +1,14 @@
 <?php
 
 use nrv\catalogue\app\provider\ProviderCatalogue;
+use nrv\catalogue\app\provider\ProviderCommande;
 use nrv\catalogue\domain\service\catalogue\ServiceArtiste;
 use nrv\catalogue\domain\service\catalogue\ServiceCatalogue;
 use nrv\catalogue\domain\service\catalogue\ServiceLieu;
 use nrv\catalogue\domain\service\catalogue\ServiceSoiree;
 use nrv\catalogue\domain\service\catalogue\ServiceSpectacle;
 use nrv\catalogue\domain\service\catalogue\ServiceStyle;
+use nrv\catalogue\domain\service\commande\ServiceBillet;
 use Psr\Container\ContainerInterface;
 
 return[
@@ -35,6 +37,10 @@ return[
         return new ServiceLieu();
     },
 
+    'billet.service' => function (ContainerInterface $c) {
+        return new ServiceBillet();
+    },
+
     'catalogue.provider' => function (ContainerInterface $c) {
         return new ProviderCatalogue(
             $c->get('catalogue.service'),
@@ -43,6 +49,12 @@ return[
             $c->get('artiste.service'),
             $c->get('style.service'),
             $c->get('lieu.service')
+        );
+    },
+
+    'commande.provider' => function (ContainerInterface $c) {
+        return new ProviderCommande(
+            $c->get('billet.service')
         );
     },
 

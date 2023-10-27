@@ -8,7 +8,7 @@ use nrv\catalogue\domain\entities\catalogue\Soiree;
 
 class Commande extends Model    {
 
-    protected $connection = 'commande';
+    protected $connection = 'catalogue';
 
     protected $table = 'COMMANDE';
 
