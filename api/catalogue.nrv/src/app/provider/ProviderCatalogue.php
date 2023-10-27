@@ -2,8 +2,8 @@
 
 namespace nrv\catalogue\app\provider;
 
-use nrv\catalogue\domain\dto\ArtisteDTO;
-use nrv\catalogue\domain\dto\StyleDTO;
+use nrv\catalogue\domain\dto\catalogue\StyleDTO;
+use nrv\catalogue\domain\dto\catalogue\ArtisteDTO;
 use nrv\catalogue\domain\exception\ArtisteIdException;
 use nrv\catalogue\domain\exception\LieuIdException;
 use nrv\catalogue\domain\exception\SoireeIdException;
@@ -16,7 +16,7 @@ use nrv\catalogue\domain\service\catalogue\ServiceSoiree;
 use nrv\catalogue\domain\service\catalogue\ServiceSpectacle;
 use nrv\catalogue\domain\service\catalogue\ServiceStyle;
 
-class Provider
+class ProviderCatalogue
 {
 
     private ServiceCatalogue $serviceCatalogue;
@@ -49,9 +49,22 @@ class Provider
      * @throws SpectacleIdException
      * @throws SoireeIdException
      */
-    public function getProgramme() : array
+    public function getProgramme(string $tri = 'null', string $data = ''): array
     {
-        $cat = $this->serviceCatalogue->getCatalogue();
+        $cat = null;
+        if ($tri == "style") {
+            $cat = $this->serviceCatalogue->getCatalogueSortByStyle($data);
+        }
+        if ($tri == "date") {
+            $cat = $this->serviceCatalogue->getCatalogueSortByStyle($data);
+        }
+        if ($tri == "lieu") {
+            $cat = $this->serviceCatalogue->getCatalogueSortByStyle($data);
+        }
+        if ($tri == 'null') {
+            $cat = $this->serviceCatalogue->getCatalogue();
+        }
+
         $list = [];
         $i = 0;
 
@@ -59,7 +72,7 @@ class Provider
             $i++;
             $specDTO = $this->serviceSpectacle->getSpectacleById($spec->idSpectacle);
             $soireeDTO = $this->serviceSoiree->getSoireesById($spec->idSoiree);
-            $list[$i] = ['spectacle' => $specDTO, 'soiree' => $soireeDTO, 'horaire' => $spec->horaireSpectacle];
+            $list[$i] = ['spectacle' => $specDTO, 'soiree' => $soireeDTO, 'horaire' => $spec->horaireSpectacle, 'image' => $specDTO->image];
         }
 
         return $list;
@@ -74,13 +87,22 @@ class Provider
         $spec = $this->serviceSpectacle->getSpectacleById($id);
         $art = $this->serviceArtiste->getArtisteBySpectacle($id);
         $style = $this->serviceStyle->getStyleById($spec->style);
-        return ['spectacle'=>$spec,'artistes'=>$art, 'style'=>$style->nom];
+        return ['spectacle' => $spec, 'artistes' => $art, 'style' => $style->nom];
+    }
+
+    /**
+     * @throws StyleIdException
+     */
+    public function getStyleById(int $id): StyleDTO
+    {
+        return $this->serviceStyle->getStyleById($id);
     }
 
     /**
      * @throws ArtisteIdException
      */
-    public function getArtisteById(int $id) : ArtisteDTO{
+    public function getArtisteById(int $id): ArtisteDTO
+    {
         return $this->serviceArtiste->getArtisteById($id);
     }
 
@@ -89,26 +111,21 @@ class Provider
      * @throws SpectacleIdException
      * @throws LieuIdException
      */
-    public function getSoireeById(int $id) : array{
+    public function getSoireeById(int $id): array
+    {
         $soiree = $this->serviceSoiree->getSoireesById($id);
         $specs = $this->serviceSoiree->getSpectacleBySoiree($id);
         $spectacles = [];
-        foreach ($specs as $spec){
+        foreach ($specs as $spec) {
             $spectacles[] = $this->getSpectacleById($spec);
         }
         $lieu = $this->serviceLieu->getLieuById($soiree->idLieu);
-        return ['soiree'=>$soiree,'spectacles'=>$spectacles,'lieu'=>$lieu];
+        return ['soiree' => $soiree, 'spectacles' => $spectacles, 'lieu' => $lieu];
     }
 
-    public function getStyle():array{
+    public function getStyle(): array
+    {
         return $this->serviceStyle->getStyle();
-    }
-
-    /**
-     * @throws StyleIdException
-     */
-    public function getStyleById(int $id):StyleDTO{
-        return $this->serviceStyle->getStyleById($id);
     }
 
 

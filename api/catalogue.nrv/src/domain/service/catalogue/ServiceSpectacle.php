@@ -3,8 +3,8 @@
 namespace nrv\catalogue\domain\service\catalogue;
 
 
-use nrv\catalogue\domain\dto\SpectacleDTO;
-use nrv\catalogue\domain\entities\Spectacle;
+use nrv\catalogue\domain\dto\catalogue\SpectacleDTO;
+use nrv\catalogue\domain\entities\catalogue\Spectacle;
 use nrv\catalogue\domain\exception\SpectacleIdException;
 
 class ServiceSpectacle

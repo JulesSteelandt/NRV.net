@@ -1,9 +1,10 @@
 <?php
 
-namespace nrv\catalogue\domain\entities;
+namespace nrv\catalogue\domain\entities\catalogue;
 
-use nrv\catalogue\domain\dto\SoireeDTO;
+use nrv\catalogue\domain\dto\catalogue\SoireeDTO;
 use DateTime;
+use nrv\catalogue\domain\entities\commande\Commande;
 
 class Soiree extends \Illuminate\Database\Eloquent\Model
 {
@@ -19,6 +20,11 @@ class Soiree extends \Illuminate\Database\Eloquent\Model
 
     public function spectacles(){
         return $this->belongsToMany(Spectacle::class,"CALENDRIER","idSoiree","idSpectacle")->withPivot("horaireSpectacle");
+    }
+
+    public function commande(){
+        return $this->belongsToMany(Commande::class,"COMMANDE2SOIREE","idCommande","idSoiree")
+            ->withPivot("typeTarif",'nmbPlace');
     }
 
     public function toDTO():SoireeDTO{

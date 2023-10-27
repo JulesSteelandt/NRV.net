@@ -3,10 +3,8 @@
 namespace nrv\catalogue\domain\service\catalogue;
 
 
-use nrv\catalogue\domain\dto\ArtisteDTO;
-use nrv\catalogue\domain\dto\CatalogueDTO;
-use nrv\catalogue\domain\entities\Artiste;
-use nrv\catalogue\domain\entities\Spectacle;
+use nrv\catalogue\domain\dto\catalogue\ArtisteDTO;
+use nrv\catalogue\domain\entities\catalogue\Artiste;
 use nrv\catalogue\domain\exception\ArtisteIdException;
 
 class ServiceArtiste

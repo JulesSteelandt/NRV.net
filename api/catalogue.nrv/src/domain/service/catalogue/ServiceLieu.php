@@ -3,8 +3,8 @@
 namespace nrv\catalogue\domain\service\catalogue;
 
 
-use nrv\catalogue\domain\dto\LieuDTO;
-use nrv\catalogue\domain\entities\Lieu;
+use nrv\catalogue\domain\dto\catalogue\LieuDTO;
+use nrv\catalogue\domain\entities\catalogue\Lieu;
 use nrv\catalogue\domain\exception\LieuIdException;
 
 class ServiceLieu

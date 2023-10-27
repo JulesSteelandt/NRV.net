@@ -1,6 +1,7 @@
 <?php
 
-namespace nrv\catalogue\domain\dto;
+namespace nrv\catalogue\domain\dto\catalogue;
+use nrv\catalogue\domain\dto\DTO;
 
 
 class LieuDTO extends DTO
@@ -8,6 +9,7 @@ class LieuDTO extends DTO
 
     public int $id, $nbPlace, $nbPlaceAssis, $nbPlaceDebout;
     public string $nom, $adresse;
+    public ?string $image;
 
     /**
      * @param int $id
@@ -17,7 +19,7 @@ class LieuDTO extends DTO
      * @param string $nom
      * @param string $adresse
      */
-    public function __construct(int $id, int $nbPlace, int $nbPlaceAssis, int $nbPlaceDebout, string $nom, string $adresse)
+    public function __construct(int $id, int $nbPlace, int $nbPlaceAssis, int $nbPlaceDebout, string $nom, string $adresse, ?string $image = null)
     {
         $this->id = $id;
         $this->nbPlace = $nbPlace;
@@ -25,6 +27,7 @@ class LieuDTO extends DTO
         $this->nbPlaceDebout = $nbPlaceDebout;
         $this->nom = $nom;
         $this->adresse = $adresse;
+        $this->image = $image;
     }
 
 

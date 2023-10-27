@@ -1,8 +1,8 @@
 <?php
 
-namespace nrv\catalogue\domain\entities;
+namespace nrv\catalogue\domain\entities\catalogue;
 
-use nrv\catalogue\domain\dto\ArtisteDTO;
+use nrv\catalogue\domain\dto\catalogue\ArtisteDTO;
 
 class Artiste extends \Illuminate\Database\Eloquent\Model
 {

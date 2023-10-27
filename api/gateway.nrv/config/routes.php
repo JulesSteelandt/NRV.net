@@ -6,11 +6,13 @@ use nrv\gateway\actions\catalogue\SoireeAction;
 use nrv\gateway\actions\catalogue\SpectacleAction;
 use nrv\gateway\actions\catalogue\StyleAction;
 use nrv\gateway\actions\catalogue\StyleListAction;
+use nrv\gateway\actions\commande\BilletUserAction;
 use Slim\App;
 use nrv\gateway\actions\auth\RefreshAction;
 use nrv\gateway\actions\auth\SignUpAction;
 use nrv\gateway\actions\auth\SignInAction;
 use nrv\gateway\actions\auth\ValidateAction;
+use Slim\Exception\HttpUnauthorizedException;
 
 return function (App $app): void {
 
@@ -34,11 +36,22 @@ return function (App $app): void {
 
     $app->get('/validate[/]', ValidateAction::class)->setName('validate');
 
+    $app->get('/billet/{mail}[/]', BilletUserAction::class)->setName('billetUser');
+
+    $app->options('/{routes:.+}', function ($request, $response, $args) {
+        return $response;
+    });
 
     $app->add(function ($request, $handler) {
+
         $response = $handler->handle($request);
+        if (!$request->hasHeader('Origin')){
+            $origin = '*';
+        }else {
+            $origin = $request->getHeader('Origin');
+        }
         return $response
-            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:32108')
+            ->withHeader('Access-Control-Allow-Origin', $origin)
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
             ->withHeader('Access-Control-Allow-Credentials','true');

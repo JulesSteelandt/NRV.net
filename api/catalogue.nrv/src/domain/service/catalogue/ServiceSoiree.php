@@ -3,8 +3,8 @@
 namespace nrv\catalogue\domain\service\catalogue;
 
 
-use nrv\catalogue\domain\dto\SoireeDTO;
-use nrv\catalogue\domain\entities\Soiree;
+use nrv\catalogue\domain\dto\catalogue\SoireeDTO;
+use nrv\catalogue\domain\entities\catalogue\Soiree;
 use nrv\catalogue\domain\exception\SoireeIdException;
 
 class ServiceSoiree

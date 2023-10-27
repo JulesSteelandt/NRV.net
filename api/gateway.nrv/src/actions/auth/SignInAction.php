@@ -21,7 +21,7 @@ class SignInAction extends AbstractAction
         // Récupérez les en-têtes de la requête entrante
         $headers = $request->getHeaders();
 
-        // Appelez la méthode de la classe Provider pour envoyer les en-têtes à l'API 2
+        // Appelez la méthode de la classe ProviderCatalogue pour envoyer les en-têtes à l'API 2
         $responseData = $this->provider->signin($headers);
 
         if ($responseData !== null) {
