@@ -8,6 +8,7 @@ use nrv\catalogue\app\actions\catalogue\GetStyleAction;
 use nrv\catalogue\app\actions\catalogue\GetStyleByIdAction;
 use nrv\catalogue\app\actions\commande\GetBilletByUserAction;
 use nrv\catalogue\app\actions\commande\GetPanierByUserAction;
+use nrv\catalogue\app\actions\commande\PayerCommandeAction;
 use Slim\App;
 use Slim\Exception\HttpUnauthorizedException;
 
@@ -27,6 +28,7 @@ return function (App $app): void {
 
     $app->get('/billet/{mail}[/]', GetBilletByUserAction::class)->setName('billetMail');
 
+    $app->post('/payer/{id}[/]', PayerCommandeAction::class)->setName('payerCommande');
 
     $app->options('/{routes:.+}', function ($request, $response, $args) {
         return $response; // Renvoie une réponse HTTP vide
