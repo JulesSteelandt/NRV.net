@@ -50,6 +50,7 @@ class GetProgrammeAction extends AbstractAction
                     'titre'=>$programme['spectacle']->titre,
                     'date'=>$programme['soiree']->date->format('Y-m-d'),
                     'horaire'=>$programme['horaire']->format('H:i:s'),
+                    'image'=>$programme['image'],
                     'links' => [
                         'self' => [
                             'href' => '/spectacle/' . $programme['spectacle']->id,

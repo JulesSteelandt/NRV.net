@@ -59,7 +59,7 @@ class ProviderCatalogue
             $i++;
             $specDTO = $this->serviceSpectacle->getSpectacleById($spec->idSpectacle);
             $soireeDTO = $this->serviceSoiree->getSoireesById($spec->idSoiree);
-            $list[$i] = ['spectacle' => $specDTO, 'soiree' => $soireeDTO, 'horaire' => $spec->horaireSpectacle];
+            $list[$i] = ['spectacle' => $specDTO, 'soiree' => $soireeDTO, 'horaire' => $spec->horaireSpectacle,'image'=>$specDTO->image];
         }
 
         return $list;
