@@ -3,8 +3,7 @@ export function loadRessource(uri) {
         .then(response => {
             if (response.ok) {
                 return response.json();
-            }
-            else {
+            } else {
                 return Promise.reject(new Error(response.statusText));
             }
         });
