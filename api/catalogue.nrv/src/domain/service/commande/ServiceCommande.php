@@ -40,14 +40,22 @@ class ServiceCommande {
         $nbPlace = [];
         foreach ($soirees as $soiree){
             $list['soirees'][] = $soiree->toDTO($soiree->pivot->nmbPlace,$soiree->pivot->typeTarif);
-            $nbPlace[$soiree->id] = $soiree->nbPlaceRestante;
+            $nbPlace[$soiree->id]['dispo'] = $soiree->nbPlaceRestante;
+            $nbPlace[$soiree->id]['reserve'] = $soiree->pivot->nmbPlace;
+
         }
 
 
         foreach ($nbPlace as $key => $check){
-            if ($check == 0){
+            if ($check['dispo'] == 0 || $check['dispo']<$check['reserve']){
                 throw new CommandeNombrePlaceException($key);
             }
+        }
+
+
+        foreach ($soirees as $soiree) {
+            $soiree->nbPlaceRestante = $soiree->nbPlaceRestante - $soiree->pivot->nmbPlace;
+            $soiree->save();
         }
 
         $commande->statut = 3; // 3 = payé (1 = cree, 2 = validé, 3 = payé)
