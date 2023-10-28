@@ -36,7 +36,6 @@ class ProviderCommande
     public function getPanierByUser(string $email): array
     {
         $b = $this->servicePanier->getPanierByUser($email);
-        var_dump($b);
         if ($b != null) {
             return $b;
         } else {

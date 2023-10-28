@@ -12,13 +12,7 @@ class ServiceBillet
 
     public function getBilletByUser(string $email): array
     {
-        var_dump(Billet::where('mailUser', $email)->get()->toArray());
         return Billet::where('mailUser', $email)->get()->toArray();
-    }
-
-    public function getBilletByCommande(int $idCommande)
-    {
-        return Billet::where('idCommande', $idCommande)->get()->toArray();
     }
 
     public function creerBillet(SoireeDTO $s, string $user)

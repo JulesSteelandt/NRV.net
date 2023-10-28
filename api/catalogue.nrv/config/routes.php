@@ -31,6 +31,8 @@ return function (App $app): void {
 
     $app->get('/billet/{mail}[/]', GetBilletByUserAction::class)->setName('billetMail');
 
+    $app->get('/panier/{mail}[/]', GetPanierByUserAction::class)->setName('panierMail');
+
     $app->post('/payer/{id}[/]', PayerCommandeAction::class)->setName('payerCommande');
 
     $app->options('/{routes:.+}', function ($request, $response, $args) {

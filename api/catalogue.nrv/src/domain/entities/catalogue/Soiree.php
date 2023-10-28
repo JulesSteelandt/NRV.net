@@ -5,6 +5,7 @@ namespace nrv\catalogue\domain\entities\catalogue;
 use nrv\catalogue\domain\dto\catalogue\SoireeDTO;
 use DateTime;
 use nrv\catalogue\domain\entities\commande\Commande;
+use nrv\catalogue\domain\entities\commande\Panier;
 
 class Soiree extends \Illuminate\Database\Eloquent\Model
 {
@@ -26,6 +27,7 @@ class Soiree extends \Illuminate\Database\Eloquent\Model
         return $this->belongsToMany(Commande::class,"COMMANDE2SOIREE","idCommande","idSoiree")
             ->withPivot("typeTarif",'nmbPlace');
     }
+
 
     public function toDTO(int $nbPlace = 0, int $typeTarif = 0):SoireeDTO{
         return new SoireeDTO(
