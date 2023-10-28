@@ -21,10 +21,10 @@ class PayerCommandeAction extends AbstractAction {
 
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface {
-        $data = $request->getParsedBody();
-        if (isset($data['idCommande'])) {
+
+        if (isset($args['id'])) {
             try {
-                $idcommande = $data['idCommande'];
+                $idcommande = $args['id'];
                 $billets = $this->provider->payerCommandeUser($idcommande);
                 //return $billets;
                 $data['type'] = 'resource';

@@ -22,17 +22,19 @@ class ProgrammeAction extends AbstractAction
     {
         $params = $request->getQueryParams();
 
+        $param = "";
+
         if (isset($params['style'])){
-            $params = "?style=".$params['style'];
+            $param = "?style=".$params['style'];
         }
         if (isset($params['lieu'])){
-            $params = "?lieu=".$params['lieu'];
+            $param = "?lieu=".$params['lieu'];
         }
         if (isset($params['date'])){
-            $params = "?date=".$params['date'];
+            $param = "?date=".$params['date'];
         }
 
-        $catalogueData = $this->provider->catalogue($params);
+        $catalogueData = $this->provider->catalogue($param);
 
         if ($catalogueData !== null) {
             $response->getBody()->write($catalogueData);

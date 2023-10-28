@@ -48,6 +48,8 @@ class ProviderCatalogue
     /**
      * @throws SpectacleIdException
      * @throws SoireeIdException
+     * @throws StyleIdException
+     * @throws LieuIdException
      */
     public function getProgramme(string $tri = 'null', string $data = ''): array
     {
@@ -59,7 +61,7 @@ class ProviderCatalogue
             $cat = $this->serviceCatalogue->getCatalogueSortByStyle($data);
         }
         if ($tri == "lieu") {
-            $cat = $this->serviceCatalogue->getCatalogueSortByStyle($data);
+            $cat = $this->serviceCatalogue->getCatalogueByLieu($data);
         }
         if ($tri == 'null') {
             $cat = $this->serviceCatalogue->getCatalogue();

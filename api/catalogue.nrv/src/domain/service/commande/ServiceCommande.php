@@ -33,7 +33,8 @@ class ServiceCommande {
         //on récupère la soirée
         $soiree = $commande->soiree;
         //on récupère le nombre de place disponible total à la soirée grace à son lieu
-        $lieuSoire = Lieu::where('idLieu', $soiree->idLieu)->firstOrFail();
+        var_dump($soiree);
+        $lieuSoire = Lieu::where('id', $soiree->idLieu)->firstOrFail();
         $nbPlace = $lieuSoire->nbPlace;
 
         //on récupère le nombre de place déjà vendu à la soirée
