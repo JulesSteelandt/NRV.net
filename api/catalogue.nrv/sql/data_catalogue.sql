@@ -12,6 +12,8 @@ values (4, 'user2@gmail.com', 3, 22.68);
 INSERT INTO BILLET
 values ('02ce0536-2091-4a97-bb8a-034bf1a0e92c', 3, 'user2@gmail.com', '2023-10-27', '20:00:00', 'Prix plein');
 INSERT INTO BILLET
+values ('70bbc426-ae12-49c3-b169-e4a23fcc95fd', 3, 'user2@gmail.com', '2023-10-27', '20:00:00', 'Prix plein');
+INSERT INTO BILLET
 values ('5a9c37f8-b2e7-4d4d-8a8a-2269864b0b77', 4, 'user2@gmail.com', '2023-10-28', '21:00:00', 'Prix réduit');
 
 

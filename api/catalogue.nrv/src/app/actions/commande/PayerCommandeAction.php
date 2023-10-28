@@ -28,7 +28,15 @@ class PayerCommandeAction extends AbstractAction {
                 $billets = $this->provider->payerCommandeUser($idcommande);
                 //return $billets;
                 $data['type'] = 'resource';
-                $data['data'] = $billets;
+                foreach ($billets as $billet) {
+                    $data['data']['billets'][] = [
+                        'reference' => $billet->reference,
+                        'auteur' => $billet->mailUser,
+                        'catTarif' => $billet->catTarif,
+                        'date' => $billet->date->format('Y-m-d'),
+                        'horaireDebut' => $billet->horaire->format('H:i:s'),
+                    ];
+                }
                 $response->getBody()->write(json_encode($data));
                 $response = $response->withStatus(200)->withHeader('Content-Type', 'application/json');
             } catch (Exception $e) {

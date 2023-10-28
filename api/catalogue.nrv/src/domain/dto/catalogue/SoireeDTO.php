@@ -8,7 +8,7 @@ use DateTime;
 class SoireeDTO extends DTO
 {
 
-    public int $id, $idLieu,$nbPlaceRestante;
+    public int $id, $idLieu,$nbPlaceRestante, $nbPlace, $typeTarif;
     public string $nom, $theme;
     public float $tarifNormal, $tarifReduit;
     public DateTime $date, $horaire;
@@ -23,7 +23,7 @@ class SoireeDTO extends DTO
      * @param DateTime $date
      * @param DateTime $horaire
      */
-    public function __construct(int $id, int $idLieu, string $nom, string $theme, float $tarifNormal, float $tarifReduit, DateTime $date, DateTime $horaire,int $nbPlaceRestante)
+    public function __construct(int $id, int $idLieu, string $nom, string $theme, float $tarifNormal, float $tarifReduit, DateTime $date, DateTime $horaire,int $nbPlaceRestante, int $nbPlace, int $typeTarif)
     {
         $this->id = $id;
         $this->idLieu = $idLieu;
@@ -34,6 +34,8 @@ class SoireeDTO extends DTO
         $this->date = $date;
         $this->horaire = $horaire;
         $this->nbPlaceRestante = $nbPlaceRestante;
+        $this->nbPlace = $nbPlace;
+        $this->typeTarif = $typeTarif;
     }
 
 

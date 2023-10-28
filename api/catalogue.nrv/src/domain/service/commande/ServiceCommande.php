@@ -6,6 +6,7 @@ use nrv\catalogue\domain\dto\commande\CommandeDTO;
 use nrv\catalogue\domain\entities\catalogue\Lieu;
 use nrv\catalogue\domain\entities\commande\Commande;
 use nrv\catalogue\domain\exception\CommandeNombrePlaceException;
+use nrv\catalogue\domain\exception\CommandeStatutException;
 
 class ServiceCommande {
 
@@ -26,30 +27,32 @@ class ServiceCommande {
 
     }
 
-    public function payerCommande(string $email) {
+    public function payerCommande(int $id) {
         //where mailUser= $email et statut = 2
-        $commande = Commande::where('mailUser', $email)->where('statut', 2)->firstOrFail();
+        $commande = Commande::find($id);
+        if ($commande->statut != 2){
+            throw new CommandeStatutException();
+        }
         //calcul du nombre de place disponible à la soirée
-        //on récupère la soirée
-        $soiree = $commande->soiree;
-        //on récupère le nombre de place disponible total à la soirée grace à son lieu
-        var_dump($soiree);
-        $lieuSoire = Lieu::where('id', $soiree->idLieu)->firstOrFail();
-        $nbPlace = $lieuSoire->nbPlace;
+        //on récupère la/les soirée(s)
+        $soirees = $commande->soiree;
+        $list['user'] = $commande->mailUser;
+        $nbPlace = [];
+        foreach ($soirees as $soiree){
+            $list['soirees'][] = $soiree->toDTO($soiree->pivot->nmbPlace,$soiree->pivot->typeTarif);
+            $nbPlace[$soiree->id] = $soiree->nbPlaceRestante;
+        }
 
-        //on récupère le nombre de place déjà vendu à la soirée
-        $nbPlaceVendu = 0;
-        foreach ($soiree->commande as $commandeS) {
-            if ($commandeS->statut == 3) {
-                $nbPlaceVendu += $commandeS->pivot->nmbPlace;
+
+        foreach ($nbPlace as $key => $check){
+            if ($check == 0){
+                throw new CommandeNombrePlaceException($key);
             }
         }
-        $nbPlaceDispo = $nbPlace - $nbPlaceVendu;
-        if (!($nbPlaceDispo > $commande->pivot->nmbPlace)) {
-            throw new CommandeNombrePlaceException();
-        }
+
         $commande->statut = 3; // 3 = payé (1 = cree, 2 = validé, 3 = payé)
         $commande->save();
+        return $list;
     }
     public function creerCommande(string $email, float $total){
         $commande = new Commande();
