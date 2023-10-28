@@ -48,6 +48,7 @@ class GetSoireeIdAction extends AbstractAction
             'horaireDebut' => $soiree['soiree']->horaire->format('H:i:s'),
             'tarifNormal' => $soiree['soiree']->tarifNormal,
             'tarifReduit' => $soiree['soiree']->tarifReduit,
+            'nbPlaceRestante' => $soiree['soiree']->nbPlaceRestante,
             'Lieu' => $soiree['lieu'],
         ];
         $data['data']['spectacle']['count'] = count($soiree['spectacles']);

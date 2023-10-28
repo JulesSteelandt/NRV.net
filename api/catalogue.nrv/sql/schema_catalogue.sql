@@ -20,6 +20,7 @@
         horaireDebut TIME,
         tarifNormal  DECIMAL(10, 2),
         tarifReduit  DECIMAL(10, 2),
+        nbPlaceRestante INT,
         idLieu       INT,
         FOREIGN KEY (idLieu) REFERENCES LIEU (id)
     );

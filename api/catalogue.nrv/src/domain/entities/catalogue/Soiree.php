@@ -37,6 +37,7 @@ class Soiree extends \Illuminate\Database\Eloquent\Model
             $this->tarifReduit,
             DateTime::createFromFormat('Y-m-d', $this->date),
             DateTime::createFromFormat('H:i:s', $this->horaireDebut),
+            $this->nbPlaceRestante
         );
     }
 
