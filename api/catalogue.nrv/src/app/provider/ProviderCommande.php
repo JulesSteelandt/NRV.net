@@ -2,6 +2,10 @@
 
 namespace nrv\catalogue\app\provider;
 
+use nrv\catalogue\domain\dto\commande\BilletDTO;
+use nrv\catalogue\domain\exception\BilletRefException;
+use nrv\catalogue\domain\exception\CommandeNombrePlaceException;
+use nrv\catalogue\domain\exception\CommandeStatutException;
 use nrv\catalogue\domain\service\commande\ServiceBillet;
 use nrv\catalogue\domain\service\commande\ServiceCommande;
 use nrv\catalogue\domain\service\commande\ServicePanier;
@@ -33,17 +37,19 @@ class ProviderCommande
         }
     }
 
-    public function getPanierByUser(string $email): array
+    /**
+     * @throws BilletRefException
+     */
+    public function getBilletRef(string $ref): BilletDTO
     {
-        $b = $this->servicePanier->getPanierByUser($email);
-        if ($b != null) {
-            return $b;
-        } else {
-            return ['Aucune soirée'];
-        }
+        return $this->serviceBillet->getBilletByRef($ref);
     }
 
-
+    /**
+     * @throws CommandeStatutException
+     * @throws CommandeNombrePlaceException
+     * @throws BilletRefException
+     */
     public function payerCommandeUser(int $idCommande): array
     {
         $commandedto = $this->serviceCommande->getCommandeById($idCommande);

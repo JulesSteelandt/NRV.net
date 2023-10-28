@@ -5,6 +5,7 @@ namespace nrv\catalogue\domain\service\commande;
 
 use nrv\catalogue\domain\dto\catalogue\SoireeDTO;
 use nrv\catalogue\domain\entities\commande\Billet;
+use nrv\catalogue\domain\exception\BilletRefException;
 use Ramsey\Uuid\Uuid;
 
 class ServiceBillet
@@ -15,6 +16,9 @@ class ServiceBillet
         return Billet::where('mailUser', $email)->get()->toArray();
     }
 
+    /**
+     * @throws BilletRefException
+     */
     public function creerBillet(SoireeDTO $s, string $user)
     {
         $billet = new Billet();
@@ -36,7 +40,11 @@ class ServiceBillet
 
     public function getBilletByRef(string $ref)
     {
-        return Billet::find($ref)->toDTO();
+        $b = Billet::find($ref);
+        if ($b == null){
+            throw new BilletRefException($ref);
+        }
+        return $b->toDTO();
     }
 
 }

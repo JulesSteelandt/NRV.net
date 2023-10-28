@@ -8,11 +8,13 @@ use nrv\catalogue\app\actions\catalogue\GetSoireeStatAction;
 use nrv\catalogue\app\actions\catalogue\GetSpectacleAction;
 use nrv\catalogue\app\actions\catalogue\GetStyleAction;
 use nrv\catalogue\app\actions\catalogue\GetStyleByIdAction;
+use nrv\catalogue\app\actions\commande\GetBilletByRefAction;
 use nrv\catalogue\app\actions\commande\GetBilletByUserAction;
 use nrv\catalogue\app\actions\commande\GetPanierByUserAction;
 use nrv\catalogue\app\actions\commande\PayerCommandeAction;
 use Slim\App;
 use Slim\Exception\HttpUnauthorizedException;
+use Slim\Routing\RouteCollectorProxy;
 
 return function (App $app): void {
 
@@ -30,11 +32,11 @@ return function (App $app): void {
 
     $app->get('/lieu[/]', GetLieuAction::class)->setName('lieu');
 
-    $app->get('/style/{id}[/]', GetStyleByIdAction::class)->setName('styleId');
+    $app->group('/billet', function (RouteCollectorProxy $group) {
+        $group->get('/{id}', GetBilletByRefAction::class)->setName('billetRef');
+        $group->get('/user/{mail:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}}[/]', GetBilletByUserAction::class)->setName('billetMail');
+    });
 
-    $app->get('/billet/{mail}[/]', GetBilletByUserAction::class)->setName('billetMail');
-
-    $app->get('/panier/{mail}[/]', GetPanierByUserAction::class)->setName('panierMail');
 
     $app->post('/payer/{id}[/]', PayerCommandeAction::class)->setName('payerCommande');
 
