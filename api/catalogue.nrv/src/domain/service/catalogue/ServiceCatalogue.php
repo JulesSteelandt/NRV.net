@@ -56,9 +56,30 @@ class ServiceCatalogue
         $list = [];
 
         foreach ($soirees as $soiree) {
-                foreach ($soiree->spectacles as $heure) {
-                    $horaire = DateTime::createFromFormat('H:i:s', $heure->pivot->horaireSpectacle);
-                    $list[] = new CatalogueDTO($soiree->id, $heure->id, $horaire);
+            foreach ($soiree->spectacles as $heure) {
+                $horaire = DateTime::createFromFormat('H:i:s', $heure->pivot->horaireSpectacle);
+                $list[] = new CatalogueDTO($soiree->id, $heure->id, $horaire);
+
+            }
+        }
+
+        return $list;
+    }
+
+
+    public function getCatalogueByDate(int $id): array
+    {
+        $lieu = Lieu::find($id);
+        if ($lieu == null) {
+            throw new LieuIdException($id);
+        }
+        $soirees = $lieu->soirees;
+        $list = [];
+
+        foreach ($soirees as $soiree) {
+            foreach ($soiree->spectacles as $heure) {
+                $horaire = DateTime::createFromFormat('H:i:s', $heure->pivot->horaireSpectacle);
+                $list[] = new CatalogueDTO($soiree->id, $heure->id, $horaire);
 
             }
         }
