@@ -64,14 +64,19 @@
                     Spectales
                 </h3>
                 <div>
-                    <button></button>
                     <div id="grille_articles"></div>
-                    <button></button>
                 </div>
             </div>
         </section>
         <footer>
 
         </footer>
+    <script>
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            });
+    </script>
     </body>
 </html>

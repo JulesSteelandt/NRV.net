@@ -6,6 +6,7 @@ use nrv\gateway\actions\catalogue\SoireeAction;
 use nrv\gateway\actions\catalogue\SpectacleAction;
 use nrv\gateway\actions\catalogue\StyleAction;
 use nrv\gateway\actions\catalogue\StyleListAction;
+use nrv\gateway\actions\commande\BilletUserAction;
 use Psr\Container\ContainerInterface;
 use nrv\gateway\actions\auth\RefreshAction;
 use nrv\gateway\actions\auth\SignInAction;
@@ -52,6 +53,10 @@ return[
 
     SignUpAction::class => function (ContainerInterface $c){
         return new SignUpAction($c->get('provider.client.auth'));
+    },
+
+    BilletUserAction::class => function (ContainerInterface $c){
+        return new BilletUserAction($c->get('provider.client.catalogue'));
     },
 
 

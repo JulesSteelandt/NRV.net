@@ -20,17 +20,6 @@ services:
     volumes:
       - ../api/catalogue.nrv/sql:/var/sql
 
-  nrv.commande.db:
-    image: 'mariadb:latest'
-    command: '--default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci'
-    env_file: ./commande.env
-    ports:
-      - '32101:3306'
-    networks:
-      - nrv.net
-    volumes:
-      - ../api/commande.nrv/sql:/var/sql
-
   nrv.auth.db:
     image: 'mariadb:latest'
     command: '--default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci'
@@ -48,6 +37,7 @@ services:
   ############################################
   adminer:
     image: adminer
+    command: php -S 0.0.0.0:8080 -t /var/www/html
     ports:
       - '32103:8080'
     networks:
@@ -72,23 +62,6 @@ services:
           - catalogue.nrv.local
     depends_on:
       - nrv.catalogue.db
-
-
-  api.nrv.commande:
-    image: 'canals/php:latest'
-    env_file: ./commande.env
-    ports:
-      - '32105:80'
-    volumes:
-      - ../api/commande.nrv/public:/var/www/html
-      - ../api/commande.nrv:/var/www
-    working_dir: /var/www
-    networks:
-      nrv.net:
-        aliases:
-          - commande.nrv.local
-    depends_on:
-      - nrv.commande.db
 
 
   api.nrv.auth:
@@ -125,7 +98,6 @@ services:
     depends_on:
       - api.nrv.auth
       - api.nrv.catalogue
-      - api.nrv.commande
 
 
   ##########################################

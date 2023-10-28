@@ -1,15 +1,25 @@
 <?php
 
-use nrv\catalogue\app\provider\Provider;
-use nrv\catalogue\domain\service\ServiceCatalogue;
-use nrv\catalogue\domain\service\ServiceSoiree;
-use nrv\catalogue\domain\service\ServiceSpectacle;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use nrv\catalogue\app\provider\ProviderCatalogue;
+use nrv\catalogue\app\provider\ProviderCommande;
+use nrv\catalogue\domain\service\catalogue\ServiceArtiste;
+use nrv\catalogue\domain\service\catalogue\ServiceCatalogue;
+use nrv\catalogue\domain\service\catalogue\ServiceLieu;
+use nrv\catalogue\domain\service\catalogue\ServiceSoiree;
+use nrv\catalogue\domain\service\catalogue\ServiceSpectacle;
+use nrv\catalogue\domain\service\catalogue\ServiceStyle;
+use nrv\catalogue\domain\service\commande\ServiceBillet;
+use nrv\catalogue\domain\service\commande\ServicePanier;
 use Psr\Container\ContainerInterface;
-use nrv\catalogue\domain\service\ServiceArtiste;
-use nrv\catalogue\domain\service\ServiceStyle;
-use nrv\catalogue\domain\service\ServiceLieu;
 
 return[
+    'logger' => function (ContainerInterface $c) {
+        $log = new Logger($c->get('log.name'));
+        $log->pushHandler(new StreamHandler($c->get('log.file')));
+        return $log;
+    },
 
     'soiree.service' => function (ContainerInterface $c) {
         return new ServiceSoiree();
@@ -35,14 +45,29 @@ return[
         return new ServiceLieu();
     },
 
+    'billet.service' => function (ContainerInterface $c) {
+        return new ServiceBillet();
+    },
+
+    'panier.service' => function (ContainerInterface $c) {
+        return new ServicePanier();
+    },
+
     'catalogue.provider' => function (ContainerInterface $c) {
-        return new Provider(
+        return new ProviderCatalogue(
             $c->get('catalogue.service'),
             $c->get('spectacle.service'),
             $c->get('soiree.service'),
             $c->get('artiste.service'),
             $c->get('style.service'),
             $c->get('lieu.service')
+        );
+    },
+
+    'commande.provider' => function (ContainerInterface $c) {
+        return new ProviderCommande(
+            $c->get('billet.service'),
+            $c->get('panier.service')
         );
     },
 
