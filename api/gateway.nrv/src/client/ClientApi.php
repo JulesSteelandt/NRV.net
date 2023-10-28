@@ -47,7 +47,7 @@ class ClientApi
         }
     }
 
-    public function post($url, $data, $headers = [])
+    public function post($url, $data = [], $headers = [])
     {
         try {
             // Créez un tableau d'options pour la requête POST

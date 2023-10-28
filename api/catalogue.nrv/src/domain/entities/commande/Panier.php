@@ -21,14 +21,7 @@ class Panier extends Model {
     }
 
 
-    public function toDTO():PanierDTO{
-        return new PanierDTO(
-            $this->mailUser,
-            $this->idSoiree,
-            $this->nmbplace,
-            $this->typeTarif
-        );
-    }
+    
 
 
 

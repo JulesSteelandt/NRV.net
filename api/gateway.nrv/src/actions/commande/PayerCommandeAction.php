@@ -1,14 +1,13 @@
 <?php
 
-namespace nrv\gateway\actions\catalogue;
+namespace nrv\gateway\actions\commande;
 
 use nrv\gateway\actions\AbstractAction;
 use nrv\gateway\provider\provider;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use function PHPUnit\Framework\isEmpty;
 
-class ProgrammeAction extends AbstractAction
+class PayerCommandeAction extends AbstractAction
 {
     private Provider $provider;
 
@@ -20,21 +19,7 @@ class ProgrammeAction extends AbstractAction
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $params = $request->getQueryParams();
-
-        $param = "";
-
-        if (isset($params['style'])){
-            $param = "?style=".$params['style'];
-        }
-        if (isset($params['lieu'])){
-            $param = "?lieu=".$params['lieu'];
-        }
-        if (isset($params['date'])){
-            $param = "?date=".$params['date'];
-        }
-
-        $catalogueData = $this->provider->catalogue($param);
+        $catalogueData = $this->provider->payer($args['id']);
 
         if ($catalogueData !== null) {
             $response->getBody()->write($catalogueData);

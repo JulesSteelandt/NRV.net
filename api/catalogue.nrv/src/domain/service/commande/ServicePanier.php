@@ -8,7 +8,7 @@ use nrv\catalogue\domain\entities\commande\Panier;
 class ServicePanier
 {
 
-    public function getPanierByUser(string $email): array
+    public function getPanierByUser(string $email): ?array
     {
         $list = null;
         $panier = Panier::where('mailUser', $email)->get();

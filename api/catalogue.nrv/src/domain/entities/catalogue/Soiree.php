@@ -5,6 +5,7 @@ namespace nrv\catalogue\domain\entities\catalogue;
 use nrv\catalogue\domain\dto\catalogue\SoireeDTO;
 use DateTime;
 use nrv\catalogue\domain\entities\commande\Commande;
+use nrv\catalogue\domain\entities\commande\Panier;
 
 class Soiree extends \Illuminate\Database\Eloquent\Model
 {
@@ -27,7 +28,8 @@ class Soiree extends \Illuminate\Database\Eloquent\Model
             ->withPivot("typeTarif",'nmbPlace');
     }
 
-    public function toDTO():SoireeDTO{
+
+    public function toDTO(int $nbPlace = 0, int $typeTarif = 0):SoireeDTO{
         return new SoireeDTO(
             $this->id,
             $this->idLieu,
@@ -37,6 +39,9 @@ class Soiree extends \Illuminate\Database\Eloquent\Model
             $this->tarifReduit,
             DateTime::createFromFormat('Y-m-d', $this->date),
             DateTime::createFromFormat('H:i:s', $this->horaireDebut),
+            $this->nbPlaceRestante,
+            $nbPlace,
+            $typeTarif
         );
     }
 

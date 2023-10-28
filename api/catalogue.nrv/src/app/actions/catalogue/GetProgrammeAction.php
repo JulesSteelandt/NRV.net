@@ -4,8 +4,10 @@ namespace nrv\catalogue\app\actions\catalogue;
 
 use nrv\catalogue\app\actions\AbstractAction;
 use nrv\catalogue\app\provider\ProviderCatalogue;
+use nrv\catalogue\domain\exception\LieuIdException;
 use nrv\catalogue\domain\exception\SoireeIdException;
 use nrv\catalogue\domain\exception\SpectacleIdException;
+use nrv\catalogue\domain\exception\StyleIdException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -39,7 +41,7 @@ class GetProgrammeAction extends AbstractAction
                 $catalogue = $this->provider->getProgramme('lieu',$params['lieu']);
             }
 
-        } catch (SpectacleIdException|SoireeIdException $e) {
+        } catch (SpectacleIdException|SoireeIdException|LieuIdException|StyleIdException $e) {
             $responseMessage = array(
                 "message" => "404 Not Found",
                 "exception" => array(
@@ -65,6 +67,7 @@ class GetProgrammeAction extends AbstractAction
                     'date'=>$programme['soiree']->date->format('Y-m-d'),
                     'horaire'=>$programme['horaire']->format('H:i:s'),
                     'image'=>$programme['image'],
+                    'idSoiree'=>$programme['soiree']->id,
                     'links' => [
                         'self' => [
                             'href' => '/spectacle/' . $programme['spectacle']->id,

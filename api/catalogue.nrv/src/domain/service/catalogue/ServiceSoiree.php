@@ -40,4 +40,16 @@ class ServiceSoiree
         }
         return $list;
     }
+
+    public function getPlaceVendu(): array{
+        $soirees = Soiree::all();
+        $list = [];
+        foreach ($soirees as $soiree){
+            $list[$soiree->id]['soiree'] = $soiree;
+            $list[$soiree->id]['nbPlaceTotal'] = $soiree->lieu->nbPlace;
+            $list[$soiree->id]['nbPlaceRestante'] = $soiree->nbPlaceRestante;
+            $list[$soiree->id]['nbPlaceVendu'] = $soiree->lieu->nbPlace - $soiree->nbPlaceRestante;
+        }
+        return $list;
+    }
 }

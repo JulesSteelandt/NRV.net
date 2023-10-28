@@ -57,8 +57,26 @@ class Provider
     }
 
     public function billet($data){
+        return $this->clientApi->get("/billet/user/$data");
+    }
+
+    public function billetRef($data){
         return $this->clientApi->get("/billet/$data");
     }
+
+
+    public function lieu(){
+        return $this->clientApi->get("/lieu");
+    }
+
+    public function soireeStat(){
+        return $this->clientApi->get("/soiree/stat");
+    }
+
+    public function payer(int $id){
+        return $this->clientApi->post("/payer/$id",null);
+    }
+
 
 
 
