@@ -6,6 +6,7 @@ namespace nrv\catalogue\domain\service\catalogue;
 use DateTime;
 use nrv\catalogue\domain\dto\catalogue\CatalogueDTO;
 use nrv\catalogue\domain\entities\catalogue\Lieu;
+use nrv\catalogue\domain\entities\catalogue\Soiree;
 use nrv\catalogue\domain\entities\catalogue\Spectacle;
 use nrv\catalogue\domain\entities\catalogue\Style;
 use nrv\catalogue\domain\exception\LieuIdException;
@@ -69,20 +70,18 @@ class ServiceCatalogue
     }
 
 
-    public function getCatalogueByDate(int $id): array
+    public function getCatalogueByDate(string $date): array
     {
-        $lieu = Lieu::find($id);
-        if ($lieu == null) {
-            throw new LieuIdException($id);
-        }
-        $soirees = $lieu->soirees;
+        $soirees = Soiree::all();
         $list = [];
 
         foreach ($soirees as $soiree) {
-            foreach ($soiree->spectacles as $heure) {
-                $horaire = DateTime::createFromFormat('H:i:s', $heure->pivot->horaireSpectacle);
-                $list[] = new CatalogueDTO($soiree->id, $heure->id, $horaire);
+            if ($soiree->date == $date) {
+                foreach ($soiree->spectacles as $heure) {
+                    $horaire = DateTime::createFromFormat('H:i:s', $heure->pivot->horaireSpectacle);
+                    $list[] = new CatalogueDTO($soiree->id, $heure->id, $horaire);
 
+                }
             }
         }
 

@@ -58,10 +58,10 @@ class ProviderCatalogue
             $cat = $this->serviceCatalogue->getCatalogueSortByStyle($data);
         }
         if ($tri == "date") {
-            $cat = $this->serviceCatalogue->getCatalogueSortByStyle($data);
+            $cat = $this->serviceCatalogue->getCatalogueByDate($data);
         }
         if ($tri == "lieu") {
-            $cat = $this->serviceCatalogue->getCatalogueByLieu($data);
+            $cat = $this->serviceCatalogue->getCatalogueByDate($data);
         }
         if ($tri == 'null') {
             $cat = $this->serviceCatalogue->getCatalogue();
