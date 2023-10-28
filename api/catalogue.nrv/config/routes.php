@@ -4,6 +4,7 @@ use nrv\catalogue\app\actions\catalogue\GetArtisteAction;
 use nrv\catalogue\app\actions\catalogue\GetLieuAction;
 use nrv\catalogue\app\actions\catalogue\GetProgrammeAction;
 use nrv\catalogue\app\actions\catalogue\GetSoireeIdAction;
+use nrv\catalogue\app\actions\catalogue\GetSoireeStatAction;
 use nrv\catalogue\app\actions\catalogue\GetSpectacleAction;
 use nrv\catalogue\app\actions\catalogue\GetStyleAction;
 use nrv\catalogue\app\actions\catalogue\GetStyleByIdAction;
@@ -21,6 +22,8 @@ return function (App $app): void {
 
     $app->get('/spectacle/{id}[/]', GetSpectacleAction::class)->setName('spectacleId');
 
+    $app->get('/soiree/stat[/]', GetSoireeStatAction::class)->setName('soireeStat');
+
     $app->get('/soiree/{id}[/]', GetSoireeIdAction::class)->setName('soireeId');
 
     $app->get('/style[/]', GetStyleAction::class)->setName('style');
@@ -34,6 +37,7 @@ return function (App $app): void {
     $app->get('/panier/{mail}[/]', GetPanierByUserAction::class)->setName('panierMail');
 
     $app->post('/payer/{id}[/]', PayerCommandeAction::class)->setName('payerCommande');
+
 
     $app->options('/{routes:.+}', function ($request, $response, $args) {
         return $response; // Renvoie une réponse HTTP vide

@@ -135,5 +135,9 @@ class ProviderCatalogue
         return $this->serviceLieu->getLieu();
     }
 
+    public function getStat(){
+        return $this->serviceSoiree->getPlaceVendu();
+    }
+
 
 }
