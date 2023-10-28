@@ -60,6 +60,19 @@ class Provider
         return $this->clientApi->get("/billet/$data");
     }
 
+    public function lieu(){
+        return $this->clientApi->get("/lieu");
+    }
+
+    public function soireeStat(){
+        return $this->clientApi->get("/soiree/stat");
+    }
+
+    public function payer(int $id){
+        return $this->clientApi->post("/payer/$id",null);
+    }
+
+
 
 
 

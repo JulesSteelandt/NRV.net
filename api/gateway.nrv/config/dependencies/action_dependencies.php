@@ -1,12 +1,15 @@
 <?php
 
 use nrv\gateway\actions\catalogue\ArtisteAction;
+use nrv\gateway\actions\catalogue\ListLieuAction;
 use nrv\gateway\actions\catalogue\ProgrammeAction;
 use nrv\gateway\actions\catalogue\SoireeAction;
+use nrv\gateway\actions\catalogue\SoireeStatAction;
 use nrv\gateway\actions\catalogue\SpectacleAction;
 use nrv\gateway\actions\catalogue\StyleAction;
 use nrv\gateway\actions\catalogue\StyleListAction;
 use nrv\gateway\actions\commande\BilletUserAction;
+use nrv\gateway\actions\commande\PayerCommandeAction;
 use Psr\Container\ContainerInterface;
 use nrv\gateway\actions\auth\RefreshAction;
 use nrv\gateway\actions\auth\SignInAction;
@@ -57,6 +60,18 @@ return[
 
     BilletUserAction::class => function (ContainerInterface $c){
         return new BilletUserAction($c->get('provider.client.catalogue'));
+    },
+
+    ListLieuAction::class => function (ContainerInterface $c){
+        return new ListLieuAction($c->get('provider.client.catalogue'));
+    },
+
+    SoireeStatAction::class => function (ContainerInterface $c){
+        return new SoireeStatAction($c->get('provider.client.catalogue'));
+    },
+
+    PayerCommandeAction::class => function (ContainerInterface $c){
+        return new PayerCommandeAction($c->get('provider.client.catalogue'));
     },
 
 
