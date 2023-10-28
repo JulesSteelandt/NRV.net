@@ -25,7 +25,7 @@ class GetBilletByRefAction extends AbstractAction
             $billet = $this->provider->getBilletRef($args['id']);
 
             $data['type'] = 'resource';
-            $data['data']['billets'] = [
+            $data['data'] = [
                 'reference' => $billet->reference,
                 'auteur' => $billet->mailUser,
                 'catTarif' => $billet->catTarif,

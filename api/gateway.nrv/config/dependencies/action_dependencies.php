@@ -8,6 +8,7 @@ use nrv\gateway\actions\catalogue\SoireeStatAction;
 use nrv\gateway\actions\catalogue\SpectacleAction;
 use nrv\gateway\actions\catalogue\StyleAction;
 use nrv\gateway\actions\catalogue\StyleListAction;
+use nrv\gateway\actions\commande\BilletRefAction;
 use nrv\gateway\actions\commande\BilletUserAction;
 use nrv\gateway\actions\commande\PayerCommandeAction;
 use Psr\Container\ContainerInterface;
@@ -61,6 +62,11 @@ return[
     BilletUserAction::class => function (ContainerInterface $c){
         return new BilletUserAction($c->get('provider.client.catalogue'));
     },
+
+    BilletRefAction::class => function (ContainerInterface $c){
+        return new BilletRefAction($c->get('provider.client.catalogue'));
+    },
+
 
     ListLieuAction::class => function (ContainerInterface $c){
         return new ListLieuAction($c->get('provider.client.catalogue'));

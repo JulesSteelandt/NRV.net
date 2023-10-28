@@ -12,9 +12,11 @@ use nrv\gateway\actions\catalogue\SoireeStatAction;
 use nrv\gateway\actions\catalogue\SpectacleAction;
 use nrv\gateway\actions\catalogue\StyleAction;
 use nrv\gateway\actions\catalogue\StyleListAction;
+use nrv\gateway\actions\commande\BilletRefAction;
 use nrv\gateway\actions\commande\BilletUserAction;
 use nrv\gateway\actions\commande\PayerCommandeAction;
 use Slim\App;
+use Slim\Routing\RouteCollectorProxy;
 
 return function (App $app): void {
 
@@ -40,7 +42,10 @@ return function (App $app): void {
 
     $app->get('/validate[/]', ValidateAction::class)->setName('validate');
 
-    $app->get('/billet/{mail}[/]', BilletUserAction::class)->setName('billetUser');
+    $app->group('/billet', function (RouteCollectorProxy $group) {
+        $group->get('/{id}', BilletRefAction::class)->setName('billetRef');
+        $group->get('/user/{mail:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}}[/]', BilletUserAction::class)->setName('billetMail');
+    });
 
     $app->get('/lieu[/]', ListLieuAction::class)->setName('lieu');
 
