@@ -1,6 +1,7 @@
 <?php
 
 use nrv\catalogue\app\actions\catalogue\GetArtisteAction;
+use nrv\catalogue\app\actions\catalogue\GetLieuAction;
 use nrv\catalogue\app\actions\catalogue\GetProgrammeAction;
 use nrv\catalogue\app\actions\catalogue\GetSoireeIdAction;
 use nrv\catalogue\app\actions\catalogue\GetSpectacleAction;
@@ -23,6 +24,8 @@ return function (App $app): void {
     $app->get('/soiree/{id}[/]', GetSoireeIdAction::class)->setName('soireeId');
 
     $app->get('/style[/]', GetStyleAction::class)->setName('style');
+
+    $app->get('/lieu[/]', GetLieuAction::class)->setName('lieu');
 
     $app->get('/style/{id}[/]', GetStyleByIdAction::class)->setName('styleId');
 

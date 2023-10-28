@@ -9,6 +9,7 @@ use nrv\catalogue\domain\entities\catalogue\Lieu;
 use nrv\catalogue\domain\entities\catalogue\Spectacle;
 use nrv\catalogue\domain\entities\catalogue\Style;
 use nrv\catalogue\domain\exception\LieuIdException;
+use nrv\catalogue\domain\exception\LieuNomException;
 use nrv\catalogue\domain\exception\StyleIdException;
 
 class ServiceCatalogue
@@ -46,11 +47,12 @@ class ServiceCatalogue
         return $list;
     }
 
-    public function getCatalogueByLieu(int $id): array
+    public function getCatalogueByLieu(string $nom): array
     {
-        $lieu = Lieu::find($id);
+        $nom = str_replace('-', ' ', $nom);
+        $lieu = Lieu::where('nom', $nom)->first();
         if ($lieu == null) {
-            throw new LieuIdException($id);
+            throw new LieuNomException($nom);
         }
         $soirees = $lieu->soirees;
         $list = [];

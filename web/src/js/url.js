@@ -1,1 +1,1 @@
-export let url = 'http://docketu.iutnc.univ-lorraine.fr:32107';
+export let url = 'http://localhost:32107';

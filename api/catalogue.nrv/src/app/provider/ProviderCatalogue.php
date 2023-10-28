@@ -130,5 +130,10 @@ class ProviderCatalogue
         return $this->serviceStyle->getStyle();
     }
 
+    public function getLieu(): array
+    {
+        return $this->serviceLieu->getLieu();
+    }
+
 
 }
