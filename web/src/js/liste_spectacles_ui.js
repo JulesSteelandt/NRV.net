@@ -11,11 +11,20 @@ export function display_spectacles(spectacles) {
                         <p>${element.spectacle.titre}</p>
                         <p>${element.spectacle.date}</p>
                         <p>${element.spectacle.horaire}</p>
-                        <button id="idBouton">Choisir</button>                   
+                        <button id="${element.spectacle.id}" class="choisir-button">Choisir</button>                   
                     </div>
                 </article>
             `
         })
+        // Ajoutez des gestionnaires d'événements pour les boutons "Choisir" de la soirée
+        const choisirButtons = document.querySelectorAll('.choisir-button');
+        choisirButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Récupérez l'ID de la soirée associée au bouton
+                const soireeId = button.id;
+                chargerNouveauContenu('page_corps_soirees', soireeId);
+            });
+        });
     });
 }
 
