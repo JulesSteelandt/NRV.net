@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nancy Rock Vibration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="../css/page_accueil_fetch.css">
+</head>
+<body>
+<header>
+    <div>
+        <img src="../images/logo.png" alt="logo">
+        <h3>Nancy Rock Vibration</h3>
+    </div>
+    <div>
+        <div>
+            <button class="button_validation">
+                Pro
+            </button>
+            <button class="button_validation">
+                connexion
+            </button>
+            <img alt="user" src="../images/user.png">
+        </div>
+        <div>
+            <img id="imgSearch" alt="search" src="../images/search.png">
+
+            <label>
+                <input>
+            </label>
+            <img alt="panier" src="../images/shop.png">
+        </div>
+    </div>
+</header>
+<section id="sec">
+    <div id="section_container"></div>
+</section>
+<script>
+    fetch('page_corps_accueil.html')
+        .then(response => response.text())
+        .then(data1 => {
+            document.getElementById('section_container').innerHTML = data1;
+        });
+</script>
+<script type="text/javascript" src="../../src/js/remove_section.js"></script>
+<script type="text/javascript" src="../../src/js/index.js"></script>
+</body>
+<footer>
+    <p>&copy; 2023 NRV festival. Tous droits réservés.</p>
+</footer>
+</html>
