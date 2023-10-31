@@ -12,11 +12,10 @@
     document.getElementById('sec').appendChild(newSection);
     newSection.innerHTML = newContent;
 
-        fetch('http://localhost:32107/soiree/'+id)
+        fetch('http://docketu.iutnc.univ-lorraine.fr:32107/soiree/'+id)
             .then(function(promise){
                 promise.json()
                     .then(json => {
-                        console.log(json);
                         document.getElementById("titre").innerHTML = `${json.data.soiree.nom}`;
                         document.getElementById("theme").innerHTML = `${json.data.soiree.theme}`;
                         document.getElementById("date").innerHTML = `${json.data.soiree.date}`;
@@ -31,7 +30,7 @@
                         for (let i=0;i<nb;i++) {
                             document.getElementById("articleSpectacle").innerHTML += `
                                 <article class="spectacle">
-                                <img src="../images/imgSpectacle.png" alt="imgSpec">
+                                <img src="./images/imgSpectacle.png" alt="imgSpec">
                                    <div id="infoSpectacle">
                                  <h3 id="titreSpectacle">${json.data.spectacle[i].titre}</h3>
                                  <h3 id="styleSpectacle">${json.data.spectacle[i].style}</h3>
