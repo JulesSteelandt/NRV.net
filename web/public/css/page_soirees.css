@@ -14,6 +14,35 @@ body {
   background-color: #efefef;
 }
 
+.button_validation {
+  border: none;
+  min-width: 10em;
+  min-height: 2em;
+  color: #F8882D;
+  font-weight: bold;
+  background-color: black;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+.button_validation:hover {
+  color: white;
+  background-color: #F8882D;
+}
+
+.button_redirection {
+  border: none;
+  min-width: 10em;
+  min-height: 2em;
+  color: #dedbdb;
+  font-weight: bold;
+  background-color: #45818E;
+  border-radius: 10px;
+}
+.button_redirection:hover {
+  color: #45818E;
+  background-color: #dedbdb;
+}
+
 header {
   padding: 10px;
   box-sizing: border-box;
@@ -37,6 +66,8 @@ header div:nth-child(1) h3 {
   font-weight: bolder;
   margin-top: 0;
   margin-bottom: 0;
+  min-width: 5em;
+  max-width: 8em;
 }
 header div:nth-child(2) div:nth-child(1) {
   align-items: center;
@@ -68,6 +99,11 @@ header div:nth-child(2) div:nth-child(2) input {
   margin-left: 5px;
 }
 
+@media screen and (max-width: 800px) {
+  #nrv {
+    display: none;
+  }
+}
 .button_validation {
   border: none;
   min-width: 10em;
@@ -162,7 +198,7 @@ body section .spectacleSoiree {
 body section .articleSpectacle {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(14, 7.3846153846%);
+  grid-template-columns: repeat(14, 32%);
   grid-gap: 2%;
   box-sizing: border-box;
   height: 65%;

@@ -1,3 +1,4 @@
+//import {loadSoiree} from "./liste_spectacles";
 
 export function display_spectacles(spectacles) {
     let grille_spectacles = document.getElementById("grille_articles");
@@ -11,31 +12,24 @@ export function display_spectacles(spectacles) {
                         <p>${element.spectacle.titre}</p>
                         <p>${element.spectacle.date}</p>
                         <p>${element.spectacle.horaire}</p>
-                        <button id="idBouton">Choisir</button>                   
+                        <button id="${element.spectacle.idSoiree}" class="choisir-button">Choisir</button>                   
                     </div>
                 </article>
             `
-        })
+        });
+        // Ajoutez des gestionnaires d'événements pour les boutons "Choisir" de la soirée
+        const choisirButtons = document.querySelectorAll('.choisir-button');
+        choisirButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Récupérez l'ID de la soirée associée au bouton
+                const soireeId = button.id;
+                chargerNouveauContenu('html/page_corps_soirees','soiree',soireeId);
+            });
+        });
     });
 }
 
 export function display_soiree(data_soiree) {
-    let soiree = document.getElementById("grille_articles");
-    soiree.innerHTML = "";
-    data_soiree.then(data => {
-        soiree.innerHTML += `
-            <p>${data.soiree.id}</p>
-        `
-    });
-    /*
-    data_soiree.then(data => {
-        data.forEach(element => {
-            soiree.innerHTML += `
-                <p>${element.soiree.id}</p>
-                <p>${element.soiree.theme}</p>
-            `
-        })
-    });
-
-     */
+    //let soiree = document.getElementById("grille_articles");
+    document.getElementById('soireeId').innerHTML += "coucou";
 }
