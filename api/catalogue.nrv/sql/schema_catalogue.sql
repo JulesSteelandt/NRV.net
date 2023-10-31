@@ -68,17 +68,6 @@
         FOREIGN KEY (idSpectacle) REFERENCES SPECTACLE (id)
     );
 
-    -- Table PANIER
-    CREATE TABLE PANIER
-    (
-        mailUser  VARCHAR(255),
-        idSoiree  INT,
-        nmbPlace  INT,
-        typeTarif int,
-        PRIMARY KEY (mailUser, IdSoiree),
-        FOREIGN KEY (idSoiree) REFERENCES SOIREE (id)
-    );
-
     -- Table COMMANDE
     CREATE TABLE COMMANDE
     (

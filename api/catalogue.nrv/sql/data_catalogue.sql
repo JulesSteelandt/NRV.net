@@ -483,8 +483,3 @@ INSERT INTO COMMANDE2SOIREE
 values (3, 3, 1, 2);
 INSERT INTO COMMANDE2SOIREE
 values (4, 4, 2, 1);
-
-
-INSERT INTO PANIER (mailUser, idSoiree, nmbPlace, typeTarif)
-VALUES ('user1@gmail.com', 1, 2, 1),
-       ('user1@gmail.com', 2, 1, 1);
